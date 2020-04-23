@@ -1,0 +1,364 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月25日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "17时36分02秒" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 报表日志";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* 报表日志
+日期:       2019年08月25日
+时间:       17时36分02秒
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0GPQ0KS "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Ids\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0GPQ0KS new;
+MPRINT(EM_DIAGRAM):   run;
+17700      %EmAdviseStat(EMWS1.Ids_DATA, maxClassLevels=20, metadata=EMWS1.Ids_CMeta_DATA, statisticData=EMWS1.Ids_EMSTAT);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EMADVISESTAT):   proc display c=sashelp.emmeta.advisestatistics.scl;
+MPRINT(EMADVISESTAT):   run;
+
+17701      %let SYSCC = 0;
+*------------------------------------------------------------* 
+Computing data source summary statistics 
+*------------------------------------------------------------* 
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.02 秒
+      CPU 时间          0.01 秒
+      
+17702      %let EM_ADVISENCOUNT = -1;
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.02 秒
+      CPU 时间          0.03 秒
+      
+17703      %let _GridFlag = 0;
+17704      %hpdm_performance(data=EMWS1.Ids_DATA, isGrid=_GridFlag);
+MPRINT(EMADVISESTAT):    
+MPRINT(HPDM_PERFORMANCE):  ;
+PERFORMANCE  DETAILS
+MPRINT(EMADVISESTAT):  ;
+17705      proc dmdb data=EMWS1.Ids_DATA(obs=1000000)
+17706      maxlevel = 513
+17707      classout=WORK._CLASSSTAT varout=WORK._VARSTAT;
+MPRINT(EMADVISESTAT):    proc dmdb data=EMWS1.Ids_DATA(obs=1000000) maxlevel = 513 classout=WORK._CLASSSTAT varout=WORK._VARSTAT;
+17708      var
+17709      'CLAGE'n
+17710      'CLNO'n
+17711      'DEBTINC'n
+17712      'DELINQ'n
+17713      'DEROG'n
+17714      'LOAN'n
+17715      'MORTDUE'n
+17716      'NINQ'n
+17717      'VALUE'n
+17718      'YOJ'n
+17719      ;
+MPRINT(EMADVISESTAT):   var 'CLAGE'n 'CLNO'n 'DEBTINC'n 'DELINQ'n 'DEROG'n 'LOAN'n 'MORTDUE'n 'NINQ'n 'VALUE'n 'YOJ'n ;
+17720      class
+17721      'BAD'n
+17722      'JOB'n
+17723      'REASON'n
+17724      ;
+MPRINT(EMADVISESTAT):   class 'BAD'n 'JOB'n 'REASON'n ;
+17725      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: Records processed = 5960   Memory used = 511K.
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.02 秒
+      CPU 时间          0.01 秒
+      
+NOTE: 从数据集 SAMPSIO.HMEQ. 读取了 5960 个观测
+NOTE: 从数据集 EMWS1.IDS_DATA. 读取了 5960 个观测
+NOTE: 数据集 WORK._CLASSSTAT 有 12 个观测和 9 个变量。
+NOTE: 数据集 WORK._VARSTAT 有 10 个观测和 9 个变量。
+NOTE: “PROCEDURE DMDB”所用时间（总处理时间）:
+      实际时间          0.03 秒
+      CPU 时间          0.03 秒
+      
+
+17726      proc sort data=WORK._CLASSSTAT;
+MPRINT(EMADVISESTAT):    proc sort data=WORK._CLASSSTAT;
+17727      by NAME;
+MPRINT(EMADVISESTAT):   by NAME;
+17728      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK._CLASSSTAT. 读取了 12 个观测
+NOTE: 数据集 WORK._CLASSSTAT 有 12 个观测和 9 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17729      data WORK._CLASSSTAT;
+MPRINT(EMADVISESTAT):   data WORK._CLASSSTAT;
+17730      set WORK._CLASSSTAT end=eof;
+MPRINT(EMADVISESTAT):   set WORK._CLASSSTAT end=eof;
+17731      retain NLEVEL PCTMISS NTOTAL 0;
+MPRINT(EMADVISESTAT):   retain NLEVEL PCTMISS NTOTAL 0;
+17732      KEEP NAME TYPE NLEVEL PCTMISS;
+MPRINT(EMADVISESTAT):   KEEP NAME TYPE NLEVEL PCTMISS;
+17733      by NAME;
+MPRINT(EMADVISESTAT):   by NAME;
+17734      if first.NAME then do;
+MPRINT(EMADVISESTAT):   if first.NAME then do;
+17735      NTOTAL = frequency;
+MPRINT(EMADVISESTAT):   NTOTAL = frequency;
+17736      if LEVEL in('', '.') and CRAW eq '' and NRAW=. then do;
+MPRINT(EMADVISESTAT):   if LEVEL in('', '.') and CRAW eq '' and NRAW=. then do;
+17737      PCTMISS=FREQPERCENT;
+MPRINT(EMADVISESTAT):   PCTMISS=FREQPERCENT;
+17738      NLEVEL = 0;
+MPRINT(EMADVISESTAT):   NLEVEL = 0;
+17739      end;
+MPRINT(EMADVISESTAT):   end;
+17740      else do;
+MPRINT(EMADVISESTAT):   else do;
+17741      NLEVEL=1;
+MPRINT(EMADVISESTAT):   NLEVEL=1;
+17742      PCTMISS=0;
+MPRINT(EMADVISESTAT):   PCTMISS=0;
+17743      end;
+MPRINT(EMADVISESTAT):   end;
+17744      end;
+MPRINT(EMADVISESTAT):   end;
+17745      else do;
+MPRINT(EMADVISESTAT):   else do;
+17746      NLEVEL + 1;
+MPRINT(EMADVISESTAT):   NLEVEL + 1;
+17747      NTOTAL + FREQUENCY;
+MPRINT(EMADVISESTAT):   NTOTAL + FREQUENCY;
+17748      end;
+MPRINT(EMADVISESTAT):   end;
+17749      if last.NAME then do;
+MPRINT(EMADVISESTAT):   if last.NAME then do;
+17750      if eof then call symput('EM_ADVISENCOUNT', strip(put(ntotal, best.)));
+MPRINT(EMADVISESTAT):   if eof then call symput('EM_ADVISENCOUNT', strip(put(ntotal, best.)));
+17751      output;
+MPRINT(EMADVISESTAT):   output;
+17752      end;
+MPRINT(EMADVISESTAT):   end;
+17753      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK._CLASSSTAT. 读取了 12 个观测
+NOTE: 数据集 WORK._CLASSSTAT 有 3 个观测和 4 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17754      data WORK._VARSTAT;
+MPRINT(EMADVISESTAT):    data WORK._VARSTAT;
+17755      set WORK._VARSTAT end=eof;
+MPRINT(EMADVISESTAT):   set WORK._VARSTAT end=eof;
+17756      retain TYPE 'N';
+MPRINT(EMADVISESTAT):   retain TYPE 'N';
+17757      PCTMISS = 100*NMISS/(NMISS + N);
+MPRINT(EMADVISESTAT):   PCTMISS = 100*NMISS/(NMISS + N);
+17758      drop N
+17759      ;
+MPRINT(EMADVISESTAT):   drop N ;
+17760      if eof then call symput('EM_ADVISENCOUNT', strip(put(nmiss + n, best.)));
+MPRINT(EMADVISESTAT):   if eof then call symput('EM_ADVISENCOUNT', strip(put(nmiss + n, best.)));
+17761      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK._VARSTAT. 读取了 10 个观测
+NOTE: 数据集 WORK._VARSTAT 有 10 个观测和 10 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17762      data EMWS1.Ids_EMSTAT;
+MPRINT(EMADVISESTAT):    data EMWS1.Ids_EMSTAT;
+17763      length Name $32 Type $1 nlevel pctmiss min max mean std skewness kurtosis 8;
+MPRINT(EMADVISESTAT):   length Name $32 Type $1 nlevel pctmiss min max mean std skewness kurtosis 8;
+17764      label NAME = "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel,  NOQUOTE))" TYPE = "%sysfunc(sasmsg(sashelp.dmine, meta_type_vlabel,  NOQUOTE))" NLEVEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_numcat_vlabel,   NOQUOTE))" PCTMISS =
+17765         "%sysfunc(sasmsg(sashelp.dmine, rpt_pctmissing_vlabel, NOQUOTE))" MIN = "%sysfunc(sasmsg(sashelp.dmine, rpt_minimum_vlabel, NOQUOTE))" MAX = "%sysfunc(sasmsg(sashelp.dmine, rpt_maximum_vlabel, NOQUOTE))" MEAN =
+17766         "%sysfunc(sasmsg(sashelp.dmine, rpt_mean_vlabel,    NOQUOTE))" STD = "%sysfunc(sasmsg(sashelp.dmine, rpt_std_vlabel,     NOQUOTE))" SKEWNESS = "%sysfunc(sasmsg(sashelp.dmine, rpt_skewness_vlabel, NOQUOTE))" KURTOSIS =
+17767         "%sysfunc(sasmsg(sashelp.dmine, rpt_kurtosis_vlabel, NOQUOTE))";
+MPRINT(EMADVISESTAT):   label NAME = "变量名称" TYPE = "类型" NLEVEL = "水平数" PCTMISS = "缺失值百分比" MIN = "最小值" MAX = "最大值" MEAN = "均值" STD = "标准差" SKEWNESS = "偏度" KURTOSIS = "峰度";
+17768      format NLEVEL 6.0 PCTMISS MIN MAX MEAN STD SKEWNESS KURTOSIS BEST8.3;
+MPRINT(EMADVISESTAT):   format NLEVEL 6.0 PCTMISS MIN MAX MEAN STD SKEWNESS KURTOSIS BEST8.3;
+17769      set WORK._VARSTAT WORK._CLASSSTAT;
+MPRINT(EMADVISESTAT):   set WORK._VARSTAT WORK._CLASSSTAT;
+17770      drop NMISS;
+MPRINT(EMADVISESTAT):   drop NMISS;
+17771      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK._VARSTAT. 读取了 10 个观测
+NOTE: 从数据集 WORK._CLASSSTAT. 读取了 3 个观测
+NOTE: 数据集 EMWS1.IDS_EMSTAT 有 13 个观测和 10 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.01 秒
+      CPU 时间          0.01 秒
+      
+
+17772      proc sort data=EMWS1.Ids_EMSTAT;
+MPRINT(EMADVISESTAT):   proc sort data=EMWS1.Ids_EMSTAT;
+17773      by NAME;
+MPRINT(EMADVISESTAT):   by NAME;
+17774      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 EMWS1.IDS_EMSTAT. 读取了 13 个观测
+NOTE: 数据集 EMWS1.IDS_EMSTAT 有 13 个观测和 10 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17775      proc sort data=WORK.M1PJ3S6Z;
+MPRINT(EMADVISESTAT):    proc sort data=WORK.M1PJ3S6Z;
+17776      by NAME;
+MPRINT(EMADVISESTAT):   by NAME;
+17777      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK.M1PJ3S6Z. 读取了 13 个观测
+NOTE: 数据集 WORK.M1PJ3S6Z 有 13 个观测和 20 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17778      data WORK.M1PJ3S6Z;
+MPRINT(EMADVISESTAT):   data WORK.M1PJ3S6Z;
+17779      merge WORK.M1PJ3S6Z EMWS1.Ids_EMSTAT;
+MPRINT(EMADVISESTAT):   merge WORK.M1PJ3S6Z EMWS1.Ids_EMSTAT;
+17780      by NAME;
+MPRINT(EMADVISESTAT):   by NAME;
+17781      if FORMATTYPE in("DATE", "DATETIME", "TIME") then do;
+MPRINT(EMADVISESTAT):   if FORMATTYPE in("DATE", "DATETIME", "TIME") then do;
+17782      MEAN=.;
+MPRINT(EMADVISESTAT):   MEAN=.;
+17783      MIN=.;
+MPRINT(EMADVISESTAT):   MIN=.;
+17784      MAX=.;
+MPRINT(EMADVISESTAT):   MAX=.;
+17785      STD=.;
+MPRINT(EMADVISESTAT):   STD=.;
+17786      SKEWNESS=.;
+MPRINT(EMADVISESTAT):   SKEWNESS=.;
+17787      KURTOSIS=.;
+MPRINT(EMADVISESTAT):   KURTOSIS=.;
+17788      end;
+MPRINT(EMADVISESTAT):   end;
+17789      else if ROLE = 'ID' then do;
+MPRINT(EMADVISESTAT):   else if ROLE = 'ID' then do;
+17790      MEAN=.;
+MPRINT(EMADVISESTAT):   MEAN=.;
+17791      STD=.;
+MPRINT(EMADVISESTAT):   STD=.;
+17792      SKEWNESS=.;
+MPRINT(EMADVISESTAT):   SKEWNESS=.;
+17793      KURTOSIS=.;
+MPRINT(EMADVISESTAT):   KURTOSIS=.;
+17794      end;
+MPRINT(EMADVISESTAT):   end;
+17795      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK.M1PJ3S6Z. 读取了 13 个观测
+NOTE: 从数据集 EMWS1.IDS_EMSTAT. 读取了 13 个观测
+NOTE: 数据集 WORK.M1PJ3S6Z 有 13 个观测和 28 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17796      data EMWS1.Ids_CMeta_DATA;
+MPRINT(EMADVISESTAT):    data EMWS1.Ids_CMeta_DATA;
+17797      set WORK.M1PJ3S6Z;
+MPRINT(EMADVISESTAT):   set WORK.M1PJ3S6Z;
+17798      run;
+MPRINT(EMADVISESTAT):   run;
+
+NOTE: 从数据集 WORK.M1PJ3S6Z. 读取了 13 个观测
+NOTE: 数据集 EMWS1.IDS_CMETA_DATA 有 13 个观测和 28 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+NOTE: “PROCEDURE DISPLAY”所用时间（总处理时间）:
+      实际时间          0.48 秒
+      CPU 时间          0.21 秒
+      
+
+MPRINT(EMADVISESTAT):   
+MPRINT(EM_DIAGRAM):  ;
+17799      proc sort data=EMWS1.Ids_EMSTAT;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Ids_EMSTAT;
+17800      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+17801      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 输入数据集已排序，故未进行排序。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17802      proc sort data=EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Ids_CMeta_DATA;
+17803      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+17804      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 13 个观测
+NOTE: 数据集 EMWS1.IDS_CMETA_DATA 有 13 个观测和 28 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17805      data EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_CMeta_DATA;
+17806      set EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_CMeta_DATA;
+17807      drop nlevel pctmiss min max mean std skewness kurtosis;
+MPRINT(EM_DIAGRAM):   drop nlevel pctmiss min max mean std skewness kurtosis;
+17808      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 13 个观测
+NOTE: 数据集 EMWS1.IDS_CMETA_DATA 有 13 个观测和 20 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17809      data EMWS1.Ids_EMSTAT;
+MPRINT(EM_DIAGRAM):   data EMWS1.Ids_EMSTAT;
+17810      merge EMWS1.Ids_CMeta_DATA(keep=NAME TYPE LEVEL ROLE) EMWS1.Ids_EMSTAT;
+MPRINT(EM_DIAGRAM):   merge EMWS1.Ids_CMeta_DATA(keep=NAME TYPE LEVEL ROLE) EMWS1.Ids_EMSTAT;
+17811      label LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel,     NOQUOTE))" ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel,      NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label LEVEL = "测度水平" ROLE = "角色";
+17812      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+17813      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 13 个观测
+NOTE: 从数据集 EMWS1.IDS_EMSTAT. 读取了 13 个观测
+NOTE: 数据集 EMWS1.IDS_EMSTAT 有 13 个观测和 12 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

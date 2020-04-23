@@ -1,0 +1,128 @@
+NOTE: “PROCEDURE PRINTTO”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+Traverser: 已调用 Traverser，MPCONNECT 命令是 !sascmdv -nosyntaxcheck -noasynchio -noobjectserver。 
+Traverser: 开始过程流遍历 
+12090      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12091      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12092      put '<Node Id="Ids" Event="Run" Pid="14672" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Ids" Event="Run" Pid="14672" Gridid=""/>';
+12093      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::d99f:aa1b:be7c:ad47%18,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=2713,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 50。
+      最大记录长度是 50。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.83 秒
+      CPU 时间          0.00 秒
+      
+
+12094      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* Ids : Beginning update before running 
+* datetime : 27AUG2019:21:25:16 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\demo_scorecard\Workspaces\EMWS1\Ids\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+12096      %let _HPDMGRIDHOST=;
+12097      %let _HPDMGRIDINSTALLLOC=;
+12098      %let _HPDMGRIDDATASERVER=;
+12099      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* Ids : End update 
+* datetime : 27AUG2019:21:25:16 
+* 
+*------------------------------------------------------------* 
+12100      %em_getactionstatus(emlib =EMWS1, nodeid=Ids);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+12101      %let em_Train = Y;
+12102      %let em_Report = Y;
+12103      %let em_Score = Y;
+12104      %let em_Run = Y;
+NOTE: “PROCEDURE DISPLAY”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_GETACTIONSTATUS):   
+MPRINT(EM_DIAGRAM):  ;
+
+12105      %let emloopmode =;
+12106      %let emloopnumber =0;
+12107      %let emloopId =Ids;
+*------------------------------------------------------------* 
+* 
+* Ids : Running 
+* datetime : 27AUG2019:21:25:16 
+* 
+*------------------------------------------------------------* 
+12108      %let SYSCC =0;
+12109      %let EMGROUPMODE =;
+12110      %let EMGROUPID =;
+MPRINT(EM_DIAGRAM):      filename temp catalog 'sashelp.emutil.em_vardist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_classdist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checksetinit.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checkerror.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odsliston.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odslistoff.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_getvarname.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):    filename L0NJZ51_ "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\demo_scorecard\Workspaces\EMWS1\Ids\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto log=L0NJZ51_ new;
+MPRINT(EM_DIAGRAM):   run;

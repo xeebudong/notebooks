@@ -1,0 +1,102 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月27日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "21时25分18秒" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 评分日志";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* 评分日志
+日期:       2019年08月27日
+时间:       21时25分18秒
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0C1THA6 "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\demo_scorecard\Workspaces\EMWS1\Ids\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0C1THA6 new;
+MPRINT(EM_DIAGRAM):   run;
+17659      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+17660      * Ids: Computing metadata for DATA data;
+MPRINT(EM_DIAGRAM):   * Ids: Computing metadata for DATA data;
+17661      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.06 秒
+      CPU 时间          0.01 秒
+      
+17662      data EMWS1.Ids_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_EMINFO;
+17663      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+17664      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+17665      KEY="IDSTABLE";
+MPRINT(EM_DIAGRAM):   KEY="IDSTABLE";
+17666      DATA="SAMPSIO.CS_ACCEPTS";
+MPRINT(EM_DIAGRAM):   DATA="SAMPSIO.CS_ACCEPTS";
+17667      output;
+MPRINT(EM_DIAGRAM):   output;
+17668      TARGET="GB";
+MPRINT(EM_DIAGRAM):   TARGET="GB";
+17669      KEY="DECDATA";
+MPRINT(EM_DIAGRAM):   KEY="DECDATA";
+17670      DATA="EMWS1.Ids_GB_DD";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_GB_DD";
+17671      output;
+MPRINT(EM_DIAGRAM):   output;
+17672      TARGET="GB";
+MPRINT(EM_DIAGRAM):   TARGET="GB";
+17673      KEY="DECMETA";
+MPRINT(EM_DIAGRAM):   KEY="DECMETA";
+17674      DATA="EMWS1.Ids_GB_DM";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_GB_DM";
+17675      output;
+MPRINT(EM_DIAGRAM):   output;
+17676      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+17677      KEY="STATS";
+MPRINT(EM_DIAGRAM):   KEY="STATS";
+17678      DATA="EMWS1.Ids_EMSTATDEFAULT";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_EMSTATDEFAULT";
+17679      output;
+MPRINT(EM_DIAGRAM):   output;
+17680      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 EMWS1.IDS_EMINFO 有 4 个观测和 3 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.02 秒
+      CPU 时间          0.03 秒
+      
+17681      data EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_CMeta_DATA;
+17682      set EMWS1.Ids_VariableSet;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_VariableSet;
+17683      drop DROP;
+MPRINT(EM_DIAGRAM):   drop DROP;
+17684      where DROP='N';
+MPRINT(EM_DIAGRAM):   where DROP='N';
+17685      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.IDS_VARIABLESET. 读取了 28 个观测
+      WHERE DROP='N';
+NOTE: 数据集 EMWS1.IDS_CMETA_DATA 有 28 个观测和 20 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

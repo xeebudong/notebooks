@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Vintage">
+<a:dk1><a:srgbClr val="333333"/>
+</a:dk1><a:lt1><a:srgbClr val="FEF8EF"/>
+</a:lt1><a:dk2><a:srgbClr val="787464"/>
+</a:dk2><a:lt2><a:srgbClr val="cc7e63"/>
+</a:lt2><a:accent1><a:srgbClr val="d87c7c"/>
+</a:accent1><a:accent2><a:srgbClr val="919e8b"/>
+</a:accent2><a:accent3><a:srgbClr val="d7ab82"/>
+</a:accent3><a:accent4><a:srgbClr val="6e7074"/>
+</a:accent4><a:accent5><a:srgbClr val="61a0a8"/>
+</a:accent5><a:accent6><a:srgbClr val="efa18d"/>
+</a:accent6><a:hlink><a:srgbClr val="724e58"/>
+</a:hlink><a:folHlink><a:srgbClr val="4b565b"/>
+</a:folHlink></a:clrScheme>

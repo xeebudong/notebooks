@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="">
+<a:dk1><a:srgbClr val="d4d4d4"/>
+</a:dk1><a:lt1><a:srgbClr val="303030"/>
+</a:lt1><a:dk2><a:srgbClr val="fd6a37"/>
+</a:dk2><a:lt2><a:srgbClr val="e54d24"/>
+</a:lt2><a:accent1><a:srgbClr val="8ec3a7"/>
+</a:accent1><a:accent2><a:srgbClr val="dc5356"/>
+</a:accent2><a:accent3><a:srgbClr val="f0cb69"/>
+</a:accent3><a:accent4><a:srgbClr val="5fb7e5"/>
+</a:accent4><a:accent5><a:srgbClr val="ab91c5"/>
+</a:accent5><a:accent6><a:srgbClr val="6d53dc"/>
+</a:accent6><a:hlink><a:srgbClr val="ffa500"/>
+</a:hlink><a:folHlink><a:srgbClr val="40e0d0"/>
+</a:folHlink></a:clrScheme>
+
+

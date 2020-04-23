@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Purple-passion">
+<a:dk1><a:srgbClr val="ffffff"/>
+</a:dk1><a:lt1><a:srgbClr val="5B5C6E"/>
+</a:lt1><a:dk2><a:srgbClr val="ffffff"/>
+</a:dk2><a:lt2><a:srgbClr val="000000"/>
+</a:lt2><a:accent1><a:srgbClr val="9b8bba"/>
+</a:accent1><a:accent2><a:srgbClr val="e098c7"/>
+</a:accent2><a:accent3><a:srgbClr val="8fd3e8"/>
+</a:accent3><a:accent4><a:srgbClr val="71669e"/>
+</a:accent4><a:accent5><a:srgbClr val="cc70af"/>
+</a:accent5><a:accent6><a:srgbClr val="7cb4cc"/>
+</a:accent6><a:hlink><a:srgbClr val="0000ff"/>
+</a:hlink><a:folHlink><a:srgbClr val="6400ff"/>
+</a:folHlink></a:clrScheme>
+
+

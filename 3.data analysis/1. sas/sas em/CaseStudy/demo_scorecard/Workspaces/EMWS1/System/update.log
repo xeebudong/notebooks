@@ -1,0 +1,175 @@
+NOTE: “PROCEDURE PRINTTO”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+1 
+Traverser: 已调用 Traverser，MPCONNECT 命令是 sas。 
+Traverser: 开始过程流遍历 
+*------------------------------------------------------------* 
+* 
+* Ids : Beginning Update 
+* datetime : 27AUG2019:21:24:15 
+* 
+*------------------------------------------------------------* 
+7738       *------------------------------------------------------------*;
+7739       * Ids: Update Variables Set;
+7740       *------------------------------------------------------------*;
+
+7741       data EMWS1.Ids_VariableSet;
+7742       length ROLE $32;
+7743       length LEVEL $10;
+7744       length REPORT $1;
+7745       label REPORT = "报表";
+7746       length ORDER $8;
+7747       length DROP $1;
+7748       length LOWERLIMIT 8;
+7749       length UPPERLIMIT 8;
+7750       set EMWS1.Ids_EMCMETADEFAULT;
+7751       run;
+
+NOTE: 从数据集 EMWS1.IDS_EMCMETADEFAULT. 读取了 28 个观测
+NOTE: 数据集 EMWS1.IDS_VARIABLESET 有 28 个观测和 21 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7752       * Ids: End of Update Variables Set;
+7753       *------------------------------------------------------------*;
+
+7754       *------------------------------------------------------------*;
+7755       * Ids: Computing metadata for DATA data;
+7756       *------------------------------------------------------------*;
+
+7766       data EMWS1.Ids_EMINFO;
+7767       length TARGET KEY $32 DATA $43;
+7768       TARGET="";
+7769       KEY="IDSTABLE";
+7770       DATA="SAMPSIO.CS_ACCEPTS";
+7771       output;
+7772       TARGET="";
+7773       KEY="STATS";
+7774       DATA="EMWS1.Ids_EMSTATDEFAULT";
+7775       output;
+7776       run;
+
+NOTE: 数据集 EMWS1.IDS_EMINFO 有 2 个观测和 3 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7777       data EMWS1.Ids_CMeta_DATA;
+7778       set EMWS1.Ids_VariableSet;
+7779       drop DROP;
+7780       where DROP='N';
+7781       run;
+
+NOTE: 从数据集 EMWS1.IDS_VARIABLESET. 读取了 28 个观测
+      WHERE DROP='N';
+NOTE: 数据集 EMWS1.IDS_CMETA_DATA 有 28 个观测和 20 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7783       %let _HPDMGRIDHOST=;
+7784       %let _HPDMGRIDINSTALLLOC=;
+7785       %let _HPDMGRIDDATASERVER=;
+7786       %hpdm_gridSetOPtions;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+
+*------------------------------------------------------------* 
+* 
+* Ids : End Update 
+* datetime : 27AUG2019:21:24:16 
+* 
+*------------------------------------------------------------* 
+traverser_readyNode_note 
+*------------------------------------------------------------* 
+* 
+* Part : Beginning Update 
+* datetime : 27AUG2019:21:24:16 
+* 
+*------------------------------------------------------------* 
+7804       data _null_;
+7805       set EMWS1.Ids_CMeta_DATA (obs=1);
+7806       run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7807       data _null_;
+7808       set EMWS1.Ids_CMeta_DATA (obs=1);
+7809       run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7810       data _null_;
+7811       set EMWS1.Ids_CMeta_DATA (obs=1);
+7812       run;
+
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7813       *------------------------------------------------------------*;
+7814       * Part: Update Variables Set;
+7815       *------------------------------------------------------------*;
+
+7816       data EMWS1.Part_VariableSet;
+7817       length PARTITIONROLE $14;
+7818       set EMWS1.Ids_CMeta_DATA;
+7819       run;
+
+NOTE: 变量 PARTITIONROLE 未初始化。
+NOTE: 从数据集 EMWS1.IDS_CMETA_DATA. 读取了 28 个观测
+NOTE: 数据集 EMWS1.PART_VARIABLESET 有 28 个观测和 21 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+7820       * Part: End of Update Variables Set;
+7821       *------------------------------------------------------------*;
+
+7822       *------------------------------------------------------------*;
+7823       * Part: Computing metadata for TRAIN data;
+7824       *------------------------------------------------------------*;
+
+7835       %let _HPDMGRIDHOST=;
+7836       %let _HPDMGRIDINSTALLLOC=;
+7837       %let _HPDMGRIDDATASERVER=;
+7838       %hpdm_gridSetOPtions;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+
+*------------------------------------------------------------* 
+* 
+* Part : End Update 
+* datetime : 27AUG2019:21:24:16 
+* 
+*------------------------------------------------------------* 
+Traverser: 运行完毕 
+7839       proc printto;
+7840       run;
+

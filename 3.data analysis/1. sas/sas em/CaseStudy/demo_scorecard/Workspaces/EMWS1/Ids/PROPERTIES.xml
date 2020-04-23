@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  DataSource="csaccepts" Scope="LOCAL" Role="RAW" Library="SAMPSIO" Table="CS_ACCEPTS"
+ NCols="28" NObs="3000" NBytes="1115136" Segment="" DataSourceRole="RAW" OutputType="VIEW"
+ ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC"
+ ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y"
+ MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y"
+ VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="csaccepts"
+ DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="hp" DsCreateDate="1882560020.6"
+ DsModifiedBy="hp" DsModifyDate="1882560020.7" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT"
+ SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train"
+ Component="DataSource" RawCreateTime="1882560151.9" CreateTime="27AUG2019:21:22:32"
+ Description="" Data="SAMPSIO.CS_ACCEPTS" CMeta="WORK.M25P7PDN" RunId="5a18c74c-2f93-400c-89d6-63b4e65667a1"
+>
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

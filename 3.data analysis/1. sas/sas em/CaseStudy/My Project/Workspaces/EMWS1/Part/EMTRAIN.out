@@ -1,0 +1,24 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+变量汇总
+
+ 角色     测度水平    频数计数
+
+INPUT     BINARY          1   
+INPUT     INTERVAL       10   
+INPUT     NOMINAL         1   
+TARGET    BINARY          1   
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+分区汇总
+
+类型              数据集           观测数
+
+DATA        EMWS1.Ids_DATA          5960 
+TRAIN       EMWS1.Part_TRAIN        2382 
+VALIDATE    EMWS1.Part_VALIDATE     1788 
+TEST        EMWS1.Part_TEST         1790 

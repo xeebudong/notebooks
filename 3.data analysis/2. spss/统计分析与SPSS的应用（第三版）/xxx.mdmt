@@ -1,0 +1,21 @@
+#HLM2 MDM CREATION TEMPLATE
+growthmodel:n
+rawdattype:spss
+l1fname:E:\git\notebooks\spss\统计分析与SPSS的应用（第三版）\裁判打分.sav
+l2fname:E:\git\notebooks\spss\统计分析与SPSS的应用（第三版）\裁判打分.sav
+l1missing:n
+timeofdeletion:now
+mdmname:MSM
+*begin l1vars
+level2id:JUDGE1
+JUDGE2
+JUDGE3
+JUDGE4
+JUDGE5
+*end l1vars
+*begin l2vars
+level2id:JUDGE1
+JUDGE2
+JUDGE3
+JUDGE4
+*end l2vars

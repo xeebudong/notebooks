@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="13.2" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="744" Y="135" DESCRIPTION="CS_ACCEPTS" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="csaccepts" Scope="LOCAL" Role="RAW" Library="SAMPSIO" Table="CS_ACCEPTS" NCols="28" NObs="3000" NBytes="1115136" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="csaccepts" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="hp" DsCreateDate="1882560020.6" DsModifiedBy="hp" DsModifyDate="1882560020.7" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="BUREAU" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="CHILDREN" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="DIV" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="EC_CARD" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="FINLOAN" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="GB" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="GB" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="INC" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="INC1" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="LOANS" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="LOCATION" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NMBLOAN" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="PERS_H" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="REGN" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="RESID" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="TEL" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="TITLE" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="_freq_" AttributeName="ROLE" AttributeValue="FREQ"/>
+<DELTA Variable="_freq_" AttributeName="LEVEL" AttributeValue="BINARY"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="1005" Y="134" DESCRIPTION="数据分区" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="70" ValidatePct="30" TestPct="0" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Ids" TO="Part"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

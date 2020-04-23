@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Chalk">
+<a:dk1><a:srgbClr val="ffffff"/>
+</a:dk1><a:lt1><a:srgbClr val="293441"/>
+</a:lt1><a:dk2><a:srgbClr val="d2f5a6"/>
+</a:dk2><a:lt2><a:srgbClr val="76f2f2"/>
+</a:lt2><a:accent1><a:srgbClr val="fc97af"/>
+</a:accent1><a:accent2><a:srgbClr val="87f7cf"/>
+</a:accent2><a:accent3><a:srgbClr val="f7f494"/>
+</a:accent3><a:accent4><a:srgbClr val="72ccff"/>
+</a:accent4><a:accent5><a:srgbClr val="f7c5a0"/>
+</a:accent5><a:accent6><a:srgbClr val="d4a4eb"/>
+</a:accent6><a:hlink><a:srgbClr val="d2f5a6"/>
+</a:hlink><a:folHlink><a:srgbClr val="76f2f2"/>
+</a:folHlink></a:clrScheme>
+
+

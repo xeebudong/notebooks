@@ -1,0 +1,857 @@
+<!DOCTYPE html> <html lang=en style><!--
+ Page saved with SingleFile 
+ url: https://github.com/fighting41love/cocoNLP 
+ saved date: Fri Apr 17 2020 23:33:44 GMT+0800 (中国标准时间)
+--><meta charset=utf-8>
+<style>.octicon{display:inline-block;fill:currentColor}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,details,main,nav{display:block}summary{display:list-item}[hidden],template{display:none!important}a{background-color:initial}a:active,a:hover{outline-width:0}h1{margin:.67em 0}img{border-style:none}svg:not(:root){overflow:hidden}button,input{font:inherit;margin:0}button,input{overflow:visible}button{text-transform:none}[type=submit],html [type=button]{-webkit-appearance:button}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}*{box-sizing:border-box}button,input{font-family:inherit;font-size:inherit;line-height:inherit}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;line-height:1.5;color:#24292e;background-color:#fff}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:600}table{border-spacing:0;border-collapse:collapse}th{padding:0}button{cursor:pointer;border-radius:0}[hidden][hidden]{display:none!important}details summary{cursor:pointer}details:not([open])>:not(summary){display:none!important}h2{margin-top:0;margin-bottom:0}h2{font-weight:600}h2{font-size:24px}ol,ul{padding-left:0;margin-top:0;margin-bottom:0}code,pre{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace}pre{margin-bottom:0}.octicon{vertical-align:text-bottom}.Box{background-color:#fff;border:1px solid #d1d5da;border-radius:3px}.Box--condensed{line-height:1.25}.Box--condensed .Box-body,.Box--condensed .Box-header{padding:8px 16px}.Box-header{margin:-1px -1px 0;background-color:#f6f8fa;border:1px solid #d1d5da;border-top-left-radius:3px;border-top-right-radius:3px}.Box-title{font-size:14px;font-weight:600}.Box-body{border-bottom:1px solid #e1e4e8}.Box-body:last-of-type{margin-bottom:-1px;border-bottom-right-radius:2px;border-bottom-left-radius:2px}.Box-header--blue{background-color:#f1f8ff;border-color:#c8e1ff}.btn{position:relative;display:inline-block;font-weight:600;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-repeat:repeat-x;background-position:-1px -1px;background-size:110% 110%;border:1px solid rgba(27,31,35,.2);border-radius:.25em;-webkit-appearance:none;-moz-appearance:none}.btn i{font-style:normal;font-weight:500;opacity:.75}.btn .octicon{vertical-align:text-top}.btn:hover{text-decoration:none;background-repeat:repeat-x}.btn:focus{outline:0}.btn.disabled,.btn:disabled,.btn[aria-disabled=true]{cursor:default;background-position:0 0}.btn.selected,.btn:active,.btn[aria-selected=true]{background-image:none}.btn{color:#24292e;background-color:#eff3f6;background-image:linear-gradient(-180deg,#fafbfc,#eff3f6 90%)}.btn.focus,.btn:focus{box-shadow:0 0 0 .2em rgba(3,102,214,.3)}.btn.hover,.btn:hover{background-color:#e6ebf1;background-image:linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);background-position:-.5em;border-color:rgba(27,31,35,.35)}.btn.selected,.btn:active,.btn[aria-selected=true],[open]>.btn{background-color:#e9ecef;background-image:none;border-color:rgba(27,31,35,.35);box-shadow:inset 0 .15em .3em rgba(27,31,35,.15)}.btn.disabled,.btn:disabled,.btn[aria-disabled=true]{color:rgba(36,41,46,.4);background-color:#eff3f6;background-image:none;border-color:rgba(27,31,35,.2);box-shadow:none}.btn-primary{color:#fff;background-color:#28a745;background-image:linear-gradient(-180deg,#34d058,#28a745 90%)}.btn-primary.focus,.btn-primary:focus{box-shadow:0 0 0 .2em rgba(52,208,88,.4)}.btn-primary.hover,.btn-primary:hover{background-color:#269f42;background-image:linear-gradient(-180deg,#2fcb53,#269f42 90%);background-position:-.5em;border-color:rgba(27,31,35,.5)}.btn-primary.selected,.btn-primary:active,.btn-primary[aria-selected=true],[open]>.btn-primary{background-color:#279f43;background-image:none;border-color:rgba(27,31,35,.5);box-shadow:inset 0 .15em .3em rgba(27,31,35,.15)}.btn-primary.disabled,.btn-primary:disabled,.btn-primary[aria-disabled=true]{color:hsla(0,0%,100%,.75);background-color:#94d3a2;background-image:none;border-color:rgba(27,31,35,.2);box-shadow:none}.btn-with-count{float:left;border-top-right-radius:0;border-bottom-right-radius:0}.btn-sm{padding:3px 10px;font-size:12px;line-height:20px}.BtnGroup{display:inline-block;vertical-align:middle}.BtnGroup:after,.BtnGroup:before{display:table;content:""}.BtnGroup:after{clear:both}.BtnGroup-item{position:relative;float:left;border-right-width:0;border-radius:0}.BtnGroup-item:first-child{border-top-left-radius:3px;border-bottom-left-radius:3px}.BtnGroup-item:last-child{border-right-width:1px;border-top-right-radius:3px;border-bottom-right-radius:3px}.BtnGroup-item.selected,.BtnGroup-item:active,.BtnGroup-item:focus,.BtnGroup-item:hover,.BtnGroup-item[aria-selected=true]{border-right-width:1px}.BtnGroup-item.selected+.BtnGroup-item,.BtnGroup-item.selected+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:active+.BtnGroup-item,.BtnGroup-item:active+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:focus+.BtnGroup-item,.BtnGroup-item:focus+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:hover+.BtnGroup-item,.BtnGroup-item:hover+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item[aria-selected=true]+.BtnGroup-item,.BtnGroup-item[aria-selected=true]+.BtnGroup-parent .BtnGroup-item{border-left-width:0}.BtnGroup-parent{float:left}.BtnGroup-parent:first-child .BtnGroup-item{border-top-left-radius:3px;border-bottom-left-radius:3px}.BtnGroup-parent:last-child .BtnGroup-item{border-right-width:1px;border-top-right-radius:3px;border-bottom-right-radius:3px}.BtnGroup-parent .BtnGroup-item{border-right-width:0;border-radius:0}.BtnGroup-parent.selected .BtnGroup-item,.BtnGroup-parent:active .BtnGroup-item,.BtnGroup-parent:focus .BtnGroup-item,.BtnGroup-parent:hover .BtnGroup-item,.BtnGroup-parent[aria-selected=true] .BtnGroup-item{border-right-width:1px}.BtnGroup-parent.selected+.BtnGroup-item,.BtnGroup-parent.selected+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:active+.BtnGroup-item,.BtnGroup-parent:active+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:focus+.BtnGroup-item,.BtnGroup-parent:focus+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:hover+.BtnGroup-item,.BtnGroup-parent:hover+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent[aria-selected=true]+.BtnGroup-item,.BtnGroup-parent[aria-selected=true]+.BtnGroup-parent .BtnGroup-item{border-left-width:0}.BtnGroup-item:active,.BtnGroup-item:focus,.BtnGroup-parent:active,.BtnGroup-parent:focus{z-index:1}.hidden-text-expander.inline{position:relative;top:-1px;display:inline-block;margin-left:5px;line-height:0}.ellipsis-expander{display:inline-block;height:12px;padding:0 5px 5px;font-size:12px;font-weight:600;line-height:6px;color:#444d56;text-decoration:none;vertical-align:middle;background:#dfe2e5;border:0;border-radius:1px}.ellipsis-expander:hover,.hidden-text-expander a:hover{text-decoration:none;background-color:#c6cbd1}.ellipsis-expander:active,.hidden-text-expander a:active{color:#fff;background-color:#2188ff}.social-count{float:left;padding:3px 10px;font-size:12px;font-weight:600;line-height:20px;color:#24292e;vertical-align:middle;background-color:#fff;border:1px solid rgba(27,31,35,.2);border-left:0;border-top-right-radius:3px;border-bottom-right-radius:3px}.social-count:active,.social-count:hover{text-decoration:none}.social-count:hover{color:#0366d6;cursor:pointer}.form-control{padding:6px 8px;vertical-align:middle;background-color:#fff;background-repeat:no-repeat;background-position:right 8px center;border-radius:3px;outline:none}.form-control.focus,.form-control:focus,.form-select.focus,.form-select:focus{border-color:#2188ff;outline:none;box-shadow:inset 0 1px 2px rgba(27,31,35,.075),0 0 0 .2em rgba(3,102,214,.3)}@media (min-width:768px){.form-control{font-size:14px}}::placeholder{color:#6a737d}.input-sm{min-height:28px;padding-top:3px;padding-bottom:3px;line-height:20px}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none;appearance:none}.container-lg{max-width:1012px}.container-lg{margin-right:auto;margin-left:auto}.tooltipped{position:relative}.tooltipped:after{z-index:1000000;padding:.5em .75em;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;-webkit-font-smoothing:subpixel-antialiased;color:#fff;text-align:center;text-decoration:none;text-shadow:none;text-transform:none;letter-spacing:normal;word-wrap:break-word;white-space:pre;content:attr(aria-label);background:#1b1f23;border-radius:3px}.tooltipped:after,.tooltipped:before{position:absolute;display:none;pointer-events:none;opacity:0}.tooltipped:before{z-index:1000001;width:0;height:0;color:#1b1f23;content:"";border:6px solid transparent}@keyframes tooltip-appear{0%{opacity:0}to{opacity:1}}.tooltipped:active:after,.tooltipped:active:before,.tooltipped:focus:after,.tooltipped:focus:before,.tooltipped:hover:after,.tooltipped:hover:before{display:inline-block;text-decoration:none;animation-name:tooltip-appear;animation-duration:.1s;animation-fill-mode:forwards;animation-timing-function:ease-in;animation-delay:.4s}.tooltipped-s:after,.tooltipped-se:after,.tooltipped-sw:after{top:100%;right:50%;margin-top:6px}.tooltipped-s:before,.tooltipped-se:before,.tooltipped-sw:before{top:auto;right:50%;bottom:-7px;margin-right:-6px;border-bottom-color:#1b1f23}.tooltipped-sw:after{margin-right:-16px}.tooltipped-n:after,.tooltipped-s:after{transform:translateX(50%)}.css-truncate.css-truncate-target,.css-truncate .css-truncate-target{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.css-truncate.css-truncate-target,.css-truncate .css-truncate-target{display:inline-block;max-width:125px;vertical-align:top}@keyframes fade-in{0%{opacity:0}to{opacity:1}}@keyframes fade-out{0%{opacity:1}to{opacity:0}}@keyframes fade-up{0%{opacity:.8;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}@keyframes fade-down{0%{opacity:1;transform:translateY(0)}to{opacity:.5;transform:translateY(100%)}}@keyframes grow-x{to{width:100%}}@keyframes shrink-x{to{width:0}}@keyframes scale-in{0%{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}@keyframes pulse{0%{opacity:.3}10%{opacity:1}to{opacity:.3}}@keyframes pulse-in{0%{transform:scaleX(1)}50%{transform:scale3d(1.1,1.1,1.1)}to{transform:scaleX(1)}}.border-top{border-top:1px solid #e1e4e8!important}.border-bottom-0{border-bottom:0!important}.rounded-top-1{border-top-left-radius:3px!important;border-top-right-radius:3px!important}.rounded-bottom-0{border-bottom-right-radius:0!important;border-bottom-left-radius:0!important}.border-gray-light{border-color:#eaecef!important}.box-shadow-large{box-shadow:0 1px 15px rgba(27,31,35,.15)!important}.bg-blue{background-color:#0366d6!important}.bg-gray-light{background-color:#fafbfc!important}.text-gray-light{color:#6a737d!important}.text-gray{color:#586069!important}.text-gray-dark{color:#24292e!important}.text-white{color:#fff!important}.text-inherit{color:inherit!important}.link-gray{color:#586069!important}.link-gray:hover{color:#0366d6!important}.details-reset>summary{list-style:none}.details-reset>summary:before{display:none}.details-reset>summary::-webkit-details-marker{display:none}.flex-wrap{flex-wrap:wrap!important}.flex-justify-center{justify-content:center!important}.flex-justify-between{justify-content:space-between!important}.flex-items-start{align-items:flex-start!important}.flex-items-center{align-items:center!important}.flex-items-baseline{align-items:baseline!important}.flex-auto{flex:auto!important}.flex-shrink-0{flex-shrink:0!important}.flex-self-start{align-self:flex-start!important}.flex-self-center{align-self:center!important}.flex-self-stretch{align-self:stretch!important}.position-relative{position:relative!important}.position-absolute{position:absolute!important}.position-fixed{position:fixed!important}.top-0{top:0!important}.left-0{left:0!important}.v-align-middle{vertical-align:middle!important}.v-align-text-bottom{vertical-align:text-bottom!important}.clearfix:after,.clearfix:before{display:table;content:""}.clearfix:after{clear:both}.float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}.width-fit{max-width:100%!important}.width-full{width:100%!important}.min-width-0{min-width:0!important}.m-0{margin:0!important}.mr-0{margin-right:0!important}.mb-0{margin-bottom:0!important}.mt-1{margin-top:4px!important}.mr-1{margin-right:4px!important}.mt-2{margin-top:8px!important}.mr-2{margin-right:8px!important}.mb-2{margin-bottom:8px!important}.ml-2{margin-left:8px!important}.mr-3{margin-right:16px!important}.mb-3{margin-bottom:16px!important}.mb-4{margin-bottom:24px!important}.mt-6{margin-top:40px!important}.mx-auto{margin-right:auto!important;margin-left:auto!important}@media (min-width:1012px){.mx-lg-4{margin-right:24px!important;margin-left:24px!important}}.p-0{padding:0!important}.pb-0{padding-bottom:0!important}.pb-1{padding-bottom:4px!important}.pb-2{padding-bottom:8px!important}.p-3{padding:16px!important}.pt-3{padding-top:16px!important}.pr-3{padding-right:16px!important}.pl-3,.px-3{padding-left:16px!important}.px-3{padding-right:16px!important}.p-5{padding:32px!important}.pt-6{padding-top:40px!important}.pb-6{padding-bottom:40px!important}.f4{font-size:16px!important}@media (min-width:768px){.f4{font-size:16px!important}}.f6{font-size:12px!important}.text-small{font-size:12px!important}.text-center{text-align:center!important}.no-wrap{white-space:nowrap!important}.break-word{word-break:break-word!important;word-wrap:break-word!important;overflow-wrap:break-word!important}.text-emphasized{font-weight:600;color:#24292e}.list-style-none{list-style:none!important}.d-flex{display:flex!important}.d-inline{display:inline!important}.d-inline-block{display:inline-block!important}.d-none{display:none!important}@media (min-width:1012px){.d-lg-block{display:block!important}}@media (max-width:543px){.hide-sm{display:none!important}}@media (min-width:544px) and (max-width:767px){.hide-md{display:none!important}}.sr-only{padding:0;clip:rect(0,0,0,0);word-wrap:normal;border:0}.show-on-focus,.sr-only{position:absolute;width:1px;height:1px;overflow:hidden}.show-on-focus{margin:0;clip:rect(1px,1px,1px,1px)}.show-on-focus:focus{z-index:20;width:auto;height:auto;clip:auto}@keyframes blink{50%{background-color:initial}}include-fragment{display:block}@keyframes dropdown-display{0%{opacity:0;transform:scale(.98) translateY(-.6em)}to{opacity:1;transform:scale(1) translateY(0)}}.header-nav-current-user{padding-bottom:0;font-size:inherit}.header-search-wrapper{width:100%;max-width:100%;padding:0;font-size:inherit;font-weight:400;color:#fff;vertical-align:middle;background-color:hsla(0,0%,100%,.125);border:0;box-shadow:none}.header-search-input{display:table-cell;width:100%;padding-top:0;padding-bottom:0;font-size:inherit;color:inherit;background:none;border:0;box-shadow:none}.header-search-input::placeholder{color:hsla(0,0%,100%,.75)}.header-search-input:focus{border:0;box-shadow:none}.header-search-input:focus~.header-search-key-slash{display:none!important}.scoped-search .header-search-wrapper{display:flex}.header-search{min-width:300px;transition:.2s ease-in-out;transition-property:min-width,padding-bottom,padding-top}@media (min-width:768px){.header-search:focus-within{min-width:470px}}.flash-close{float:right;padding:16px;margin:-16px;color:inherit;text-align:center;cursor:pointer;background:none;border:0;-webkit-appearance:none;-moz-appearance:none;opacity:.6}.flash-close:hover{opacity:1}.avatar{display:inline-block;overflow:hidden;line-height:1;vertical-align:middle;border-radius:3px}.AvatarStack{position:relative;min-width:26px;height:20px}.AvatarStack .AvatarStack-body{position:absolute}.AvatarStack-body{display:flex}.AvatarStack-body .avatar{position:relative;z-index:2;display:flex;width:20px;height:20px;box-sizing:initial;margin-right:-11px;background-color:#fff;border-right:1px solid #fff;border-radius:2px;transition:margin .1s ease-in-out}.AvatarStack-body .avatar:first-child{z-index:3}.AvatarStack-body .avatar:last-child{z-index:1;border-right:0}.AvatarStack-body .avatar img{border-radius:2px}.AvatarStack-body .avatar:nth-child(n+4){display:none;opacity:0}.AvatarStack-body:hover .avatar{margin-right:3px}.AvatarStack-body:hover .avatar:nth-child(n+4){display:flex;opacity:1}.dropdown{position:relative}.dropdown-caret{display:inline-block;width:0;height:0;vertical-align:middle;content:"";border-top-style:solid;border-top-width:4px;border-right:4px solid transparent;border-bottom:0 solid transparent;border-left:4px solid transparent}.dropdown-menu{position:absolute;top:100%;z-index:100;padding-top:4px;padding-bottom:4px;margin-top:2px;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(27,31,35,.15);border-radius:4px;box-shadow:0 1px 15px rgba(27,31,35,.15)}.dropdown-menu:after,.dropdown-menu:before{position:absolute;display:inline-block;content:""}.dropdown-menu:before{border:8px solid transparent;border-bottom-color:rgba(27,31,35,.15)}.dropdown-menu:after{border:7px solid transparent;border-bottom-color:#fff}.dropdown-item{display:block;padding:4px 8px 4px 16px;overflow:hidden;color:#24292e;text-overflow:ellipsis;white-space:nowrap}.dropdown-item:focus,.dropdown-item:hover{color:#fff;text-decoration:none;background-color:#0366d6;outline:none}.dropdown-divider{display:block;height:0;margin:8px 0;border-top:1px solid #e1e4e8}.dropdown-header{padding:4px 16px;font-size:12px;color:#586069}.dropdown-menu-s{right:50%;left:auto;transform:translateX(50%)}.dropdown-menu-s:before{top:-16px;right:50%;transform:translateX(50%)}.dropdown-menu-s:after{top:-14px;right:50%;transform:translateX(50%)}.dropdown-menu-sw{right:0;left:auto}.dropdown-menu-sw:before{top:-16px;right:9px;left:auto}.dropdown-menu-sw:after{top:-14px;right:10px;left:auto}.Header{z-index:32;padding:16px;font-size:14px;line-height:1.5;color:hsla(0,0%,100%,.7);background-color:#24292e}.Header,.Header-item{display:flex;align-items:center;flex-wrap:nowrap}.Header-item{margin-right:16px;align-self:stretch}.Header-item--full{flex:auto}.Header-link{font-weight:600;color:#fff;white-space:nowrap}.Header-link:focus,.Header-link:hover{color:hsla(0,0%,100%,.7);text-decoration:none}.Counter{display:inline-block;font-size:12px;font-weight:600;line-height:1;background-color:rgba(27,31,35,.08);border-radius:20px}.Counter:empty{visibility:hidden}@keyframes AnimatedEllipsis-keyframes{0%{transform:translateX(-100%)}}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body pre{margin-top:0;margin-bottom:16px}.markdown-body h2,.markdown-body h3{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eaecef}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body img{box-sizing:initial;background-color:#fff}.markdown-body code{border-radius:3px}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{font-size:100%;word-break:normal;white-space:pre;background:transparent}.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:initial;border:0}.Popover{position:absolute;z-index:100}.Popover-message{position:relative;margin-right:auto}.Popover-message:after,.Popover-message:before{position:absolute;left:50%;display:inline-block;content:""}.Popover-message:before{top:-16px;margin-left:-9px;border:8px solid transparent;border-bottom-color:rgba(27,31,35,.15)}.Popover-message:after{top:-14px;margin-left:-8px;border:7px solid transparent;border-bottom-color:#fff}.Popover-message--bottom-left:after,.Popover-message--bottom-left:before,.Popover-message--bottom-right:after,.Popover-message--bottom-right:before,.Popover-message--bottom:after,.Popover-message--bottom:before{top:auto;border-bottom-color:transparent}.Popover-message--bottom-left:before,.Popover-message--bottom-right:before,.Popover-message--bottom:before{bottom:-16px;border-top-color:rgba(27,31,35,.15)}.Popover-message--bottom-left:after,.Popover-message--bottom-right:after,.Popover-message--bottom:after{bottom:-14px;border-top-color:#fff}.Popover-message--bottom-left,.Popover-message--top-left{left:-9px;margin-left:0}.Popover-message--bottom-left:after,.Popover-message--bottom-left:before,.Popover-message--top-left:after,.Popover-message--top-left:before{left:24px;margin-left:0}.Popover-message--bottom-left:after,.Popover-message--top-left:after{left:25px}@media (min-width:544px){.Popover-message--large{min-width:320px}}.Progress{display:flex;overflow:hidden;background-color:#e1e4e8;border-radius:3px}.SelectMenu-modal{position:relative;z-index:99;display:flex;margin:auto 0;overflow:hidden;pointer-events:auto;flex-direction:column;background-color:#f6f8fa;border-radius:6px;box-shadow:0 0 18px rgba(0,0,0,.4);animation:SelectMenu-modal-animation .12s cubic-bezier(0,.1,.1,1) backwards}@keyframes SelectMenu-modal-animation{0%{opacity:0;transform:scale(.9)}}@keyframes SelectMenu-modal-animation--sm{0%{opacity:0;transform:translateY(-16px)}}@media (min-width:544px){.SelectMenu-modal{width:300px;height:auto;max-height:480px;margin:4px 0 16px;font-size:12px;border:1px solid #d1d5da;border-radius:3px;box-shadow:0 1px 5px rgba(27,31,35,.15);animation-name:SelectMenu-modal-animation--sm}}.SelectMenu--hasFilter .SelectMenu-modal{height:80%;max-height:none;margin-top:0}@media (min-width:544px){.SelectMenu--hasFilter .SelectMenu-modal{height:auto;max-height:480px;margin-top:4px}}@keyframes Toast--animateIn{0%{opacity:0;transform:translateY(100%)}}@keyframes Toast--animateOut{to{pointer-events:none;opacity:0;transform:translateY(100%)}}.ajax-error-message>.octicon-alert{vertical-align:text-top}.select-menu-button:after{display:inline-block;width:0;height:0;vertical-align:-2px;content:"";border:4px solid transparent;border-top-color:currentcolor}.select-menu-header{padding:8px 10px;line-height:16px;background:#f6f8fa;border-bottom:1px solid #e1e4e8}.select-menu-header:focus{outline:none}.select-menu-list{position:relative;max-height:400px;overflow:auto}.breadcrumb{color:#586069}.commit-desc pre{max-width:700px;margin-top:10px;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:11px;line-height:1.45;color:#444d56;white-space:pre-wrap}.commit-tease{position:relative;font-size:13px;line-height:20px;color:#586069}.commit-tease-sha{display:inline-block;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:90%;color:#444d56}.footer-octicon{color:#c6cbd1}.footer-octicon:hover{color:#959da5}@keyframes konami-color{0%{background:#c1fa9c;border-bottom:2px solid #a2f76b}50%{background:#40e37a;border-bottom:2px solid #00cc4c}to{background:#40c4d7;border-bottom:2px solid #1eb4c9}}@keyframes konami-enter-link{0%{background:#c1fa9c}50%{background:#40e37a}to{background:#40c4d7}}.user-mention{font-weight:600;color:#24292e;white-space:nowrap}.pagehead{position:relative;padding-top:24px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #e1e4e8}.pagehead ul.pagehead-actions{position:relative;z-index:31;float:right;margin:0}.pagehead .path-divider{margin:0 .25em}.pagehead h1{margin-top:0;margin-bottom:0;font-weight:400}.pagehead-actions>li{float:left;margin:0 10px 0 0;font-size:11px;color:#24292e;list-style-type:none}.pagehead-actions>li:last-child{margin-right:0}.pagehead-actions .select-menu{position:relative}.pagehead-actions .select-menu:before{display:table;content:""}.pagehead-actions .select-menu:after{display:table;clear:both;content:""}.repohead h1{position:relative;min-height:32px;font-size:18px;color:#586069}.repohead h1 .octicon{color:#959da5}.reponav{position:relative;top:1px;margin-top:-5px}.reponav:after,.reponav:before{display:table;content:""}.reponav:after{clear:both}.reponav-item{float:left;color:#586069;white-space:nowrap;border:1px solid transparent;border-top:3px solid transparent;border-radius:3px 3px 0 0}.reponav-item .octicon{color:rgba(27,31,35,.3)}.reponav-item .Counter{color:#444d56}.reponav-item:focus,.reponav-item:hover{color:#24292e;text-decoration:none}.reponav-item.selected{color:#24292e;background-color:#fff;border-color:#e36209 #e1e4e8 transparent}.reponav-item.selected .octicon{color:inherit}@keyframes skeleton-loading{0%{background-position:200% 0}to{background-position:-200% 0}}.commit-tease .AvatarStack-body{background:#f1f8ff}[hidden]{display:none!important}body{word-wrap:break-word}@keyframes lightbulb{0%,8%,14%{opacity:.1}0%,10%,25%{opacity:.25}5%,30%,50%,70%{opacity:.5}16%,60%,80%{opacity:.75}90%{opacity:.8}94%{opacity:.5}to{opacity:1;stddeviation:0}}@keyframes pull-string{50%{transform:translate3d(0,12px,0)}75%{opacity:1;transform:none}to{opacity:0}}.TagsearchPopover{width:inherit;max-width:600px}@keyframes broadCastMaskFade{0%{opacity:0}30%{opacity:1}70%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes dropBox{0%{opacity:1;transform:translateY(-110%)}7%{opacity:1;transform:translateY(20%);transform:translateX(0)}80%{opacity:1}to{opacity:0;transform:translateX(-250%)}}.repository-lang-stats-graph{width:100%;overflow:hidden;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #ddd;border-top:0;border-bottom-right-radius:3px;border-bottom-left-radius:3px}.repository-lang-stats-graph .language-color{line-height:8px;text-indent:-9999px}.repository-lang-stats-graph .language-color:first-child{border-bottom-left-radius:3px}.repository-lang-stats-graph .language-color:last-child{border-bottom-right-radius:3px}.repository-lang-stats-graph .language-color:not(:first-child){border-left:1px solid #fff}@keyframes blinkingText{0%{color:#e1e4e8}50%{color:hsla(0,0%,100%,.15)}33%{color:#e1e4e8}to{color:#e1e4e8}}.progress-pjax-loader{z-index:99999;height:2px;background:transparent;opacity:0;transition:opacity .4s linear .4s}.progress-pjax-loader>.progress-pjax-loader-bar{background-color:#79b8ff;box-shadow:0 0 10px rgba(121,184,255,.7);transition:width .4s ease}@keyframes show-pane{0%{transform:translateX(390px)}to{transform:translateX(0)}}.overall-summary{position:relative;margin-bottom:10px;border:1px solid #dfe2e5;border-radius:3px}.numbers-summary{display:table;width:100%;table-layout:fixed}.numbers-summary li{display:table-cell;padding:0;text-align:center;white-space:nowrap}.numbers-summary li>a{display:block;padding:10px 0;color:#586069;text-decoration:none}.numbers-summary li>a:hover{color:#0366d6}.numbers-summary li>a:hover .num{color:inherit}.numbers-summary .octicon{color:#6a737d}.file-navigation:after,.file-navigation:before{display:table;content:""}.file-navigation:after{clear:both}.file-navigation.in-mid-page{margin-top:16px}.file-navigation .new-pull-request-btn{float:left}.file-navigation .breadcrumb{float:left;margin-top:0;margin-left:5px;font-size:16px;line-height:26px}.file-navigation .get-repo-modal{top:6px;width:352px}table.files{width:100%;background:#fff;border-radius:3px}table.files tr.navigation-focus td{background:#f6f8fa}table.files td{padding:8px 4px;line-height:20px;border-top:1px solid #eaecef}table.files td.icon{width:17px;padding-right:2px;padding-left:16px;color:rgba(3,47,98,.55)}table.files td.icon .octicon-file-directory{color:rgba(3,47,98,.5)}table.files td .css-truncate{max-width:100%}table.files td.content{max-width:180px}table.files td.message{max-width:442px;padding-left:10px;overflow:hidden;color:#6a737d}table.files td.message a{color:#6a737d}table.files td.message a:hover{color:#0366d6}table.files td.age{width:125px;padding-right:16px;color:#6a737d;text-align:right;white-space:nowrap}table.files tbody tr:first-child td{border-top:0}@keyframes toggle-color{0%{background-color:initial}50%{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}to{background-color:initial}}@keyframes sponsors-progress-animation{0%{background-position:100%}to{background-position:0}}.user-status-container{white-space:normal}.user-status-container{word-break:break-word;word-wrap:break-word}@keyframes rotate{to{transform:rotate(1turn)}}@keyframes hx_code-search-anim-pulse{0%{opacity:1}30%{opacity:.3}to{opacity:1}}.hx_reponav .reponav-item{padding:7px 12px 8px!important}.hx_reponav .reponav-item .Counter{padding:2px 4px!important}@media (max-width:543px){@keyframes dropdown-menu-animation{0%{opacity:0;transform:scale(.9)}}}@media (max-width:767px){@keyframes hx_rsm-trigger-animation{0%{opacity:0}}@keyframes hx_rsm-modal-animation{0%{opacity:0;transform:scale(.9)}}}@media (hover:none){.tooltipped:hover:after,.tooltipped:hover:before{display:none}}@media (hover:none){.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link{visibility:visible!important}}.min-width-lg{min-width:1012px}@keyframes Toast--spinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.starring-container .unstarred{display:block}</style>
+<meta name=viewport content="width=device-width">
+<title>fighting41love/cocoNLP: A Chinese information extraction tool.</title>
+<meta name=description content="A Chinese information extraction tool. Contribute to fighting41love/cocoNLP development by creating an account on GitHub.">
+<link rel=search type=application/opensearchdescription+xml href=https://github.com/opensearch.xml title=GitHub>
+<meta property=fb:app_id content=1401488693436528>
+<meta name=twitter:image:src content="https://avatars0.githubusercontent.com/u/11475294?s=400&amp;v=4"><meta name=twitter:site content=@github><meta name=twitter:card content=summary><meta name=twitter:title content=fighting41love/cocoNLP><meta name=twitter:description content="A Chinese information extraction tool. Contribute to fighting41love/cocoNLP development by creating an account on GitHub.">
+<meta property=og:image content="https://avatars0.githubusercontent.com/u/11475294?s=400&amp;v=4"><meta property=og:site_name content=GitHub><meta property=og:type content=object><meta property=og:title content=fighting41love/cocoNLP><meta property=og:url content=https://github.com/fighting41love/cocoNLP><meta property=og:description content="A Chinese information extraction tool. Contribute to fighting41love/cocoNLP development by creating an account on GitHub.">
+<link rel=assets href=https://github.githubassets.com/>
+<link rel=web-socket href="wss://live.github.com/_sockets/VjI6NTE3ODA0Mjg1OmFmYzcwMTdkZDJkOTNiOGE0YTY5NjVjZjQ1NDU1NmUyOTU2MjIzY2M0YzA0MTI3MTUwOGMxY2Q0NjE5ZGNmNjI=--2c2c40041e60e5d94316fddd3bc47197dc678b0b">
+<link rel=sudo-modal href=https://github.com/sessions/sudo_modal>
+<meta name=request-id content=A05A:4425:EBE18:1389B2:5E99CBCC data-pjax-transient=true><meta name=html-safe-nonce content=502f7b097a90952524149712acc10e177eb77a8b data-pjax-transient=true><meta name=visitor-payload content=eyJyZWZlcnJlciI6bnVsbCwicmVxdWVzdF9pZCI6IkEwNUE6NDQyNTpFQkUxODoxMzg5QjI6NUU5OUNCQ0MiLCJ2aXNpdG9yX2lkIjoiMTQ3NDA5NjIwOTkzNTc4NDA4OSIsInJlZ2lvbl9lZGdlIjoic2VhIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9 data-pjax-transient=true><meta name=visitor-hmac content=2e5b88fc9b02466218361cde92e51d3fcd5274c45a013c6a9cf26cf0e304079e data-pjax-transient=true>
+<meta name=github-keyboard-shortcuts content=repository data-pjax-transient=true>
+<meta name=selected-link value=repo_source data-pjax-transient>
+<meta name=google-site-verification content=KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU>
+<meta name=google-site-verification content=ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA>
+<meta name=google-site-verification content=GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc>
+<meta name=octolytics-host content=collector.githubapp.com><meta name=octolytics-app-id content=github><meta name=octolytics-event-url content=https://collector.githubapp.com/github-external/browser_event><meta name=octolytics-dimension-ga_id content=261531359.1576589587 class=js-octo-ga-id><meta name=octolytics-actor-id content=22268775><meta name=octolytics-actor-login content=xeebudong><meta name=octolytics-actor-hash content=3a849773f02210537d32f72ae898c9d7ef6d7f2f0f79c5aadf07d5dff71732f9>
+<meta name=analytics-location content="/<user-name>/<repo-name>" data-pjax-transient=true>
+<meta name=google-analytics content=UA-3769691-2>
+<meta class=js-ga-set name=userId content=1e730cc67ef9e97a41e3f88726c7c105>
+<meta class=js-ga-set name=dimension1 content="Logged In">
+<meta name=hostname content=github.com>
+<meta name=user-login content=xeebudong>
+<meta name=expected-hostname content=github.com>
+<meta name=js-proxy-site-detection-payload content="ODc1Mjc0YzI2Zjg4NmYyZDMyODQwYWYxOGE2NDA3YzNiNDA4NmU1ZWQ2NGUxMDVjYzZhYjE5Y2ExMDA4MjZlZnx7InJlbW90ZV9hZGRyZXNzIjoiMTE5LjEyMy43NC4yNDUiLCJyZXF1ZXN0X2lkIjoiQTA1QTo0NDI1OkVCRTE4OjEzODlCMjo1RTk5Q0JDQyIsInRpbWVzdGFtcCI6MTU4NzEzNzQ4NSwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
+<meta name=enabled-features content=MARKETPLACE_SOCIAL_PROOF_CUSTOMERS,MARKETPLACE_TRENDING_SOCIAL_PROOF,MARKETPLACE_RECOMMENDATIONS,MARKETPLACE_PENDING_INSTALLATIONS,RELATED_ISSUES,GHE_CLOUD_TRIAL,PAGE_STALE_CHECK>
+<meta http-equiv=x-pjax-version content=e435b5b9021ef4f4f3d2c4a4c7b05441>
+<link href=https://github.com/fighting41love/cocoNLP/commits/master.atom rel=alternate title="Recent Commits to cocoNLP:master" type=application/atom+xml>
+<meta name=go-import content="github.com/fighting41love/cocoNLP git https://github.com/fighting41love/cocoNLP.git">
+<meta name=octolytics-dimension-user_id content=11475294><meta name=octolytics-dimension-user_login content=fighting41love><meta name=octolytics-dimension-repository_id content=157820905><meta name=octolytics-dimension-repository_nwo content=fighting41love/cocoNLP><meta name=octolytics-dimension-repository_public content=true><meta name=octolytics-dimension-repository_is_fork content=false><meta name=octolytics-dimension-repository_network_root_id content=157820905><meta name=octolytics-dimension-repository_network_root_nwo content=fighting41love/cocoNLP><meta name=octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown content=false>
+<link rel=canonical href=https://github.com/fighting41love/cocoNLP data-pjax-transient>
+<meta name=browser-stats-url content=https://api.github.com/_private/browser/stats>
+<meta name=browser-errors-url content=https://api.github.com/_private/browser/errors>
+<meta name=theme-color content=#1e2327>
+<link rel=manifest href=https://github.com/manifest.json crossorigin=use-credentials>
+<meta itemprop=position content=1><meta itemprop=position content=2><meta itemprop=position content=4><link rel=icon class=js-site-favicon type=image/svg+xml href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNiAwQzcuMTYgMCAwIDcuMTYgMCAxNkMwIDIzLjA4IDQuNTggMjkuMDYgMTAuOTQgMzEuMThDMTEuNzQgMzEuMzIgMTIuMDQgMzAuODQgMTIuMDQgMzAuNDJDMTIuMDQgMzAuMDQgMTIuMDIgMjguNzggMTIuMDIgMjcuNDRDOCAyOC4xOCA2Ljk2IDI2LjQ2IDYuNjQgMjUuNTZDNi40NiAyNS4xIDUuNjggMjMuNjggNSAyMy4zQzQuNDQgMjMgMy42NCAyMi4yNiA0Ljk4IDIyLjI0QzYuMjQgMjIuMjIgNy4xNCAyMy40IDcuNDQgMjMuODhDOC44OCAyNi4zIDExLjE4IDI1LjYyIDEyLjEgMjUuMkMxMi4yNCAyNC4xNiAxMi42NiAyMy40NiAxMy4xMiAyMy4wNkM5LjU2IDIyLjY2IDUuODQgMjEuMjggNS44NCAxNS4xNkM1Ljg0IDEzLjQyIDYuNDYgMTEuOTggNy40OCAxMC44NkM3LjMyIDEwLjQ2IDYuNzYgOC44MiA3LjY0IDYuNjJDNy42NCA2LjYyIDguOTggNi4yIDEyLjA0IDguMjZDMTMuMzIgNy45IDE0LjY4IDcuNzIgMTYuMDQgNy43MkMxNy40IDcuNzIgMTguNzYgNy45IDIwLjA0IDguMjZDMjMuMSA2LjE4IDI0LjQ0IDYuNjIgMjQuNDQgNi42MkMyNS4zMiA4LjgyIDI0Ljc2IDEwLjQ2IDI0LjYgMTAuODZDMjUuNjIgMTEuOTggMjYuMjQgMTMuNCAyNi4yNCAxNS4xNkMyNi4yNCAyMS4zIDIyLjUgMjIuNjYgMTguOTQgMjMuMDZDMTkuNTIgMjMuNTYgMjAuMDIgMjQuNTIgMjAuMDIgMjYuMDJDMjAuMDIgMjguMTYgMjAgMjkuODggMjAgMzAuNDJDMjAgMzAuODQgMjAuMyAzMS4zNCAyMS4xIDMxLjE4QzI3LjQyIDI5LjA2IDMyIDIzLjA2IDMyIDE2QzMyIDcuMTYgMjQuODQgMCAxNiAwVjBaIiBmaWxsPSIjMjQyOTJFIi8+Cjwvc3ZnPgo="><style>.sf-hidden{display:none!important}</style></head>
+ <body class="logged-in env-production min-width-lg">
+ 
+ <div class="position-relative js-header-wrapper">
+ <a href=#start-of-content class="p-3 bg-blue text-white show-on-focus js-skip-to-content">Skip to content</a>
+ <span class="Progress progress-pjax-loader position-fixed width-full js-pjax-loader-bar">
+ <span class="progress-pjax-loader-bar top-0 left-0" style=width:0%></span>
+ </span>
+ 
+ 
+ <header class=Header role=banner>
+ <div class=Header-item>
+ <a class=Header-link href=https://github.com/ data-hotkey="g d" aria-label="Homepage " data-ga-click="Header, go to dashboard, icon:logo">
+ <svg class="octicon octicon-mark-github v-align-middle" height=32 viewBox="0 0 16 16" version=1.1 width=32 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+ </div>
+ <div class="Header-item Header-item--full">
+ <div class="header-search mr-3 scoped-search site-scoped-search js-site-search position-relative js-jump-to" role=combobox aria-owns=jump-to-results aria-label="Search or jump to" aria-haspopup=listbox aria-expanded=false>
+ <div class=position-relative>
+ <form class=js-site-search-form role=search aria-label=Site data-scope-type=Repository data-scope-id=157820905 data-scoped-search-url=/fighting41love/cocoNLP/search data-unscoped-search-url=/search action=/fighting41love/cocoNLP/search accept-charset=UTF-8>
+ <label class="form-control input-sm header-search-wrapper p-0 header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center js-chromeless-input-container">
+ <input type=text class="form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" data-hotkey=s,/ name=q value placeholder="Search or jump to…" data-unscoped-placeholder="Search or jump to…" data-scoped-placeholder="Search or jump to…" autocapitalize=off aria-autocomplete=list aria-controls=jump-to-results aria-label="Search or jump to…" data-jump-to-suggestions-path=/_graphql/GetSuggestedNavigationDestinations spellcheck=false autocomplete=off>
+ 
+ 
+ <img src=data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMTlweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMTkgMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE5IDIwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CgkgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTc5QTlDIiBvcGFjaXR5PSIwLjQiIGQ9Ik0zLjUsMC41aDEyYzEuNywwLDMsMS4zLDMsM3YxM2MwLDEuNy0xLjMsMy0zLDNoLTEyYy0xLjcsMC0zLTEuMy0zLTN2LTEzQzAuNSwxLjgsMS44LDAuNSwzLjUsMC41eiIvPgoJIDxwYXRoIGZpbGw9IiM5NzlBOUMiIGQ9Ik0xMS44LDZMOCwxNS4xSDcuMUwxMC44LDZMMTEuOCw2eiIvPgo8L3N2Zz4K alt class="mr-2 header-search-key-slash">
+ <div class="Box position-absolute overflow-hidden d-none jump-to-suggestions js-jump-to-suggestions-container sf-hidden">
+ 
+<ul class="d-none js-jump-to-suggestions-template-container">
+ 
+</ul>
+<ul class="d-none js-jump-to-no-results-template-container">
+ 
+</ul>
+<ul id=jump-to-results role=listbox class="p-0 m-0 js-navigation-container jump-to-suggestions-results-container js-jump-to-suggestions-results-container">
+ 
+ 
+ 
+</ul>
+ </div>
+ </label>
+</form> </div>
+</div>
+ <nav class=d-flex aria-label=Global>
+ <a class="js-selected-navigation-item Header-link mr-3" data-hotkey="g p" data-ga-click="Header, click, Nav menu - item:pulls context:user" aria-label="Pull requests you created" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls" href=https://github.com/pulls>
+ Pull requests
+</a>
+ <a class="js-selected-navigation-item Header-link mr-3" data-hotkey="g i" data-ga-click="Header, click, Nav menu - item:issues context:user" aria-label="Issues you created" data-selected-links="/issues /issues/assigned /issues/mentioned /issues" href=https://github.com/issues>
+ Issues
+</a>
+ <div class=mr-3>
+ <a class="js-selected-navigation-item Header-link" data-ga-click="Header, click, Nav menu - item:marketplace context:user" data-octo-click=marketplace_click data-octo-dimensions=location:nav_bar data-selected-links=" /marketplace" href=https://github.com/marketplace>
+ Marketplace
+</a> 
+ </div>
+ <a class="js-selected-navigation-item Header-link mr-3" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship showcases showcases_search showcases_landing /explore" href=https://github.com/explore>
+ Explore
+</a>
+</nav>
+ </div>
+ <div class=Header-item>
+ 
+ <a aria-label="You have no unread notifications" class="Header-link notification-indicator position-relative tooltipped tooltipped-sw js-socket-channel js-notification-indicator" data-hotkey="g n" data-ga-click="Header, go to notifications, icon:read" data-channel=notification-changed:22268775 href=https://github.com/notifications/beta>
+ <span class="js-indicator-modifier mail-status sf-hidden"></span>
+ <svg class="octicon octicon-bell" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M14 12v1H0v-1l.73-.58c.77-.77.81-2.55 1.19-4.42C2.69 3.23 6 2 6 2c0-.55.45-1 1-1s1 .45 1 1c0 0 3.39 1.23 4.16 5 .38 1.88.42 3.66 1.19 4.42l.66.58H14zm-7 4c1.11 0 2-.89 2-2H5c0 1.11.89 2 2 2z"></path></svg>
+</a>
+ </div>
+ <div class="Header-item position-relative">
+ <details class="details-overlay details-reset">
+ <summary class=Header-link aria-label="Create new…" data-ga-click="Header, create new, icon:add" aria-haspopup=menu role=button>
+ <svg class="octicon octicon-plus" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg> <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="dropdown-menu dropdown-menu-sw sf-hidden" role=menu>
+ 
+<a role=menuitem class=dropdown-item href=https://github.com/new data-ga-click="Header, create new repository">
+ New repository
+</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/new/import data-ga-click="Header, import a repository">
+ Import repository
+ </a>
+<a role=menuitem class=dropdown-item href=https://gist.github.com/ data-ga-click="Header, create new gist">
+ New gist
+</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/organizations/new data-ga-click="Header, create new organization">
+ New organization
+ </a>
+ <div role=none class=dropdown-divider></div>
+ <div class=dropdown-header>
+ 
+ </div>
+ <a role=menuitem class=dropdown-item href=https://github.com/fighting41love/cocoNLP/issues/new/choose data-ga-click="Header, create new issue" data-skip-pjax>
+ New issue
+ </a>
+ </details-menu>
+</details>
+ </div>
+ <div class="Header-item position-relative mr-0">
+ 
+ <details class="details-overlay details-reset js-feature-preview-indicator-container" data-feature-preview-indicator-src=/users/xeebudong/feature_preview/indicator_check>
+ <summary class=Header-link aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar" aria-haspopup=menu role=button>
+ <img class=avatar alt=@xeebudong width=20 height=20 src=data:>
+ <span class="feature-preview-indicator js-feature-preview-indicator sf-hidden" hidden></span>
+ <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="dropdown-menu dropdown-menu-sw mt-2 sf-hidden" style=width:180px role=menu>
+ <div class="header-nav-current-user css-truncate"></div>
+ <div role=none class=dropdown-divider></div>
+ <div class="pl-3 pr-3 f6 user-status-container js-user-status-context pb-1" data-url="/users/status?compact=1&amp;link_mentions=0&amp;truncate=1">
+ 
+ </div>
+ <div role=none class=dropdown-divider></div>
+ <a role=menuitem class=dropdown-item href=https://github.com/xeebudong data-ga-click="Header, go to profile, text:your profile">Your profile</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=repositories" data-ga-click="Header, go to repositories, text:your repositories">Your repositories</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=projects" data-ga-click="Header, go to projects, text:your projects">Your projects</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=stars" data-ga-click="Header, go to starred repos, text:your stars">Your stars</a>
+ <a role=menuitem class=dropdown-item href=https://gist.github.com/mine data-ga-click="Header, your gists, text:your gists">Your gists</a>
+ <div role=none class=dropdown-divider></div>
+ 
+<div id=feature-enrollment-toggle class="hide-sm hide-md feature-preview-details position-relative">
+ 
+ 
+</div>
+ <a role=menuitem class=dropdown-item href=https://help.github.com/ data-ga-click="Header, go to help, text:help">Help</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/settings/profile data-ga-click="Header, go to settings, icon:settings">Settings</a>
+ <form class=logout-form action=/logout accept-charset=UTF-8 method=post>
+ 
+ 
+ 
+</form> </details-menu>
+</details>
+ </div>
+</header>
+ 
+ </div>
+ <div id=start-of-content class=show-on-focus></div>
+ <div id=js-flash-container>
+ <template class=js-flash-template>
+    <div class="flash flash-full  js-flash-template-container">
+  <div class="container-lg px-2">
+    <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+    </button>
+    
+      <div class="js-flash-template-message"></div>
+
+  </div>
+</div>
+  </template>
+</div>
+ 
+ <include-fragment class=js-notification-shelf-include-fragment data-base-src=https://github.com/notifications/beta/shelf></include-fragment>
+ <div class=application-main data-commit-hovercards-enabled>
+ <div itemscope itemtype=http://schema.org/SoftwareSourceCode>
+ <main id=js-repo-pjax-container data-pjax-container>
+ 
+ 
+ <div class="pagehead repohead hx_repohead readability-menu bg-gray-light pb-0 pt-3">
+ <div class="d-flex container-lg mb-4 px-3">
+ <div class="flex-auto min-width-0 width-fit mr-3">
+ <h1 class="public d-flex flex-wrap flex-items-center break-word float-none">
+ <span class=flex-self-stretch style=margin-top:-2px>
+ <svg class="octicon octicon-repo" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+ </span>
+ <span class="author ml-2 flex-self-stretch" itemprop=author>
+ <a class="url fn" rel=author data-hovercard-type=user data-hovercard-url=/users/fighting41love/hovercard data-octo-click=hovercard-link-click data-octo-dimensions=link_type:self href=https://github.com/fighting41love>fighting41love</a>
+ </span>
+ <span class="path-divider flex-self-stretch">/</span>
+ <strong itemprop=name class="mr-2 flex-self-stretch">
+ <a data-pjax=#js-repo-pjax-container href=https://github.com/fighting41love/cocoNLP>cocoNLP</a>
+ </strong>
+ 
+</h1>
+ </div>
+ <ul class="pagehead-actions flex-shrink-0">
+ <li>
+ 
+ <details class="dropdown details-reset details-overlay d-inline-block float-left" data-deferred-details-content-url=/fighting41love/cocoNLP/used_by_contents>
+ <summary class="btn btn-sm btn-with-count" data-menu-button>
+ <svg class="octicon octicon-package v-align-text-bottom" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M1 4.27v7.47c0 .45.3.84.75.97l6.5 1.73c.16.05.34.05.5 0l6.5-1.73c.45-.13.75-.52.75-.97V4.27c0-.45-.3-.84-.75-.97l-6.5-1.74a1.4 1.4 0 00-.5 0L1.75 3.3c-.45.13-.75.52-.75.97zm7 9.09l-6-1.59V5l6 1.61v6.75zM2 4l2.5-.67L11 5.06l-2.5.67L2 4zm13 7.77l-6 1.59V6.61l2-.55V8.5l2-.53V5.53L15 5v6.77zm-2-7.24L6.5 2.8l2-.53L15 4l-2 .53z"></path></svg>
+ Used by
+ <div class=dropdown-caret></div>
+ </summary>
+ <include-fragment accept=text/fragment+html class=sf-hidden>
+ <div class="dropdown-menu dropdown-menu-s p-3 text-center" style=width:360px>
+ 
+ 
+ </div>
+ </include-fragment>
+ </details>
+ <a class=social-count href="https://github.com/fighting41love/cocoNLP/network/dependents?package_id=UGFja2FnZS0yMTI3MTE3Mjg%3D" aria-label="3 repositories depend on this package">
+ 3
+ </a>
+ </li>
+ <li>
+ 
+ <form data-remote=true class="clearfix js-social-form js-social-container" action=/notifications/subscribe accept-charset=UTF-8 method=post> 
+ <details class="details-reset details-overlay select-menu float-left">
+ <summary class="select-menu-button float-left btn btn-sm btn-with-count" data-hydro-click='{"event_type":"repository.click","payload":{"target":"WATCH_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=d92cc91162d663207467ce91fb164f85bdbb80fb8e32a7de4de63f03af9fb639 data-ga-click="Repository, click Watch settings, action:files#disambiguate" aria-haspopup=menu role=button> <span data-menu-button>
+ <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+ Watch
+ </span>
+</summary> <details-menu class="select-menu-modal position-absolute mt-5 sf-hidden" style=z-index:99 role=menu>
+ <div class=select-menu-header>
+ 
+ </div>
+ <div class=select-menu-list>
+ 
+ 
+ 
+ 
+ </div>
+ </details-menu>
+ </details>
+ <a class="social-count js-social-count" href=https://github.com/fighting41love/cocoNLP/watchers aria-label="20 users are watching this repository">
+ 20
+ </a>
+</form>
+ </li>
+ <li>
+ <div class="js-toggler-container js-social-container starring-container">
+ <form class="starred js-social-form sf-hidden" action=/fighting41love/cocoNLP/unstar accept-charset=UTF-8 method=post>
+ 
+ <button type=submit class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar fighting41love/cocoNLP" data-hydro-click='{"event_type":"repository.click","payload":{"target":"UNSTAR_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=44401eb5c37ed476a7cf57b3d529389a08facdd608fcaa72eb8e0299ca8f0bb1 data-ga-click="Repository, click unstar button, action:files#disambiguate; text:Unstar"> <svg height=16 class="octicon octicon-star v-align-text-bottom" vertical_align=text_bottom viewBox="0 0 14 16" version=1.1 width=14 aria-hidden=true><path fill-rule=evenodd d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+ Unstar
+</button> <a class="social-count js-social-count" href=https://github.com/fighting41love/cocoNLP/stargazers aria-label="475 users starred this repository">
+ 475
+ </a>
+</form>
+ <form class="unstarred js-social-form" action=/fighting41love/cocoNLP/star accept-charset=UTF-8 method=post>
+ 
+ <button type=submit class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Star fighting41love/cocoNLP" data-hydro-click='{"event_type":"repository.click","payload":{"target":"STAR_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=bd741e6a62b4602c7cb5db21066d024a7d8ab37fbe8b6376f40c0b8809308d0c data-ga-click="Repository, click star button, action:files#disambiguate; text:Star"> <svg height=16 class="octicon octicon-star v-align-text-bottom" vertical_align=text_bottom viewBox="0 0 14 16" version=1.1 width=14 aria-hidden=true><path fill-rule=evenodd d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+ Star
+</button> <a class="social-count js-social-count" href=https://github.com/fighting41love/cocoNLP/stargazers aria-label="475 users starred this repository">
+ 475
+ </a>
+</form> </div>
+ </li>
+ <li>
+ <form class=btn-with-count action=/fighting41love/cocoNLP/fork accept-charset=UTF-8 method=post>
+ <button class="btn btn-sm btn-with-count" data-hydro-click='{"event_type":"repository.click","payload":{"target":"FORK_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=dbf0707d8d3d3e3d0eb236f4529f399709567b7b0b79cf53c56c75236f0388dc data-ga-click="Repository, show fork modal, action:files#disambiguate; text:Fork" type=submit title="Fork your own copy of fighting41love/cocoNLP to your account" aria-label="Fork your own copy of fighting41love/cocoNLP to your account"> <svg class="octicon octicon-repo-forked v-align-text-bottom" viewBox="0 0 10 16" version=1.1 width=10 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 1a1.993 1.993 0 00-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 002 1a1.993 1.993 0 00-1 3.72V6.5l3 3v1.78A1.993 1.993 0 005 15a1.993 1.993 0 001-3.72V9.5l3-3V4.72A1.993 1.993 0 008 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+ Fork
+</button></form>
+ <a href=https://github.com/fighting41love/cocoNLP/network/members class=social-count aria-label="146 users forked this repository">
+ 146
+ </a>
+ </li>
+</ul>
+ </div>
+ 
+<nav class="hx_reponav reponav js-repo-nav js-sidenav-container-pjax clearfix container-lg px-3" itemscope itemtype=http://schema.org/BreadcrumbList aria-label=Repository data-pjax=#js-repo-pjax-container>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a class="js-selected-navigation-item selected reponav-item" itemprop=url data-hotkey="g c" aria-current=page data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /fighting41love/cocoNLP" href=https://github.com/fighting41love/cocoNLP>
+ <div class=d-inline><svg class="octicon octicon-code" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg></div>
+ <span itemprop=name>Code</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a itemprop=url data-hotkey="g i" class="js-selected-navigation-item reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /fighting41love/cocoNLP/issues" href=https://github.com/fighting41love/cocoNLP/issues>
+ <div class=d-inline><svg class="octicon octicon-issue-opened" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 011.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>
+ <span itemprop=name>Issues</span>
+ <span class=Counter>19</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a data-hotkey="g p" data-skip-pjax=true itemprop=url class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /fighting41love/cocoNLP/pulls" href=https://github.com/fighting41love/cocoNLP/pulls>
+ <div class=d-inline><svg class="octicon octicon-git-pull-request" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0010 15a1.993 1.993 0 001-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 00-1 3.72v6.56A1.993 1.993 0 002 15a1.993 1.993 0 001-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg></div>
+ <span itemprop=name>Pull requests</span>
+ <span class=Counter>0</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement class="position-relative float-left">
+ <a data-hotkey="g w" data-skip-pjax=true class="js-selected-navigation-item reponav-item" data-selected-links="repo_actions /fighting41love/cocoNLP/actions" href=https://github.com/fighting41love/cocoNLP/actions>
+ <div class=d-inline><svg class="octicon octicon-play" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M14 8A7 7 0 110 8a7 7 0 0114 0zm-8.223 3.482l4.599-3.066a.5.5 0 000-.832L5.777 4.518A.5.5 0 005 4.934v6.132a.5.5 0 00.777.416z"></path></svg></div>
+ Actions
+</a>
+ </span>
+ <a data-hotkey="g b" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /fighting41love/cocoNLP/projects" href=https://github.com/fighting41love/cocoNLP/projects>
+ <div class=d-inline><svg class="octicon octicon-project" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 00-1 1v14a1 1 0 001 1h13a1 1 0 001-1V1a1 1 0 00-1-1z"></path></svg></div>
+ Projects
+ <span class=Counter>0</span>
+</a>
+ <a class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /fighting41love/cocoNLP/wiki" href=https://github.com/fighting41love/cocoNLP/wiki>
+ <div class=d-inline><svg class="octicon octicon-book" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg></div>
+ Wiki
+</a>
+ <a data-skip-pjax=true class="js-selected-navigation-item reponav-item" data-selected-links="security overview alerts policy token_scanning code_scanning /fighting41love/cocoNLP/security" href=https://github.com/fighting41love/cocoNLP/security>
+ <div class=d-inline><svg class="octicon octicon-shield" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M0 2l7-2 7 2v6.02C14 12.69 8.69 16 7 16c-1.69 0-7-3.31-7-7.98V2zm1 .75L7 1l6 1.75v5.268C13 12.104 8.449 15 7 15c-1.449 0-6-2.896-6-6.982V2.75zm1 .75L7 2v12c-1.207 0-5-2.482-5-5.985V3.5z"></path></svg></div>
+ Security
+</a>
+ <a class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people /fighting41love/cocoNLP/pulse" href=https://github.com/fighting41love/cocoNLP/pulse>
+ <div class=d-inline><svg class="octicon octicon-graph" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg></div>
+ Insights
+</a>
+</nav>
+ </div>
+<div class="container-lg clearfix new-discussion-timeline px-3">
+ <div class=repository-content>
+ 
+ 
+ 
+ <div class=mb-3> <div class=f4>
+ <span class="text-gray-dark mr-2" itemprop=about>
+ A Chinese information extraction tool.
+ </span>
+ </div>
+</div>
+ <div class="overall-summary border-bottom-0 mb-0 rounded-bottom-0">
+ <ul class=numbers-summary>
+ <li class=commits>
+ <a data-pjax href=https://github.com/fighting41love/cocoNLP/commits/master>
+ <svg class="octicon octicon-git-commit" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z"></path></svg>
+ <span class="num text-emphasized">
+ 51
+ </span>
+ commits
+ </a>
+ </li>
+ <li>
+ <a data-pjax href=https://github.com/fighting41love/cocoNLP/branches>
+ <svg class="octicon octicon-git-branch" viewBox="0 0 10 16" version=1.1 width=10 height=16 aria-hidden=true><path fill-rule=evenodd d="M10 5c0-1.11-.89-2-2-2a1.993 1.993 0 00-1 3.72v.3c-.02.52-.23.98-.63 1.38-.4.4-.86.61-1.38.63-.83.02-1.48.16-2 .45V4.72a1.993 1.993 0 00-1-3.72C.88 1 0 1.89 0 3a2 2 0 001 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2 1.11 0 2-.89 2-2 0-.53-.2-1-.53-1.36.09-.06.48-.41.59-.47.25-.11.56-.17.94-.17 1.05-.05 1.95-.45 2.75-1.25S8.95 7.77 9 6.73h-.02C9.59 6.37 10 5.73 10 5zM2 1.8c.66 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2C1.35 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2zm0 12.41c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm6-8c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+ <span class="num text-emphasized">
+ 1
+ </span>
+ branch
+ </a>
+ </li>
+ <li>
+ <a data-pjax href=https://github.com/fighting41love/cocoNLP/packages data-ga-click="Repository, packages click, location:repo overview">
+ <svg class="octicon octicon-package" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M1 4.27v7.47c0 .45.3.84.75.97l6.5 1.73c.16.05.34.05.5 0l6.5-1.73c.45-.13.75-.52.75-.97V4.27c0-.45-.3-.84-.75-.97l-6.5-1.74a1.4 1.4 0 00-.5 0L1.75 3.3c-.45.13-.75.52-.75.97zm7 9.09l-6-1.59V5l6 1.61v6.75zM2 4l2.5-.67L11 5.06l-2.5.67L2 4zm13 7.77l-6 1.59V6.61l2-.55V8.5l2-.53V5.53L15 5v6.77zm-2-7.24L6.5 2.8l2-.53L15 4l-2 .53z"></path></svg>
+ <span class="num text-emphasized">
+ 0
+ </span>
+ packages
+ </a>
+ </li>
+ <li>
+ <a href=https://github.com/fighting41love/cocoNLP/releases>
+ <svg class="octicon octicon-tag" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M7.73 1.73C7.26 1.26 6.62 1 5.96 1H3.5C2.13 1 1 2.13 1 3.5v2.47c0 .66.27 1.3.73 1.77l6.06 6.06c.39.39 1.02.39 1.41 0l4.59-4.59a.996.996 0 000-1.41L7.73 1.73zM2.38 7.09c-.31-.3-.47-.7-.47-1.13V3.5c0-.88.72-1.59 1.59-1.59h2.47c.42 0 .83.16 1.13.47l6.14 6.13-4.73 4.73-6.13-6.15zM3.01 3h2v2H3V3h.01z"></path></svg>
+ <span class="num text-emphasized">
+ 0
+ </span>
+ releases
+ </a>
+ </li>
+ <li data-contributors-hovercards-enabled>
+ <a href=https://github.com/fighting41love/cocoNLP/graphs/contributors data-hovercard-type=contributors data-hovercard-url=/fighting41love/cocoNLP/community_contributors/hovercard>
+ <svg class="octicon octicon-organization" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4z"></path></svg>
+ <span class="num text-emphasized">
+ 3
+ </span>
+ contributors
+</a> </li>
+ </ul>
+ </div>
+ <details class=details-reset>
+ <summary title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
+ <div class="d-flex repository-lang-stats-graph">
+ <span class=language-color aria-label="Python 100.0%" style=width:100.0%;background-color:#3572A5 itemprop=keywords>Python</span>
+ </div>
+ </summary>
+ <div class="repository-lang-stats sf-hidden">
+ <ol class=repository-lang-stats-numbers>
+ 
+ </ol>
+ </div>
+ </details>
+ <div class=mt-2>
+ 
+ </div>
+<div class="file-navigation in-mid-page mb-2 d-flex flex-items-start">
+ 
+<details class="details-reset details-overlay branch-select-menu" id=branch-select-menu>
+ <summary class="btn css-truncate btn-sm" data-hotkey=w title="Switch branches or tags" aria-haspopup=menu role=button>
+ <i>Branch:</i>
+ <span class=css-truncate-target data-menu-button>master</span>
+ <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="SelectMenu SelectMenu--hasFilter sf-hidden" src="/fighting41love/cocoNLP/refs/master?source_action=disambiguate&amp;source_controller=files" preload role=menu>
+ <div class=SelectMenu-modal>
+ 
+ </div>
+ </details-menu>
+</details>
+ <a class="btn btn-sm new-pull-request-btn ml-2" data-hydro-click='{"event_type":"repository.click","payload":{"target":"NEW_PULL_REQUEST_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=0c1a2c6d144d33d7ef5222f8c6fe74bb8d4ed97f91f996eea31687a6ecbcab90 data-ga-click="Repository, new pull request, location:repo overview" data-pjax=true href=https://github.com/fighting41love/cocoNLP/pull/new/master>New pull request</a>
+ <div class="breadcrumb flex-auto">
+ 
+ </div>
+ <div class="BtnGroup ml-2">
+ 
+ <form class=BtnGroup-parent action=/fighting41love/cocoNLP/new/master accept-charset=UTF-8 method=post>
+ <button class="btn btn-sm BtnGroup-item" type=submit data-disable-with="Creating file…">
+ Create new file
+ </button>
+</form>
+ 
+ <a href=https://github.com/fighting41love/cocoNLP/upload/master class="btn btn-sm BtnGroup-item">
+ Upload files
+ </a>
+ <a class="btn btn-sm empty-icon float-right BtnGroup-item" data-hydro-click='{"event_type":"repository.click","payload":{"target":"FIND_FILE_BUTTON","repository_id":157820905,"originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=5447282738c0520fa7fdd30be7a8eadc4c7c3ccfce0ad15bb68845d8f2bbeba8 data-ga-click="Repository, find file, location:repo overview" data-hotkey=t data-pjax=true href=https://github.com/fighting41love/cocoNLP/find/master>Find file</a>
+ </div>
+ <span class=d-flex>
+ 
+ <details class="get-repo-select-menu js-get-repo-select-menu position-relative details-overlay details-reset">
+ <summary class="btn btn-sm ml-2 btn-primary" data-hydro-click='{"event_type":"repository.click","payload":{"repository_id":157820905,"target":"CLONE_OR_DOWNLOAD_BUTTON","originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=fc51de3282e9196537fd10853b7f229669781d607c97f9a8847679c71e709424>
+ Clone or download
+ <span class=dropdown-caret></span>
+</summary> <div class="position-relative sf-hidden">
+ <div class="get-repo-modal dropdown-menu dropdown-menu-sw pb-0 js-toggler-container js-get-repo-modal">
+ 
+ 
+ 
+ 
+ 
+ </div>
+ </div>
+</details>
+ </span>
+ 
+</div>
+<div class="Box mb-3 Box--condensed">
+ <div class="Box-header Box-header--blue position-relative" style=margin-bottom:-1px>
+ <h2 class=sr-only>Latest commit</h2>
+ <div class="commit-tease js-details-container Details d-flex rounded-top-1 flex-auto" data-issue-and-pr-hovercards-enabled>
+ 
+ 
+<div class="AvatarStack flex-self-start">
+ <div class=AvatarStack-body aria-label=fighting41love>
+ <a class=avatar data-skip-pjax=true data-hovercard-type=user data-hovercard-url=/users/fighting41love/hovercard data-octo-click=hovercard-link-click data-octo-dimensions=link_type:self href=https://github.com/fighting41love>
+ <img height=20 width=20 alt=@fighting41love src="data:image/png;base64,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">
+</a> </div>
+</div>
+ <div class="flex-auto f6 mr-3">
+ 
+ <a href="https://github.com/fighting41love/cocoNLP/commits?author=fighting41love" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by fighting41love">fighting41love</a>
+ 
+ <a data-pjax=true title="Merge pull request #31 from rxy007/master
+
+fix bug" class="message text-inherit" href=https://github.com/fighting41love/cocoNLP/commit/6c68f1ddb771de8de6fd8c7a6872554190bbd36a>Merge pull request</a> <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id=551766152 data-permission-text="Title is private" data-url=https://github.com/fighting41love/cocoNLP/issues/31 data-hovercard-type=pull_request data-hovercard-url=/fighting41love/cocoNLP/pull/31/hovercard href=https://github.com/fighting41love/cocoNLP/pull/31>#31</a> <a data-pjax=true title="Merge pull request #31 from rxy007/master
+
+fix bug" class="message text-inherit" href=https://github.com/fighting41love/cocoNLP/commit/6c68f1ddb771de8de6fd8c7a6872554190bbd36a>from rxy007/master</a>
+ <span class="hidden-text-expander inline">
+ <button type=button class="ellipsis-expander js-details-target" aria-expanded=false>…</button>
+ </span>
+ <div class="commit-desc sf-hidden"><pre class=text-small>fix bug</pre></div>
+ </div>
+ <div class="no-wrap d-flex flex-self-start flex-items-baseline">
+ <span class="mr-2 flex-self-center">
+ 
+ </span>
+ <span class=mr-1>Latest commit</span>
+ <a class="commit-tease-sha mr-1" href=https://github.com/fighting41love/cocoNLP/commit/6c68f1ddb771de8de6fd8c7a6872554190bbd36a data-pjax>
+ 6c68f1d
+ </a>
+ <span itemprop=dateModified><relative-time datetime=2020-01-19T03:06:59Z class=no-wrap title="2020年1月19日 GMT+8 上午11:06">on 19 Jan</relative-time></span>
+ </div>
+ </div>
+ </div>
+ <h2 id=files class=sr-only>Files</h2>
+ 
+ <a class="d-none js-permalink-shortcut sf-hidden" data-hotkey=y href=https://github.com/fighting41love/cocoNLP/tree/6c68f1ddb771de8de6fd8c7a6872554190bbd36a>Permalink</a>
+ <table class="files js-navigation-container js-active-navigation-container" data-pjax>
+ <thead>
+ <tr>
+ <th><span class=sr-only>Type</span></th>
+ <th><span class=sr-only>Name</span></th>
+ <th><span class=sr-only>Latest commit message</span></th>
+ <th><span class=sr-only>Commit time</span></th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="warning include-fragment-error sf-hidden">
+ <td class=icon><svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></td>
+ <td class=content colspan=3>Failed to load latest commit information.</td>
+ </tr>
+ <tr class="js-navigation-item navigation-focus">
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title="This path skips through empty directories" id=20fbad0155732c9812dc70e0c5b0f872-43686deff89150ae6879eb5f55f2d82c817be155 href=https://github.com/fighting41love/cocoNLP/tree/master/build/lib/cocoNLP><span class=text-gray-light>build/lib/</span>cocoNLP</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="update installation package" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/618ba68bd244146f9f10d025251088576c7ba361>update installation package</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-19T07:19:20Z class=no-wrap title="2018年12月19日 GMT+8 下午3:19">16 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=cocoNLP.egg-info id=30c7b6851de02f41b103814accf748dc-d9251cd9bfc4e850a87d2149f62c2c67aef908fb href=https://github.com/fighting41love/cocoNLP/tree/master/cocoNLP.egg-info>cocoNLP.egg-info</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add extract_ids 身份证 &amp; fix bugs in time extraction" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/8a12284bb6ab8ebf6540c2f0ef96bdc03fbb26f8>add extract_ids 身份证 &amp; fix bugs in time extraction</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2019-03-05T12:27:41Z class=no-wrap title="2019年3月5日 GMT+8 下午8:27">14 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=cocoNLP id=c3094e5a7a72a85607567484ef3d6c5f-ea5a564fdb472e954e2a1f427b1befa9d762f505 href=https://github.com/fighting41love/cocoNLP/tree/master/cocoNLP>cocoNLP</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="fix bug" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/08e7c2d7dffd4c0d9fbfe3e1b7b34a2a99f41fb8>fix bug</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2020-01-18T12:55:09Z class=no-wrap title="2020年1月18日 GMT+8 下午8:55">3 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=dist id=2a6d07eef8b10b84129b42424ed99327-dcf029e3313af82eb869bf3cf095c2d0307554c0 href=https://github.com/fighting41love/cocoNLP/tree/master/dist>dist</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add extract_ids 身份证 &amp; fix bugs in time extraction" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/8a12284bb6ab8ebf6540c2f0ef96bdc03fbb26f8>add extract_ids 身份证 &amp; fix bugs in time extraction</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2019-03-05T12:27:41Z class=no-wrap title="2019年3月5日 GMT+8 下午8:27">14 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=MANIFEST.in id=97c91a104c431d0c365565d3ac03ac13-529c31595a44376663ebaa55539e93f8969173a0 href=https://github.com/fighting41love/cocoNLP/blob/master/MANIFEST.in>MANIFEST.in</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add many new functions" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/e24c85dbe079b964c16f6829d9a919237f2aee15>add many new functions</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-07T08:43:19Z class=no-wrap title="2018年12月7日 GMT+8 下午4:43">17 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=readme.md id=0730bb7c2e8f9ea2438b52e419dd86c9-c1e1d13a76622f18c0ec6735d5e1a2f9add8997b href=https://github.com/fighting41love/cocoNLP/blob/master/readme.md>readme.md</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add extract_ids 身份证 &amp; fix bugs in time extraction" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/8a12284bb6ab8ebf6540c2f0ef96bdc03fbb26f8>add extract_ids 身份证 &amp; fix bugs in time extraction</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2019-03-05T12:27:41Z class=no-wrap title="2019年3月5日 GMT+8 下午8:27">14 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=requirements.txt id=b4ef698db8ca845e5845c4618278f29a-dfbb770be4630902e88dc3a4b32f1771943c9ebc href=https://github.com/fighting41love/cocoNLP/blob/master/requirements.txt>requirements.txt</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="fix bug" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/08e7c2d7dffd4c0d9fbfe3e1b7b34a2a99f41fb8>fix bug</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2020-01-18T12:55:09Z class=no-wrap title="2020年1月18日 GMT+8 下午8:55">3 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=setup.py id=2eeaed663bd0d25b7e608891384b7298-399ee876b268522a8539c2449804a507c10d80d8 href=https://github.com/fighting41love/cocoNLP/blob/master/setup.py>setup.py</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="update installation package" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/618ba68bd244146f9f10d025251088576c7ba361>update installation package</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-19T07:19:20Z class=no-wrap title="2018年12月19日 GMT+8 下午3:19">16 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=test.py id=b284a28710cce90d9d9be3a7f4cabc8e-fa882d265bcd66cb84ae3cf611a8d18533d222b2 href=https://github.com/fighting41love/cocoNLP/blob/master/test.py>test.py</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add extract_ids 身份证 &amp; fix bugs in time extraction" class=link-gray href=https://github.com/fighting41love/cocoNLP/commit/8a12284bb6ab8ebf6540c2f0ef96bdc03fbb26f8>add extract_ids 身份证 &amp; fix bugs in time extraction</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2019-03-05T12:27:41Z class=no-wrap title="2019年3月5日 GMT+8 下午8:27">14 months ago</time-ago></span>
+ </td>
+ </tr>
+ </tbody>
+ </table>
+</div>
+ <div id=readme class="Box md js-code-block-container Box--condensed">
+ <div class="Box-header d-flex flex-items-center flex-justify-between">
+ <h2 class="Box-title pr-3">
+ <svg class="octicon octicon-book" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+ readme.md
+ </h2>
+ </div>
+ <div class="Popover anim-scale-in js-tagsearch-popover sf-hidden" hidden data-tagsearch-url=/fighting41love/cocoNLP/find-symbols data-tagsearch-ref=master data-tagsearch-path=readme.md data-tagsearch-lang=Markdown data-hydro-click='{"event_type":"code_navigation.click_on_symbol","payload":{"action":"click_on_symbol","repository_id":157820905,"ref":"master","language":"Markdown","originating_url":"https://github.com/fighting41love/cocoNLP","user_id":22268775}}' data-hydro-click-hmac=11bd56dffa2c01fad4c43d8453a981a7337efbf9b8b19a9bc44f567008a3bf24>
+ <div class="Popover-message Popover-message--large Popover-message--top-left TagsearchPopover mt-1 mb-4 mx-auto Box box-shadow-large">
+ 
+ </div>
+</div>
+ <div class="Box-body p-5">
+ <article class="markdown-body entry-content" itemprop=text><h2><a id=user-content-this-is-a-chinese-nlp-package-which-can-extract-information-from-texts class=anchor aria-hidden=true href=#this-is-a-chinese-nlp-package-which-can-extract-information-from-texts><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>This is a Chinese nlp package, which can extract information from texts.</h2>
+<p><a href=https://pypi.org/project/cocoNLP/ rel=nofollow><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNzgiIGhlaWdodD0iMjAiPjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iYSI+PHJlY3Qgd2lkdGg9Ijc4IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBmaWxsPSIjNTU1IiBkPSJNMCAwaDMzdjIwSDB6Ii8+PHBhdGggZmlsbD0iIzAwN2VjNiIgZD0iTTMzIDBoNDV2MjBIMzN6Ii8+PHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTAgMGg3OHYyMEgweiIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsVmVyZGFuYSxHZW5ldmEsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMTAiPiA8dGV4dCB4PSIxNzUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjIzMCI+cHlwaTwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjIzMCI+cHlwaTwvdGV4dD48dGV4dCB4PSI1NDUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjM1MCI+djEuMC40PC90ZXh0Pjx0ZXh0IHg9IjU0NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzUwIj52MS4wLjQ8L3RleHQ+PC9nPiA8L3N2Zz4=" alt=pypiv data-canonical-src=https://img.shields.io/pypi/v/rake-nltk.svg style=max-width:100%></a>
+<a href=https://www.zhihu.com/people/mountain-blue-64/posts rel=nofollow><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOTAiIGhlaWdodD0iMjAiPjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iYSI+PHJlY3Qgd2lkdGg9IjkwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBmaWxsPSIjNTU1IiBkPSJNMCAwaDc1djIwSDB6Ii8+PHBhdGggZmlsbD0iIzFlYWVkYiIgZD0iTTc1IDBoMTV2MjBINzV6Ii8+PHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTAgMGg5MHYyMEgweiIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsVmVyZGFuYSxHZW5ldmEsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMTAiPiA8dGV4dCB4PSIzODUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjY1MCI+U2F5IFRoYW5rczwvdGV4dD48dGV4dCB4PSIzODUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjY1MCI+U2F5IFRoYW5rczwvdGV4dD48dGV4dCB4PSI4MTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjUwIj4hPC90ZXh0Pjx0ZXh0IHg9IjgxNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTAiPiE8L3RleHQ+PC9nPiA8L3N2Zz4=" alt=Thanks data-canonical-src=https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg style=max-width:100%></a></p>
+<h2><a id=user-content-it-is-developed-for-a-public-welfare-program-a-weibo-robot-寻人微博 class=anchor aria-hidden=true href=#it-is-developed-for-a-public-welfare-program-a-weibo-robot-%E5%AF%BB%E4%BA%BA%E5%BE%AE%E5%8D%9A><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>It is developed for a public welfare program, a weibo robot <a href=https://weibo.com/xrwbyangyangfuture rel=nofollow>@寻人微博</a>.</h2>
+<h2><a id=user-content-installation class=anchor aria-hidden=true href=#installation><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>installation</h2>
+<p>It works well on macOS Mojave with python=3.6.</p>
+<pre><code>pip install cocoNLP
+</code></pre>
+<h2><a id=user-content-directly-from-the-repository class=anchor aria-hidden=true href=#directly-from-the-repository><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Directly from the repository</h2>
+<pre><code>git clone https://github.com/fighting41love/cocoNLP.git
+cd cocoNLP
+python setup.py install
+</code></pre>
+<h2><a id=user-content-quick-start class=anchor aria-hidden=true href=#quick-start><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick start</h2>
+<h3><a id=user-content-extract-basic-information-from-texts class=anchor aria-hidden=true href=#extract-basic-information-from-texts><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extract basic information from texts</h3>
+<pre><code>&gt;&gt;&gt; from cocoNLP.extractor import extractor
+
+&gt;&gt;&gt; ex = extractor()
+
+&gt;&gt;&gt; text = '急寻特朗普，男孩，于2018年11月27号11时在陕西省安康市汉滨区走失。丢失发型短发，...如有线索，请迅速与警方联系：18100065143，132-6156-2938，baizhantang@sina.com.cn 和yangyangfuture at gmail dot com'
+
+# 抽取邮箱
+&gt;&gt;&gt; emails = ex.extract_email(text)
+&gt;&gt;&gt; print(emails)
+
+['baizhantang@sina.com.cn', 'yangyangfuture@gmail.com.cn']
+</code></pre>
+<pre><code># 抽取手机号
+&gt;&gt;&gt; cellphones = ex.extract_cellphone(text,nation='CHN')
+&gt;&gt;&gt; print(cellphones)
+
+['18100065143', '13261562938']
+</code></pre>
+<pre><code># 抽取身份证号
+&gt;&gt;&gt; ids = ex.extract_ids(text)
+&gt;&gt;&gt; print(ids)
+
+['410105196904010537']
+</code></pre>
+<pre><code># 抽取手机归属地、运营商
+&gt;&gt;&gt; cell_locs = [ex.extract_cellphone_location(cell,'CHN') for cell in cellphones]
+&gt;&gt;&gt; print(cell_locs)
+
+cellphone_location [{'phone': '18100065143', 'province': '上海', 'city': '上海', 'zip_code': '200000', 'area_code': '021', 'phone_type': '电信'}]
+</code></pre>
+<pre><code># 抽取地址信息
+&gt;&gt;&gt; locations = ex.extract_locations(text)
+&gt;&gt;&gt; print(locations)
+['陕西省安康市汉滨区', '安康市汉滨区', '汉滨区']
+</code></pre>
+<pre><code># 抽取时间点
+&gt;&gt;&gt; times = ex.extract_time(text)
+&gt;&gt;&gt; print(times)
+time {"type": "timestamp", "timestamp": "2018-11-27 11:00:00"}
+</code></pre>
+<pre><code># 抽取人名
+&gt;&gt;&gt; name = ex.extract_name(text)
+&gt;&gt;&gt; print(name)
+特朗普
+
+</code></pre>
+<h3><a id=user-content-extract-phrases-from-texts class=anchor aria-hidden=true href=#extract-phrases-from-texts><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extract phrases from texts</h3>
+<pre><code>&gt;&gt;&gt; from cocoNLP.config.phrase import rake
+
+&gt;&gt;&gt; r = rake.Rake()
+
+&gt;&gt;&gt; # Extraction given the list of strings where each string is a sentence.
+&gt;&gt;&gt; r.extract_keywords_from_sentences(['2015年5月11日，“奶茶妹妹”章泽天分别起诉北京搜狐互联网信息服务有限公司、华某（25岁）名誉权纠纷及成某（38岁）名誉权纠纷二案，要求被诉人公开赔礼道歉、恢复名誉、删除相关视频、断开转载该视频的链接，赔偿经济损失、精神损害抚慰金共计170万元。北京市海淀法院已经受理了这两起案件。原告章泽天诉称，她被许多网友称为“奶茶妹妹”，在网络上获得相当的关注度。2014年4月18日，北京搜狐互联网信息服务有限公司的“搜狐视频娱乐播报调查”节目制作并发布了名为“奶茶妹妹恋情或为炒作，百万炒作团队浮出水面”的视频，该段视频捏造包括“奶茶妹妹走红，实为幕后商业策划”、“100万，奶茶妹妹花巨资，请人策划走红”、“奶茶妹妹在清华大学挂科、作弊、想方设法地转学院”等等。华某在上述节目中捏造了大量的对原告的虚假言论，包括声称其就是原告聘请的“幕后推手和炒作专家”，原告曾花100万聘请其为之宣传策划，原告与刘强东的恋情系两者合作的结果等等。
+'],2,4)
+
+&gt;&gt;&gt; # To get keyword phrases ranked highest to lowest.
+&gt;&gt;&gt; ranked_words = r.get_ranked_phrases()
+
+&gt;&gt;&gt; # To get keyword phrases ranked highest to lowest with scores.
+&gt;&gt;&gt; ranked_words_score = r.get_ranked_phrases_with_scores()
+
+&gt;&gt;&gt; for ele in ranked_words_score:
+&gt;&gt;&gt;     print(ele)
+
+(16.0, '要求 被诉人 公开 赔礼道歉')
+(15.0, '上述 节目 中 捏造')
+(14.5, '该段 视频 捏造 包括')
+(14.0, '实为 幕后 商业 策划')
+(14.0, '奶茶 妹妹 花 巨资')
+(9.5, '删除 相关 视频')
+(9.0, '请人 策划 走红')
+(9.0, '网络 上 获得')
+(9.0, '想方设法 地转 学院')
+(9.0, '奶茶 妹妹 走红')
+(9.0, '名誉权 纠纷 及成')
+(9.0, '名誉权 纠纷 二案')
+(8.5, '奶茶 妹妹 恋情')
+(8.5, '原告 章泽天 诉称')
+(6.0, '奶茶 妹妹')
+(5.0, '节目 制作')
+(5.0, '幕后 推手')
+(5.0, '宣传 策划')
+</code></pre>
+<h2><a id=user-content-references class=anchor aria-hidden=true href=#references><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<p>This is a python implementation of the algorithm as mentioned in paper <a href=https://www.researchgate.net/profile/Stuart_Rose/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents/links/55071c570cf27e990e04c8bb.pdf rel=nofollow>Automatic keyword extraction from individual documents by Stuart Rose, Dave Engel, Nick Cramer and Wendy Cowley</a></p>
+</article>
+ </div>
+ </div>
+ </div>
+</div>
+ </main>
+ </div>
+ 
+ </div>
+ 
+<div class="footer container-lg width-full px-3" role=contentinfo>
+ <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light">
+ <ul class="list-style-none d-flex flex-wrap">
+ <li class=mr-3>© 2020 GitHub, Inc.</li>
+ <li class=mr-3><a data-ga-click="Footer, go to terms, text:terms" href=https://github.com/site/terms>Terms</a></li>
+ <li class=mr-3><a data-ga-click="Footer, go to privacy, text:privacy" href=https://github.com/site/privacy>Privacy</a></li>
+ <li class=mr-3><a data-ga-click="Footer, go to security, text:security" href=https://github.com/security>Security</a></li>
+ <li class=mr-3><a href=https://githubstatus.com/ data-ga-click="Footer, go to status, text:status">Status</a></li>
+ <li><a data-ga-click="Footer, go to help, text:help" href=https://help.github.com/>Help</a></li>
+ </ul>
+ <a aria-label=Homepage title=GitHub class="footer-octicon d-none d-lg-block mx-lg-4" href=https://github.com/>
+ <svg height=24 class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=24 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+ <ul class="list-style-none d-flex flex-wrap">
+ <li class=mr-3><a data-ga-click="Footer, go to contact, text:contact" href=https://github.com/contact>Contact GitHub</a></li>
+ <li class=mr-3><a href=https://github.com/pricing data-ga-click="Footer, go to Pricing, text:Pricing">Pricing</a></li>
+ <li class=mr-3><a href=https://developer.github.com/ data-ga-click="Footer, go to api, text:api">API</a></li>
+ <li class=mr-3><a href=https://training.github.com/ data-ga-click="Footer, go to training, text:training">Training</a></li>
+ <li class=mr-3><a href=https://github.blog/ data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+ <li><a data-ga-click="Footer, go to about, text:about" href=https://github.com/about>About</a></li>
+ </ul>
+ </div>
+ <div class="d-flex flex-justify-center pb-6">
+ <span class="f6 text-gray-light"></span>
+ </div>
+</div>
+ <div id=ajax-error-message class="ajax-error-message flash flash-error sf-hidden">
+ <svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+ <button type=button class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+ <svg class="octicon octicon-x" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+ </button>
+ You can’t perform that action at this time.
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="js-stale-session-flash flash flash-warn flash-banner sf-hidden" hidden>
+ <svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+ <span class=js-stale-session-flash-signed-in hidden>You signed in with another tab or window. to refresh your session.</span>
+ <span class=js-stale-session-flash-signed-out hidden>You signed out in another tab or window. to refresh your session.</span>
+ </div>
+ <template id=site-details-dialog>
+  <details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark hx_rsm" open="">
+    <summary role="button" aria-label="Close dialog"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
+      <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog="">
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+      </button>
+      <div class="octocat-spinner my-6 js-details-dialog-spinner"></div>
+    </details-dialog>
+  </details>
+</template>
+ <div class="Popover js-hovercard-content position-absolute" style=display:none;outline:none tabindex=0>
+ <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style=width:360px>
+ </div>
+</div>
+ <div aria-live=polite class="js-global-screen-reader-notice sr-only"></div>
+ 

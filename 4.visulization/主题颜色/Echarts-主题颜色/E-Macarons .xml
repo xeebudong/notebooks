@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Macarons ">
+<a:dk1><a:srgbClr val="008acd"/>
+</a:dk1><a:lt1><a:srgbClr val="ffffff"/>
+</a:lt1><a:dk2><a:srgbClr val="e5cf0d"/>
+</a:dk2><a:lt2><a:srgbClr val="97b552"/>
+</a:lt2><a:accent1><a:srgbClr val="2ec7c9"/>
+</a:accent1><a:accent2><a:srgbClr val="b6a2de"/>
+</a:accent2><a:accent3><a:srgbClr val="5ab1ef"/>
+</a:accent3><a:accent4><a:srgbClr val="ffb980"/>
+</a:accent4><a:accent5><a:srgbClr val="d87a80"/>
+</a:accent5><a:accent6><a:srgbClr val="8d98b3"/>
+</a:accent6><a:hlink><a:srgbClr val="95706d"/>
+</a:hlink><a:folHlink><a:srgbClr val="dc69aa"/>
+</a:folHlink></a:clrScheme>
+
+

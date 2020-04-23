@@ -1,0 +1,457 @@
+NOTE: “PROCEDURE PRINTTO”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+Traverser: 已调用 Traverser，MPCONNECT 命令是 !sascmdv -nosyntaxcheck -noasynchio -noobjectserver。 
+Traverser: 开始过程流遍历 
+12091      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12092      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12093      put '<Node Id="Ids" Event="Run" Pid="12808" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Ids" Event="Run" Pid="12808" Gridid=""/>';
+12094      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::250f:10d5:6b76:3c01%10,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=14124,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 50。
+      最大记录长度是 50。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12095      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* Ids : Beginning update before running 
+* datetime : 25AUG2019:17:36:24 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Ids\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+12097      %let _HPDMGRIDHOST=;
+12098      %let _HPDMGRIDINSTALLLOC=;
+12099      %let _HPDMGRIDDATASERVER=;
+12100      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* Ids : End update 
+* datetime : 25AUG2019:17:36:24 
+* 
+*------------------------------------------------------------* 
+12101      %em_getactionstatus(emlib =EMWS1, nodeid=Ids);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+12102      %let em_Train = N;
+12103      %let em_Score = N;
+12104      %let em_Report = N;
+12105      %let em_Run = N;
+NOTE: “PROCEDURE DISPLAY”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_GETACTIONSTATUS):   
+MPRINT(EM_DIAGRAM):  ;
+
+节点 Ids 已运行。 
+节点 Ids 成功。 
+12106      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12107      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12108      put '<Node Id="Ids" Event="Complete" Pid="12808" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Ids" Event="Complete" Pid="12808" Gridid=""/>';
+12109      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::250f:10d5:6b76:3c01%10,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=14124,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 55。
+      最大记录长度是 55。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+Traverser: 正在等待节点 REG 
+traverser_readyNode_note 
+12110      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12111      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12112      put '<Node Id="Part" Event="Run" Pid="12808" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Part" Event="Run" Pid="12808" Gridid=""/>';
+12113      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::250f:10d5:6b76:3c01%10,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=14124,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 51。
+      最大记录长度是 51。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12114      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* Part : Beginning update before running 
+* datetime : 25AUG2019:17:36:24 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     data WORK.Part_FILTERSET;
+MPRINT(EM_DIAGRAM):   length PORT $32 USE $1;
+MPRINT(EM_DIAGRAM):   DROP DELTACODE APPLYDELTA APPLYSCORE IMPORTPORT;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_exportSet ;
+MPRINT(EM_DIAGRAM):   PORT = '';
+MPRINT(EM_DIAGRAM):   USE = '';
+MPRINT(EM_DIAGRAM):   where role in( "RAW" "TRAIN" "DOCUMENT" ) and EXPORT = 'Y' ;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Part\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+12133      %let _HPDMGRIDHOST=;
+12134      %let _HPDMGRIDINSTALLLOC=;
+12135      %let _HPDMGRIDDATASERVER=;
+12136      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* Part : End update 
+* datetime : 25AUG2019:17:36:24 
+* 
+*------------------------------------------------------------* 
+12137      %em_getactionstatus(emlib =EMWS1, nodeid=Part);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+12138      %let em_Train = N;
+12139      %let em_Score = N;
+12140      %let em_Report = N;
+12141      %let em_Run = N;
+NOTE: “PROCEDURE DISPLAY”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_GETACTIONSTATUS):   
+MPRINT(EM_DIAGRAM):  ;
+
+节点 Part 已运行。 
+节点 Part 成功。 
+12142      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12143      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12144      put '<Node Id="Part" Event="Complete" Pid="12808" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Part" Event="Complete" Pid="12808" Gridid=""/>';
+12145      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::250f:10d5:6b76:3c01%10,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=14124,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 56。
+      最大记录长度是 56。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+traverser_readyNode_note 
+12146      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12147      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+12148      put '<Node Id="Reg" Event="Run" Pid="12808" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Reg" Event="Run" Pid="12808" Gridid=""/>';
+12149      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: FILE EMWIPMSG 是:
+      Local Host Name=DESKTOP-S66IPN3,
+      Local Host IP addr=fe80::250f:10d5:6b76:3c01%10,
+      Peer Hostname Name=DESKTOP-S66IPN3,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=14124,Lrecl=32767,Recfm=Variable
+
+NOTE: 有 1 条记录写入到 FILE EMWIPMSG 中。
+      最小记录长度是 50。
+      最大记录长度是 50。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12150      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* Reg : Beginning update before running 
+* datetime : 25AUG2019:17:36:25 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     data WORK.Reg_FILTERSET;
+MPRINT(EM_DIAGRAM):   length PORT $32 USE $1;
+MPRINT(EM_DIAGRAM):   DROP DELTACODE APPLYDELTA APPLYSCORE IMPORTPORT;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_exportSet ;
+MPRINT(EM_DIAGRAM):   PORT = '';
+MPRINT(EM_DIAGRAM):   USE = '';
+MPRINT(EM_DIAGRAM):   where role in( "RAW" "TRAIN" "VALIDATE" "TEST" ) and EXPORT = 'Y' ;
+MPRINT(EM_DIAGRAM):   run;
+NOTE: 该 SAS 会话使用的是 WORK 中的注册表，结束会话时将不会保存任何更改。
+12169      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12170      set EMWS1.Part_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CMeta_TRAIN (obs=1);
+12171      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CMETA_TRAIN. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+12172      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12173      set EMWS1.Part_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CMeta_TRAIN (obs=1);
+12174      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CMETA_TRAIN. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12175      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+12176      set EMWS1.Part_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CMeta_TRAIN (obs=1);
+12177      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CMETA_TRAIN. 读取了 1 个观测
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12178      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+12179      * Reg: Update Variables Set;
+MPRINT(EM_DIAGRAM):   * Reg: Update Variables Set;
+12180      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+12181      data EMWS1.Reg_VariableSet;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg_VariableSet;
+12182      length USE $1;
+MPRINT(EM_DIAGRAM):   length USE $1;
+12183      label USE = "使用";
+MPRINT(EM_DIAGRAM):   label USE = "使用";
+12184      length REPORT $1;
+MPRINT(EM_DIAGRAM):   length REPORT $1;
+12185      label REPORT = "报表";
+MPRINT(EM_DIAGRAM):   label REPORT = "报表";
+12186      set EMWS1.Part_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CMeta_TRAIN;
+12187      where((ROLE="TARGET" and LEVEL ne "UNARY") or ROLE in("INPUT" "REJECTED" "FREQ"));
+MPRINT(EM_DIAGRAM):   where((ROLE="TARGET" and LEVEL ne "UNARY") or ROLE in("INPUT" "REJECTED" "FREQ"));
+12188      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 变量 USE 未初始化。
+NOTE: 从数据集 EMWS1.PART_CMETA_TRAIN. 读取了 13 个观测
+      WHERE ((ROLE='TARGET') and (LEVEL not = 'UNARY')) or ROLE in ('FREQ', 'INPUT', 'REJECTED');
+NOTE: 数据集 EMWS1.REG_VARIABLESET 有 13 个观测和 21 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+12189      * Reg: End of Update Variables Set;
+MPRINT(EM_DIAGRAM):    * Reg: End of Update Variables Set;
+12190      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+12192      %let _HPDMGRIDHOST=;
+12193      %let _HPDMGRIDINSTALLLOC=;
+12194      %let _HPDMGRIDDATASERVER=;
+12195      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* Reg : End update 
+* datetime : 25AUG2019:17:36:25 
+* 
+*------------------------------------------------------------* 
+12196      %em_getactionstatus(emlib =EMWS1, nodeid=Reg);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+12197      %let em_Train = Y;
+12198      %let em_Report = Y;
+12199      %let em_Score = Y;
+12200      %let em_Run = Y;
+NOTE: “PROCEDURE DISPLAY”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_GETACTIONSTATUS):   
+MPRINT(EM_DIAGRAM):  ;
+
+12201      %let emloopmode =;
+12202      %let emloopnumber =0;
+12203      %let emloopId =Reg;
+*------------------------------------------------------------* 
+* 
+* Reg : Running 
+* datetime : 25AUG2019:17:36:25 
+* 
+*------------------------------------------------------------* 
+12204      %let SYSCC =0;
+12205      %let EMGROUPMODE =;
+12206      %let EMGROUPID =;
+MPRINT(EM_DIAGRAM):      filename temp catalog 'sashelp.emutil.em_vardist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_classdist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checksetinit.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checkerror.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odsliston.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odslistoff.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_getvarname.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):    filename L3K70F4J "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto log=L3K70F4J new;
+MPRINT(EM_DIAGRAM):   run;

@@ -1,0 +1,5 @@
+查找表中idx以100结尾
+select * from tabelname where idx regexp '100$';
+
+查找表中idx不以100结尾
+select * from tabelname where idx not regexp '100$';

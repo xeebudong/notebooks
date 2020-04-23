@@ -1,0 +1,183 @@
+# Pandas
+> pandas是基于numpy包扩展而来的，因而numpy的绝大多数方法在pandas中都能适用。
+
+> pandas中我们要熟悉两个数据结构Series 和DataFrame
+
+> import pandas as pd
+
+## Series
+
+### 新建
+- s = pd.Series([1, 2, 3], index = ['a', 'b', 'c'])
+
+### 属性
+- s.values s.index
+- s.name Series对象名称
+- s.index.name Series索引名称
+
+### 序列运算
+
+- bool运算 print(s[s>2])
+- Series可以看成一个字典，使用in进行判断(值是不能直接被索引到的，只有索引可以用in关键字所引到)
+print('a' in s)
+- isunll notnull 
+- obj.index 可以对索引
+- unique print(s.unique())
+- value_counts()	统计Series中各值出现的频率
+
+## DataFrame
+
+### 新建
+> dt = pd.DataFrame(data, columns=['year', 'income', 'note'], index=['a', 'b', 'c', 'd'])
+
+### 基本操作
+- 列索引 dt['idx'] / dt.idx
+- 行索引 dt.ix['ridx']	[ix, loc, iloc区别](http://blog.csdn.net/roamer314/article/details/52179191) ix综合了loc、iloc， bool索引
+- 行切片 dt[0:2]
+- 增加列 dt['money'] = np.arange(4)
+- 删除列 del dt['money']
+
+### 索引对象
+- pd.Index()
+- 索引对象 Int64Index MultiIndex DatetimeIndex PeriodIndex
+- 索引方法 diff intersection union isin delete drop insert is_monotonic is_unique is_unique
+- reindex 重新构建索引(reindex的method(内插)选项 fill/pad bfill/baclfill)
+- 索引删除及过滤 print(dt.drop(['a']))	print(dt[dt['year'] > 2001]) 
+- 索引方式
+	+ print(dt[dt['year'] > 2001]) / print(dt[dt.year > 2011])
+	+ print(dt.ix[['a', 'b'], ['year', 'income']])
+	+ print(dt.ix[['a', 'b'], :2])
+	+ print(dt.ix[:, 'year'])
+- 索引方法
+	+ append diff intersection union isin delete drop insert is_monotonic is_unique unique
+
+### DataFrame操作
+
+- reindex 重新索引 obj = obj.reindex([], method)
+	+ method参数	ffill(前向充值) bfill(后向充值)
+	+ 可以对行/列进行索引
+	+ 利用ix也可以对行列进行重新索引 df.ix[idx, col]
+
+- 删除行
+	+ df.drop(idx)
+	+ df.drop(col, axis = 1) # 删除列
+
+- 索引
+	+ 利用标签的切片和普通切片不一样，利用标签的切片包括了末端 df['idx1':'idx2']， idx2的数据也被切出来
+	+ ix
+	
+- 运算
+	+ df.add(df2) sub div mul 可以在行列进行广播运算 axis=0 列上广播，默认是axis=1 
+
+- sort_values	排序
+	- sort_index()
+	> data=pd.DataFrame(np.arange(10).reshape((2,5)),index=['c','a'], columns=['one','four','two','three','five'])
+	- print(data.sort_index())
+	- print(data.sort_index(axis = 1))
+	- print(data.sort_values(by = 'one'))
+	- print(data.sort_values(by = one, ascending = False))
+	- obj.order()
+	- obj.rank()
+
+### 函数应用和映射 
+
+- apply函数
+- applymap
+
+> df['Self_Employed'].fillna(mode(df['Self_Employed']).mode[0], inplace=True)
+
+
+### 汇总以及描述统计
+- print(data.describe())
+- mean
+- count min max idxmin idxmax 
+- quantile 
+- sum mean median mode mad
+- var std mad skew kurt
+- corr cov corrwith 
+- diff 计算一阶差分
+- pct_change 计算百分数变化比
+- 属性 skipna axis level
+
+### 唯一值 成员资格
+- isin print(data.isin(['b']))
+- value_counts print(pd.value_counts(data.values, sort=False))
+
+### 缺失值处理
+> 参数：value method axis inplace limit how
+- isunll
+- dropna
+- ffill
+- fillna 用所在列的均值/众数/中位数来替换缺失值
+- notnull
+
+### 层次化索引
+> data = pd.Series(np.random.randn(10), index=[['a', 'a', 'a', 'b', 'b', 'b', 'c', 'c', 'd', 'd'], [1, 2, 3, 1, 2, 3, 1, 2, 2, 3]])
+- data.index
+- data.values
+- unstack	层次索引转化为一级索引
+- stack		
+- sortlevel swaplevel
+- 使用DataFrame的列作为索引(或者将索引变成DataFrame的列)	set_index, reset_index
+> df = df.set_index([idxs])
+
+### Pandas数据清理
+
+- merge 数据合并
+
+> merge(left, right, how='inner', on=None, left_on=None, right_on=None,
+         left_index=False, right_index=False, sort=True,
+         suffixes=('_x', '_y'), copy=True, indicator=False)
+
+	- how left/right
+	- on 
+	- left_on / right_on
+	- left_index / right_index
+	- sort
+	- suffixes
+	- copy
+	- indicator
+- comebine / comebine_first
+- reshape 数据重塑
+- stack / unstack 数据旋转
+- drop_depulicates() duplicated() 删除重复项
+- replace 替换值
+- cut 数据分段 ？分段之后 怎么再根据分段标签分类样本 是个问题
+	data=[11,15,18,20,25,26,27,24]
+	bins=[15,20,25]
+	print(data)
+	print(pd.cut(data,bins))
+	print(pd.cut(data, bins).codes) #分段标签
+	print(pd.value_counts(pd.cut(data, bins))) #分段数量统计
+	
+- 排序/采样	sort order rank permutations
+	data = np.random.permutation(5)
+	print(data)
+
+	df = pd.DataFrame(np.arange(12).reshape(4, 3))
+	samp = np.random.permutation(3)
+	print(df)
+	print(samp)
+	print(df.take(samp))
+
+
+### 数据透视表 pivot_table
+
+> impute_grps = df.pivot_table(values=["LoanAmount"], index=["Gender","Married","Self_Employed"], aggfunc=np.mean)
+> print(impute_grps)
+
+### Crosstab函数
+
+### Cut 分箱
+
+### 绘图
+
+> Pandas模块中的boxplots和histograms可以直接绘图
+
+> df.boxplot(column="varName", by = "varName") # 按by分组
+
+# 参考文献
+1. [Pandas 数据分析入门](http://python.jobbole.com/87349/)
+2. [Python 数据清洗之数据合并、转换、过滤、排序](http://python.jobbole.com/87346/)
+3. [Python数据处理：Pandas模块的 12 种实用技巧](http://python.jobbole.com/85742/?utm_source=blog.jobbole.com&utm_medium=relatedPosts)
+4. [A Comprehensive Guide to Data Exploration](https://www.analyticsvidhya.com/blog/2016/01/guide-data-exploration/)

@@ -1,0 +1,1632 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.0' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 7000.12.1018.2200                -->
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.0'>
+      <aliases enabled='yes' />
+      <column alias='天' caption='详细日期' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;天&quot;'>
+        <calculation class='tableau' formula='&quot;天&quot;' />
+        <aliases>
+          <alias key='&quot;周&quot;' value='周' />
+          <alias key='&quot;天&quot;' value='天' />
+          <alias key='&quot;季度&quot;' value='季度' />
+          <alias key='&quot;年&quot;' value='年' />
+          <alias key='&quot;月份&quot;' value='月份' />
+        </aliases>
+        <members>
+          <member alias='年' value='&quot;年&quot;' />
+          <member alias='季度' value='&quot;季度&quot;' />
+          <member alias='月份' value='&quot;月份&quot;' />
+          <member alias='周' value='&quot;周&quot;' />
+          <member alias='天' value='&quot;天&quot;' />
+        </members>
+      </column>
+      <column caption='投资数目' datatype='real' default-format='C2052%' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='78888'>
+        <calculation class='tableau' formula='78888.0' />
+        <range min='0' />
+      </column>
+      <column alias='年' caption='摘要' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;year&quot;'>
+        <calculation class='tableau' formula='&quot;year&quot;' />
+        <aliases>
+          <alias key='&quot;month&quot;' value='月份' />
+          <alias key='&quot;week&quot;' value='周' />
+          <alias key='&quot;year&quot;' value='年' />
+        </aliases>
+        <members>
+          <member alias='年' value='&quot;year&quot;' />
+          <member alias='月份' value='&quot;month&quot;' />
+          <member alias='周' value='&quot;week&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='Sheet1 (投资分析.xlsx)' inline='true' name='excel.41197.500319710649' version='8.0'>
+      <connection auto-extract='yes' class='excel' driver='Ace12' filename='C:\Users\Administrator\Desktop\Tableau book\第六章\实战三\投资分析.xlsx' header='yes' imex='1'>
+        <relation name='Sheet2$' table='[Sheet2$]' type='table' />
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='原始投资金额' datatype='real' name='[Calculation_0050306140100214]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Parameters].[Parameter 2]/COUNTD([记录数])' />
+      </column>
+      <column caption='平均收盘价格' datatype='real' name='[Calculation_0710306140904740]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='ZN(AVG([收盘价格]))*(([Parameters].[Parameter 2]/LOOKUP(ZN(AVG([收盘价格])), FIRST())))'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='原购股票数' datatype='real' name='[Calculation_1590306161956269]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_0050306140100214]/LOOKUP(avg([收盘价格]),First())'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='最终值' datatype='real' name='[Calculation_1920306141723348]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_0050306140100214]*(LOOKUP(ZN(AVG([收盘价格])),LAST()))/LOOKUP(ZN(AVG([收盘价格])), FIRST())'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='盈利' datatype='real' name='[Calculation_2480306142228402]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_0710306140904740]-[Calculation_0050306140100214]'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='盈利百分比' datatype='real' name='[Calculation_6230306142321593]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_2480306142228402]/[Calculation_0050306140100214]'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='首尾值' datatype='real' name='[Calculation_7710306142742463]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF MAX([日期])=Lookup(MAX([日期]),LAST()) OR MAX([日期])=Lookup(MAX([日期]),FIRST()) &#13;&#10;THEN [Calculation_0710306140904740]&#13;&#10;END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='选择时间段' datatype='date' name='[Calculation_9421015133131016]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 1]=&quot;年&quot; THEN DATE(DATETRUNC(&apos;year&apos;,[日期])) ELSEIF &#13;&#10;[Parameters].[Parameter 1]=&quot;季度&quot; THEN DATE(DATETRUNC(&apos;quarter&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;月份&quot; THEN DATE(DATETRUNC(&apos;month&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;周&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;天&quot; THEN DATE(DATETRUNC(&apos;day&apos;,[日期])) END' />
+      </column>
+      <column datatype='string' hidden='true' name='[F5]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='string' hidden='true' name='[F6]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='string' hidden='true' name='[F7]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='real' name='[收盘价格]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='date' datatype-customized='true' name='[日期]' role='dimension' type='ordinal'>
+      </column>
+      <column-instance column='[收盘价格]' derivation='Avg' name='[avg:收盘价格:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_0710306140904740]' derivation='User' name='[usr:Calculation_0710306140904740:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' />
+      </column-instance>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='D:\wangtao\wangtao\Tableau\书\Tableau book\发汪尚1-4\4Sheet1 (投资分析.xlsx).tde' schema='Extract' tablename='Extract' update-time='12/28/2012 4:23:32 AM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh increment-key='' incremental-updates='false'>
+            <refresh-event add-from-file-path='' refresh-type='create' rows-inserted='292280' timestamp-start='2012-12-28 04:23:32.843000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.186933' measure-ordering='alphabetic' measure-percentage='0.571688' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#3583b6'>
+              <bucket>&quot;[excel.41197.500319710649].[avg:收盘价格:qk]&quot;</bucket>
+            </map>
+            <map to='#b4d4da'>
+              <bucket>&quot;[excel.41197.500319710649].[usr:Calculation_5101015142707920:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[excel.41197.500319710649].[usr:Calculation_0710306140904740:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;China&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column alias='天' caption='详细日期' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;天&quot;'>
+          <calculation class='tableau' formula='&quot;天&quot;' />
+          <aliases>
+            <alias key='&quot;周&quot;' value='周' />
+            <alias key='&quot;天&quot;' value='天' />
+            <alias key='&quot;季度&quot;' value='季度' />
+            <alias key='&quot;年&quot;' value='年' />
+            <alias key='&quot;月份&quot;' value='月份' />
+          </aliases>
+          <members>
+            <member alias='年' value='&quot;年&quot;' />
+            <member alias='季度' value='&quot;季度&quot;' />
+            <member alias='月份' value='&quot;月份&quot;' />
+            <member alias='周' value='&quot;周&quot;' />
+            <member alias='天' value='&quot;天&quot;' />
+          </members>
+        </column>
+        <column caption='投资数目' datatype='real' default-format='C2052%' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='78888'>
+          <calculation class='tableau' formula='78888.0' />
+          <range min='0' />
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='excel.41197.500319710649'>
+      <datasources>
+        <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+      </datasources>
+      <datasource-dependencies datasource='excel.41197.500319710649'>
+        <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+        <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+        </column>
+      </datasource-dependencies>
+      <filter class='categorical' column='[excel.41197.500319710649].[none:公司名称:nk]'>
+        <groupfilter from='&quot;3M公司&quot;' function='range' level='[none:公司名称:nk]' to='&quot;麦当劳&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='截止到2010/8/17的投资价值'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontcolor='#b40f1e' fontname='微软雅黑' fontsize='12'>&lt;截止到2010/8/17的投资价值&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <slices>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='337' />
+            <format attr='height' value='41' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-size' value='11' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Icon'>
+            </mark>
+            <mark class='Shape'>
+            </mark>
+            <mark class='Square'>
+            </mark>
+            <mark class='Circle'>
+            </mark>
+            <mark class='Bar'>
+            </mark>
+            <mark class='GanttBar'>
+            </mark>
+            <mark class='Line'>
+            </mark>
+            <mark class='Text'>
+            </mark>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='size' value='0.50749999284744263' />
+                <format attr='mark-color' value='#000000' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='截止到2010/8/17的投资价值1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontcolor='#b40f1e' fontname='微软雅黑' fontsize='12'>&lt;截止到2010/8/17的投资价值&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+            <datasource caption='参数' name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column caption='最终值' datatype='real' name='[Calculation_1920306141723348]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_0050306140100214]*(LOOKUP(ZN(AVG([收盘价格])),LAST()))/LOOKUP(ZN(AVG([收盘价格])), FIRST())'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1920306141723348]' derivation='User' name='[usr:Calculation_1920306141723348:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+            </column-instance>
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <slices>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='115' />
+            <format attr='font-size' field='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' value='11' />
+            <format attr='text-align' field='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Icon'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Shape'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Square'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Circle'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Bar'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='GanttBar'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Line'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1920306141723348:qk]' />
+            </mark>
+            <mark class='Automatic'>
+            </mark>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='投资增长率'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+            <datasource caption='参数' name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column caption='平均收盘价格' datatype='real' name='[Calculation_0710306140904740]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='ZN(AVG([收盘价格]))*(([Parameters].[Parameter 2]/LOOKUP(ZN(AVG([收盘价格])), FIRST())))'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='盈利' datatype='real' name='[Calculation_2480306142228402]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_0710306140904740]-[Calculation_0050306140100214]'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='盈利百分比' datatype='real' name='[Calculation_6230306142321593]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_2480306142228402]/[Calculation_0050306140100214]'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='选择时间段' datatype='date' name='[Calculation_9421015133131016]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1]=&quot;年&quot; THEN DATE(DATETRUNC(&apos;year&apos;,[日期])) ELSEIF &#13;&#10;[Parameters].[Parameter 1]=&quot;季度&quot; THEN DATE(DATETRUNC(&apos;quarter&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;月份&quot; THEN DATE(DATETRUNC(&apos;month&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;周&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[日期])) ELSEIF&#13;&#10;[Parameters].[Parameter 1]=&quot;天&quot; THEN DATE(DATETRUNC(&apos;day&apos;,[日期])) END' />
+            </column>
+            <column-instance column='[收盘价格]' derivation='Avg' name='[avg:收盘价格:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_9421015133131016]' derivation='None' name='[none:Calculation_9421015133131016:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column-instance column='[日期]' derivation='None' name='[none:日期:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_0710306140904740]' derivation='User' name='[usr:Calculation_0710306140904740:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+            </column-instance>
+            <column-instance column='[Calculation_2480306142228402]' derivation='User' name='[usr:Calculation_2480306142228402:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+              <table-calc field='[excel.41197.500319710649].[Calculation_0710306140904740]' ordering-type='Rows' />
+            </column-instance>
+            <column-instance column='[Calculation_6230306142321593]' derivation='User' name='[usr:Calculation_6230306142321593:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+              <table-calc field='[excel.41197.500319710649].[Calculation_2480306142228402]' ordering-type='Rows' />
+              <table-calc field='[excel.41197.500319710649].[Calculation_0710306140904740]' ordering-type='Rows' />
+            </column-instance>
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' name='[收盘价格]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='date' datatype-customized='true' name='[日期]' role='dimension' type='ordinal'>
+            </column>
+          </datasource-dependencies>
+          <filter class='quantitative' column='[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]' included-values='in-range'>
+            <min>#1962-01-02#</min>
+            <max>#2010-08-17#</max>
+          </filter>
+          <filter class='quantitative' column='[excel.41197.500319710649].[none:日期:qk]' included-values='in-range'>
+            <min>#1962-01-02#</min>
+            <max>#2010-08-17#</max>
+          </filter>
+          <slices>
+            <column>[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]</column>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+            <column>[excel.41197.500319710649].[none:日期:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[excel.41197.500319710649].[avg:收盘价格:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='in-tooltip' field='[excel.41197.500319710649].[avg:收盘价格:qk]' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-pattern' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#f0f0f0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='9'>
+            <view>
+              <groups>
+                <column>[excel.41197.500319710649].[usr:Calculation_2480306142228402:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_6230306142321593:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_0710306140904740:qk]</column>
+              </groups>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+            </mark>
+            <mark class='Icon'>
+            </mark>
+            <mark class='Shape'>
+            </mark>
+            <mark class='Square'>
+            </mark>
+            <mark class='Circle'>
+            </mark>
+            <mark class='Bar'>
+            </mark>
+            <mark class='GanttBar'>
+            </mark>
+            <mark class='Line'>
+            </mark>
+            <dropline drop-when='selected' haslabel='true' x-axis='true' y-axis='true' />
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>选择时间段:&#9;       </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]&gt;</run>
+                <run>Æ      </run>
+                <run bold='true'>Æ&#10;</run>
+                <run>盈亏及盈亏百分比     </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_0701015144955838:qk]&gt;     &lt;[excel.41197.500319710649].[usr:Calculation_9301015151736441:qk:1]&gt;&#10;</run>
+                <run>AVG（收盘价格）    </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[avg:收盘价格:qk]&gt;&#10;</run>
+                <run>平均价格:                 </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_5101015142707920:qk]&gt;                &#10;</run>
+                <run bold='true' fontalignment='1'>Æ &#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#daa800' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='10' y-axis-name='[excel.41197.500319710649].[usr:Calculation_0710306140904740:qk]'>
+            <view>
+              <groups>
+                <column>[excel.41197.500319710649].[usr:Calculation_2480306142228402:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_6230306142321593:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_0710306140904740:qk]</column>
+              </groups>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+            </mark>
+            <mark class='Icon'>
+            </mark>
+            <mark class='Shape'>
+            </mark>
+            <mark class='Square'>
+            </mark>
+            <mark class='Circle'>
+            </mark>
+            <mark class='GanttBar'>
+            </mark>
+            <mark class='Line'>
+            </mark>
+            <mark class='Bar'>
+            </mark>
+            <dropline drop-when='selected' haslabel='true' x-axis='true' y-axis='true' />
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>选择时间段:&#9;       </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]&gt;</run>
+                <run>Æ      </run>
+                <run bold='true'>Æ&#10;</run>
+                <run>盈亏及盈亏百分比     </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_0701015144955838:qk]&gt;     &lt;[excel.41197.500319710649].[usr:Calculation_9301015151736441:qk:1]&gt;&#10;</run>
+                <run>AVG（收盘价格）    </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[avg:收盘价格:qk]&gt;&#10;</run>
+                <run>平均价格:                 </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_5101015142707920:qk]&gt;                &#10;</run>
+                <run bold='true' fontalignment='1'>Æ &#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#daa800' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='11' y-axis-name='[excel.41197.500319710649].[avg:收盘价格:qk]'>
+            <view>
+              <groups>
+                <column>[excel.41197.500319710649].[usr:Calculation_2480306142228402:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_6230306142321593:qk]</column>
+                <column>[excel.41197.500319710649].[usr:Calculation_0710306140904740:qk]</column>
+              </groups>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+            </mark>
+            <mark class='Icon'>
+            </mark>
+            <mark class='Shape'>
+            </mark>
+            <mark class='Square'>
+            </mark>
+            <mark class='Circle'>
+            </mark>
+            <mark class='Bar'>
+            </mark>
+            <mark class='GanttBar'>
+            </mark>
+            <mark class='Line'>
+            </mark>
+            <dropline drop-when='selected' haslabel='true' x-axis='true' y-axis='true' />
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>选择时间段:&#9;       </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]&gt;</run>
+                <run>Æ      </run>
+                <run bold='true'>Æ&#10;</run>
+                <run>盈亏及盈亏百分比     </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_0701015144955838:qk]&gt;     &lt;[excel.41197.500319710649].[usr:Calculation_9301015151736441:qk:1]&gt;&#10;</run>
+                <run>AVG（收盘价格）    </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[avg:收盘价格:qk]&gt;&#10;</run>
+                <run>平均价格:                 </run>
+                <run bold='true'>&lt;[excel.41197.500319710649].[usr:Calculation_5101015142707920:qk]&gt;                &#10;</run>
+                <run bold='true' fontalignment='1'>Æ &#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#9e4c00' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([excel.41197.500319710649].[usr:Calculation_0710306140904740:qk] + [excel.41197.500319710649].[avg:收盘价格:qk])</rows>
+        <cols>[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='投资数目'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontcolor='#b40f1e' fontname='微软雅黑' fontsize='12'>&lt;投资数目&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+            <datasource caption='参数' name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column caption='投资数目' datatype='real' default-format='C2052%' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='78888'>
+              <calculation class='tableau' formula='78888.0' />
+              <range min='0' />
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <slices>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='165' />
+            <format attr='font-size' field='[Parameters].[Parameter 2]' value='11' />
+            <format attr='text-align' field='[Parameters].[Parameter 2]' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Icon'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Shape'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Square'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Circle'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Bar'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='GanttBar'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Line'>
+              <text column='[Parameters].[Parameter 2]' />
+            </mark>
+            <mark class='Automatic'>
+            </mark>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='投资日期'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontcolor='#b40f1e' fontname='微软雅黑' fontsize='12'>&lt;投资日期&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column-instance column='[日期]' derivation='Min' name='[min:日期:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column-instance column='[日期]' derivation='Quarter' name='[qr:日期:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[日期]' derivation='Year' name='[yr:日期:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='date' datatype-customized='true' name='[日期]' role='dimension' type='ordinal'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[excel.41197.500319710649].[yr:日期:ok]'>
+            <groupfilter function='member' level='[yr:日期:ok]' member='1967' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[excel.41197.500319710649].[yr:日期:ok]</column>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='151' />
+            <format attr='font-family' field='[excel.41197.500319710649].[yr:日期:ok]' value='微软雅黑' />
+            <format attr='font-size' field='[excel.41197.500319710649].[yr:日期:ok]' value='10' />
+            <format attr='font-weight' field='[excel.41197.500319710649].[yr:日期:ok]' value='bold' />
+            <format attr='text-align' field='[excel.41197.500319710649].[yr:日期:ok]' value='center' />
+            <format attr='font-family' field='[excel.41197.500319710649].[qr:日期:ok]' value='微软雅黑' />
+            <format attr='font-size' field='[excel.41197.500319710649].[qr:日期:ok]' value='10' />
+            <format attr='font-weight' field='[excel.41197.500319710649].[qr:日期:ok]' value='bold' />
+            <format attr='text-align' field='[excel.41197.500319710649].[qr:日期:ok]' value='center' />
+            <format attr='font-size' field='[excel.41197.500319710649].[min:日期:qk]' value='11' />
+            <format attr='text-align' field='[excel.41197.500319710649].[min:日期:qk]' value='center' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='font-weight' data-class='subtotal' field='[excel.41197.500319710649].[yr:日期:ok]' value='normal' />
+            <format attr='font-weight' data-class='total' field='[excel.41197.500319710649].[yr:日期:ok]' value='bold' />
+            <format attr='font-weight' data-class='subtotal' field='[excel.41197.500319710649].[qr:日期:ok]' value='normal' />
+            <format attr='font-weight' data-class='total' field='[excel.41197.500319710649].[qr:日期:ok]' value='bold' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-family' field='[excel.41197.500319710649].[yr:日期:ok]' value='微软雅黑' />
+            <format attr='font-size' field='[excel.41197.500319710649].[yr:日期:ok]' value='10' />
+            <format attr='font-weight' field='[excel.41197.500319710649].[yr:日期:ok]' value='bold' />
+            <format attr='text-align' field='[excel.41197.500319710649].[yr:日期:ok]' value='center' />
+            <format attr='font-family' field='[excel.41197.500319710649].[qr:日期:ok]' value='微软雅黑' />
+            <format attr='font-size' field='[excel.41197.500319710649].[qr:日期:ok]' value='10' />
+            <format attr='font-weight' field='[excel.41197.500319710649].[qr:日期:ok]' value='bold' />
+            <format attr='text-align' field='[excel.41197.500319710649].[qr:日期:ok]' value='center' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='in-tooltip' field='[excel.41197.500319710649].[yr:日期:ok]' value='false' />
+            <format attr='in-tooltip' field='[excel.41197.500319710649].[qr:日期:ok]' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Icon'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Shape'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Square'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Circle'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Bar'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='GanttBar'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Line'>
+              <text column='[excel.41197.500319710649].[min:日期:qk]' />
+            </mark>
+            <mark class='Automatic'>
+            </mark>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='约持股票数'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontcolor='#b40f1e' fontname='微软雅黑' fontsize='12'>&lt;约持股票数&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (投资分析.xlsx)' name='excel.41197.500319710649' />
+            <datasource caption='参数' name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41197.500319710649'>
+            <column caption='原购股票数' datatype='real' name='[Calculation_1590306161956269]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_0050306140100214]/LOOKUP(avg([收盘价格]),First())'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column-instance column='[公司名称]' derivation='None' name='[none:公司名称:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1590306161956269]' derivation='User' name='[usr:Calculation_1590306161956269:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+            </column-instance>
+            <column datatype='string' name='[公司名称]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <slices>
+            <column>[excel.41197.500319710649].[none:公司名称:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='115' />
+            <format attr='font-size' field='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' value='11' />
+            <format attr='text-align' field='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Icon'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Shape'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Square'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Circle'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Bar'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='GanttBar'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Line'>
+              <text column='[excel.41197.500319710649].[usr:Calculation_1590306161956269:qk]' />
+            </mark>
+            <mark class='Automatic'>
+            </mark>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='公司投资分析'>
+      <style>
+        <style-rule element='table'>
+          <format attr='background-color' value='#fff2bf' />
+        </style-rule>
+      </style>
+      <size maxheight='550' maxwidth='800' minheight='550' minwidth='800' />
+      <zones>
+        <zone h='100000' id='18' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+          <zone h='7272' id='17' type='title' w='100000' x='0' y='0'>
+          </zone>
+          <zone h='92728' id='6' param='horz' type='layout-flow' w='100000' x='0' y='7272'>
+            <zone h='92728' id='11' type='layout-basic' w='81875' x='0' y='7272'>
+              <zone h='68909' id='12' param='vert' type='layout-flow' w='81875' x='0' y='31091'>
+                <zone h='68182' id='3' type='layout-basic' w='81875' x='0' y='31091'>
+                  <zone h='68182' id='4' name='投资增长率' show-title='true' w='81875' x='0' y='31091'>
+                  </zone>
+                </zone>
+              </zone>
+              <zone h='12728' id='14' name='截止到2010/8/17的投资价值' show-title='true' w='34631' x='47244' y='7272'>
+              </zone>
+              <zone h='11910' id='15' name='约持股票数' show-title='true' w='34520' x='12724' y='19181'>
+              </zone>
+              <zone h='11091' id='16' name='投资日期' show-title='true' w='34631' x='47244' y='20000'>
+              </zone>
+              <zone h='23819' id='23' param='vert' type='layout-flow' w='5849' x='6875' y='7272'>
+                <zone h='1484' id='24' param='vert' type='layout-flow' w='5849' x='6875' y='7272'>
+                  <zone h='1484' id='25' param='vert' type='layout-flow' w='5849' x='6875' y='7272'>
+                    <zone h='1484' id='26' type='empty' w='5849' x='6875' y='7272'>
+                    </zone>
+                  </zone>
+                </zone>
+              </zone>
+              <zone h='23819' id='27' type='empty' w='6875' x='0' y='7272'>
+              </zone>
+              <zone h='11909' id='30' name='投资数目' show-title='true' w='34520' x='12724' y='7272'>
+              </zone>
+            </zone>
+            <zone fixed-size='145' h='92728' id='5' is-fixed='true' param='vert' type='layout-flow' w='18125' x='81875' y='7272'>
+              <zone h='1454' id='8' name='投资增长率' param='[excel.41197.500319710649].[none:日期:qk]' type='filter' w='18125' x='81875' y='7272'>
+              </zone>
+              <zone h='9999' id='10' param='[Parameters].[Parameter 1]' type='paramctrl' w='18125' x='81875' y='8726'>
+              </zone>
+              <zone h='1454' id='7' name='投资增长率' param='[excel.41197.500319710649].[none:公司名称:nk]' type='filter' w='18125' x='81875' y='18725'>
+              </zone>
+              <zone h='9999' id='29' param='[Parameters].[Parameter 2]' type='paramctrl' w='18125' x='81875' y='20179'>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' hidden='false' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='投资数目'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='type_in' param='[Parameters].[Parameter 2]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41197.500319710649].[none:公司名称:nk]</field>
+          <field>[excel.41197.500319710649].[yr:Calculation_9421015133131016:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='约持股票数'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41197.500319710649].[none:公司名称:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='截止到2010/8/17的投资价值1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41197.500319710649].[none:公司名称:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='投资日期'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41197.500319710649].[none:公司名称:nk]</field>
+          <field>[excel.41197.500319710649].[yr:日期:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='投资增长率'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[excel.41197.500319710649].[none:日期:qk]' show-null-ctrls='false' type='filter' />
+            <card mode='compact' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[excel.41197.500319710649].[none:公司名称:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41197.500319710649].[none:Calculation_9421015133131016:qk]</field>
+          <field>[excel.41197.500319710649].[none:公司名称:nk]</field>
+          <field>[excel.41197.500319710649].[none:日期:qk]</field>
+          <field>[excel.41197.500319710649].[yr:Calculation_9421015133131016:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='公司投资分析'>
+      <active id='10' />
+      <zones>
+        <zone name='投资增长率'>
+          <viewpoint>
+            <current-page>
+              <multibucket>
+              </multibucket>
+            </current-page>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='投资增长率' param='[excel.41197.500319710649].[none:日期:qk]' show-null-ctrls='false' type='filter' values='relevant'>
+        </zone>
+        <zone mode='compact' name='' param='[Parameters].[Parameter 1]' type='paramctrl'>
+        </zone>
+        <zone mode='type_in' name='' param='[Parameters].[Parameter 2]' type='paramctrl'>
+        </zone>
+      </zones>
+    </window>
+    <window class='hidden-worksheet' name='截止到2010/8/17的投资价值'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='64' name='投资数目' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAABACAYAAABMbHjfAAAAAXNSR0IArs4c6QAAAARnQU1B
+      AACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAMiSURBVHhe7ZntdaswEEQpj4IohyLc
+      gVuhEwUExvoCxV5HtjPX5+THeyuBdnYuWkHX8UMBFEABFEABFEABFEABFJBWwPFDASEFMtiF
+      cidVFHAAgAmkFQAA6fKTPADgAWkFAEC6/CQPAHhAWgEAkC4/yQMAHpBWAACky0/yAIAHpBUA
+      AOnykzwA4AFpBQBAuvwkDwB4QFoBAJAuP8kDAB6QVgAApMtP8gCAB6QVAADp8pM8AOABaQUA
+      QLr8JA8AeEBaAQCQLj/JAwAekFYAAKTLT/IAgAekFQAA6fKTPADgAWkFAEC6/CQPAHhAWgEA
+      kC4/yQMAHpBWAACky0/yAIAHpBUAAOnykzwA4AFpBQBAuvwkDwB4QFoBAJAuP8kDAB6QVgAA
+      pMtP8gCAB6QVAADp8pO8DACXy8XxhwapB6QA4HmHAqkCAIAnpBUAgI8u/+TGvnP9OGWrnMbe
+      df3opuvg5iKW/4brNm+9zj5umXead228NZ7f/DoE69vXfR9Xiz9bRgB4VrlW86bR9d3gblZe
+      b3t1Q9e7AhdbeIHiFt/MGpjem+kQgtp4azwXzsO857jkFkNfi1tKAQAW9RrN9YYNnorpv+Nl
+      JAbyACWwlP7vdpHaeGs838vyXW7Z1XZAC7tgFLcVAQBs+jWaHTzxiztC0iqET/eaYdMMauOt
+      8UyxFdio64nuUYvbSgAANv2azfZtwOyS5elfOhP4hXjjJGaau33f/39qC/RyoB4rCQA8plfz
+      0dHhLz3sJofF/WBcWGV0neoheD5lhIfSwnhrfF/iIQAbyLW4sSIAYBSw5fTz3v/ojdHaQmRn
+      iMNDdG28NZ4oxg7QxkLLF8Bv/P16Bzg62PrXpKW3SGmrtKlTG2+NcwZ4jw2/FYBQrdMdoGjM
+      eXbNsGk5auOtcd4CAcCzCpwBcNz/5y1L/F49IyBrmUrv4cOW6rF4nn3tPX8t/qyeyzzOABb1
+      Gs89A+A33wbuX4zjliifu0GzH7rLLdTR9dYPdeHX6dr9kkM3X4Jf76z/0AK9XpXbFWfDFkz3
+      d/f7nCuzA3xOLd63krmvP/y28L5VNbnzD5X9T1V9KpmHAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='64' name='约持股票数' width='169'>
+      iVBORw0KGgoAAAANSUhEUgAAAKkAAABACAYAAABhnldlAAAAAXNSR0IArs4c6QAAAARnQU1B
+      AACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK4SURBVHhe7Z3bjaswFEUpzwVRDkWk
+      A1qhEw/v8DBcXwnIirKQ8jGMx+zZe+XgYyKlKDx0QAd0QAd0QAd0QAd0AOZA9NABmAO7twhM
+      n3J0IAqpEOAdEFJ8RAoUUhnAOyCk+IgUKKQygHdASPERKVBIZQDvgJDiI1KgkMoA3gEhxUek
+      QCGVAbwDQoqPSIFCKgN4B4QUH5EChVQG8A4IKT4iBQqpDOAdEFJ8RAoUUhnAOyCk+IgUKKQy
+      gHdASPERKVBIZQDvgJDiI1KgkMoA3gEhxUekQCGVAbwDQoqPSIFCKgN4B4QUH5EChVQG8A4I
+      KT4iBQqpDOAdEFJ8RAoUUhnAOyCk+IgUKKQygHdASPERKVBIZQDvgJDiI1KgkMoA3gEhxUek
+      wJ+B9PV6RV/f6cFPQWpN+k4HhPQ7c/sp1UJKirupYiiK7luJF68y1ica63Ixtjwa2cQqFHH/
+      6+H8fL1QxYbkx6hFSEmh1GUs/gOUpgotYBPEdSxbuEO1x2wCeQ3pCOh8cvszxxgh5WQRe+gO
+      q+FW6ADVCsod5AO4RQh9hV5N3VftEFdMd38/Q88xRkg5WcSu4qUqYVriAOApeB10/YDE2NSk
+      PaQbcAH+CCkghEHCWBnbqvdek56sR1OVMHWunzsH0rHqZlfy54wT0ue8/seVtmvKqak5APUQ
+      0lSDdA7pu/k6b9I+ZZWQfsr5nOuO3X6yuF1eSbuC293uU5DniL1vjJDe5+0FM59VwIw16awg
+      53b/XnLkN28X/IsZUwhphkmPDEk1LYdrzMUadtmeH25hJSBNdvLMbSghfYTAnItsG5cRmJN9
+      09x90nTjtG+Uhvns7nPSumVM9+ES/jGCMz1x2gDaNzibBWreE6ej2/3miRNwj7TLzErKJ3eh
+      sIUNuEV0t4VCerfDV87friPzN/uvvPBn5/oD09B/rSsXHm4AAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='64' name='截止到2010/8/17的投资价值1' width='169'>
+      iVBORw0KGgoAAAANSUhEUgAAAKkAAABACAYAAABhnldlAAAAAXNSR0IArs4c6QAAAARnQU1B
+      AACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJySURBVHhe7Z3BrYMwFAQpzwVRDkXQ
+      Aa2kE8fBGAEGXiQf3iImUi7fDqxm59sml3QdLwhAAAIQgAAEIAABCIgRiLwgIEag+hcRy0cc
+      CEQkRQJ5AkgqXxEBkRQH5AkgqXxFBERSHJAngKTyFREQSXFAngCSyldEQCTFAXkCSCpfEQGR
+      FAfkCSCpfEUERFIckCeApPIVERBJcUCeAJLKV0RAJMUBeQJIKl8RAZEUB+QJIKl8RQREUhyQ
+      J4Ck8hUREElxQJ4AkspXREAkxQF5AkgqXxEBkRQH5AkgqXxFBERSHJAngKTyFREQSXFAngCS
+      yldEQCTFAXkCSCpfEQGRFAfkCSCpfEUERFIckCeApPIVERBJcUCeAJLKV0RAJMUBeQJIKl8R
+      AV8j6TiOkfczGbxKUtakZxJA0mf29qrUSOpR99T/fnn4/N1PS6JPHMJmThji5zarNb913ANU
+      vieS+rHf33kWN8RhNnERaiPm1CdhL0W15reO+0JCUl/+y92n2KeVNWRDk6NDDKuwZWE9+VvJ
+      bs1vHXdmhKTOBfxuX62SllTHzNb81nFnRkjqXEBeNbu4HkXzUprPo2z3nEm9/cw7e7g8a84r
+      bHnAMh+clhX5Zr51PWvcixcrqRf5zYq5nkXXLPmM2m2W1yxQebA6hrbmt467QuLp3hX/2Vkx
+      H1JTMX2cduGyaPtjQXnuMuZb17PGXSHxFZQv/lM5kPRYCtu9o6bX59F6e57nVqtrCW/Nbx13
+      hJRujaSO/Odz5un+Pe/5+Vy6vvfbf/3Z+/nW9exxP1BI6se+8c5JykvBGy8t9nEkFSvk7zjp
+      PFt/K/D3px818QvCyuyTCugfPwAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='64' name='投资日期' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAABACAYAAABMbHjfAAAAAXNSR0IArs4c6QAAAARnQU1B
+      AACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAANPSURBVHhe7ZltkoMgEEQ9ngfyOB4i
+      N8hVchM2KBoYB/Nl4ab6bVV+LCIyPf2Qwa7jDwVQAAVQAAVQAAVQAAVQQFqBwB8KCCmwgV0o
+      dkJFgQAAmEBaAQCQTj/BAwAekFYAAKTTT/AAgAekFQAA6fQTPADgAWkFAEA6/QQPAHhAWgEA
+      kE4/wQMAHpBWAACk00/wAIAHpBUAAOn0EzwA4AFpBQBAOv0EDwB4QFoBAJBOP8EDAB6QVgAA
+      pNNP8ACAB6QVAADp9BM8AOABaQUAQDr9BA8AeEBaAQCQTj/BAwAekFYAAKTTT/AAgAekFQAA
+      6fQTPADgAWkFAEA6/QQPAHhAWgEAkE4/wQMAHpBWAACk00/wAIAHpBUAAOn0EzwA4AFpBQBA
+      Ov0EDwB4QFoBAJBOP8HLAHC5XAI/NLAekAKA9Q4FrAIAgCekFQCAn0z/LYx9F4arnfzcfk/q
+      /Nt2COE6PK53fRhvaYyiPRtjM841DN0QykfX5hPHzvub+fVjWB5/VhoA4Czlv3judZgNWvo7
+      mWs1Vfo/75RMvjTdxv4+TgaBndPU31yPbQYsfz4ZWFN/Ox9nfl9o8umtAPCpcqfcF1fTu/n7
+      PvQWAM+st/He72HgyaiFeefx+vU1kAflX4tjPIbYmc/q/9TfzGW6PM3Zvk3aCgsAbfX+7mnr
+      6jsbr/SyY6bJdEs/556d2UywbLYocdU226ZpErWxTf9X3jDfKfT23QDwtmT/4YYaAGa7kgOw
+      rsBp1U51glcmhAKcLN7Y7u7bKwBU+y+1QaVOaSgxADQU+7hHeYar7LGXN0AydbHl8LZNcbce
+      awPH6LF9b7tkYar1X2qGs7c/MR8AcJwrG45U23LY1T3rlwAoDewVonObZ/Ry/7+tFywA9f5r
+      geAU8w1lBIC2Yh/3tBf380Xh6d+zKYy9YnWuWJ3jzyUib+y9/st9558E8QY4zpUNR3IM9/SU
+      xVvZnbbayYxz/PkIuFKTbI5g/e8H7veKRmoCQCOhj33MKzWAc4xp9vzed4C9/b9bMK9vh/JU
+      Ko5T9k/bs6zx6XeIY0VzRwOABiIf/4jXagC3YK19CV635d7JzJPjzM0xaK2/+RJ88jcAiuDj
+      ncmIP6YAb4AfSxjTPVaBP0TTNf6j+gLSAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='投资增长率' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAAAXNSR0IArs4c6QAAAARnQU1B
+      AACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAACPiSURBVHhe7Z1pbFxXlt/LWYDGzHxI
+      MAMESPJhBgimPwQJECBBPiRIowN0dxrj3e1ut23Zbqtt2ZbXti1ZtixLlrVY9mildoqbuIiU
+      KFILRW2USO0iKW6iKFEUN3GXSJHiWqwi65/7f8Uqcauqt9VC+TzggSJ133tV597fu+ece865
+      DoccIgGRgEhAJPATl4DH4/n36nxOnS/IKTL4iYyBp/3Yqy/8zPj4+JA6XXKKDH4iY6BnMgDP
+      8UtDHeonxsbG5BQZPNZjwOVy9c8AgIO/qakJN27ciMmztLQU1dXVMfnZYlVmsfK5KioqwDNW
+      Ps/169dnAsAZwO12Q9ERc6fT6dQG/9DQUMx9tliUV6x9ppaWFrS2tsZM342Ojs4OACGIxYOz
+      U01NDdQHj8WPJ58phATa29vR0dERM3JS40kAiJne+Al8EAHAYifLDGBRgFG+XACw2AECgEUB
+      RvlyAcBiBwgAFgUY5csFAIsdIABYFGCULxcALHaAAGBRgFG+XACw2AECgEUBRvlyAcBiBwgA
+      FgUY5csFAIsdIABYFGCULxcALHaAAGBRgFG+XACw2AECgEUBGrx83D0A93C7/3QNtsPZ/+h3
+      /t+YswvwjOm6swCgS0yBGwkAFgVo8PK+OzvQlPdz7WxUZ8nWn6Ng+c9xK8v7N56thb/G2Ii+
+      +B4BwGAHTG8uAFgUoMHLe2pW4fY+h3bWpjtw5H0HUp5zoHSL9288G4/+J7iHWnTdWQCYEJNn
+      fAwjw4MYGBiA0+WGe9SJUdfENOoZh9M5AveYZ4ZQBQBd48y2RtMBOPSeA8nPKgA2CwCWhNzb
+      VIr1yz/Aoi++RM7ZKziZFoe4tHMYdqvB33kLG9cuxqma+wKAJSlbv1gAsC7DWe4whobSU9ib
+      mIMb9c3o7e3AwYTNWLZ8K+70DuBO8Rl8+8nzyKloEwDCIn/9N50NgKRnHLiwWqlEGd5Z4E72
+      v8HDxiR105kz9vQniQpEiYyPojh7K+b9YQE+XfoNss4WIjslBbvi43HySi0uHN+H7Rs+xLEq
+      LwBUe7q7u7VECgqwvLxcMsIilK13v3rlFBuAKlDCUw7kLnDgZuojNaijeIHK8hoNmenFjDBJ
+      iFF593XlV3C+6i7ab+Rj5Z54JCek4tCRE8hKS8TevUeRn7EE+ZMA6OrqQltbGyjAsrIyASBS
+      AFyfBYAnHdj/hgM1yY8AaLv4MkZH+gQAPZOrZ2wUFZdysHFXHDZt/A7bDxxCdtp+XCotR8b6
+      VYg/Vo3LOctxsrpdVCA9Ag1jm9lUoAQFQOqLDlxd/wiA+py/w/D98yE/iahAEyJyDfWgsvgs
+      zlwpw72Hg7jf2YW+wSHcb7yL+73D6Ou6g+4BpwAQckiFt0EgAAjB2WWPAKjb/1cY6jwd8sMI
+      ACFFFLyBuEEtCtDg5QKAQYGFu7kAEG4JT71/pAFQ1Qk1p8f4uNej5Ptd/Tksh1SFCItYH5+b
+      RhIAz5gTJUe3YsWKb7A5Pg0NrZ04mbEDK3/YgPPVbZhlXdSyoAUAyyJ8nG/gQc+Nb/1u0Ftp
+      yv35rnKDKv0/HDaA23kPuVu34sSVCtQ3t6K+5Bi2xuWi5GoB0jJz0D6gL+DOSI8IAEak9RNr
+      6xpswN2T/8MPQPkOBzJftQ5AfX09+vr6tJOV/nyHs7say/60AB98vgQ/JuXgfP5uJBXWwt13
+      Fzsy01HWOmh7DwgAtov08bmhs7cSdG/6gt4ur3OAq8BWZgCu5XAh886dO9rZ29vrF9hodwMy
+      00+o6IBaZCStwead65FYUANnTyN2paehqmPIduEKALaL9PG54XQALq51IFGtAlsBIJgbdKDj
+      JvZkpSIv7wB+2LAGh/MOY/Pa3cjM2IP43cfQPWK/JSwAPD7j1fZvEmkAxt1O1JYeQ2paKvKv
+      1alo4X5UXlC/Z2WjpqVXR6SRcREIAMZl9pO5ItIAREOwAkA0pD5HnmkIgKyfoa9+D0b7qrXT
+      1X8bHu9eK1MOWQm22PmyEGZRgAYu1wtAVbwDJRufQG3mv0V97r/Tzrsn/ztcQ3cFAAPy1tVU
+      ANAlJlsa6QGAOQEnFzuQ8bID1yanSR75e7gGGwUAW3pi0k0EALslGvh+egFgnjDdo8UbJ6VJ
+      CgDh6SgBIDxyne2uAkDkZK37SQKAblFZbigAWBah/TcQAOyXaaA7CgCRk7XuJwkAukVluaEA
+      YFmE9t9AALBfpjIDTGyVrZIP/DvFR07Mxp4kABiTl5XWMgNYkV6YrhUAwiTYWW5rFIArk5Lk
+      Gw7/RzgflMk6gN3dJQDYLVHz6wBcAGNtIK4DMEr0+GcOMGmG4dN1mf8K98o+UjmN41MeIKEQ
+      FvtPALAoQAOXh5oB9s1zoHKXFwCGSGe9rmoFpTxaDOu8+oYAYEDeupoKALrEZEujUADs/Z23
+      SG6OqhInANgi8tA3EQBCy8iuFs5elZs7KSNsekIMASj61gH+FADsknqI+wgAkRG0x+NGz/Xl
+      qNv/M02np25/5uupGWEc+AVL1d+eFgAi0yvqKQJAZETtGXeireif/PnAN5JUPdA/PUqH5Btf
+      AIhMX0x5igAQGaFPB6A60Rvy7MsHFgAi0w8zniIAREbwAkBk5Gz4KQKAYZGZukAAMCW28F8k
+      AIRfxnyCABAZORt+igBgWGSmLhAATIkt/BcJAOGXscwAkZGxqacIAKbEZviiYDMAd4dJVnsF
+      ixvUsFitXyAAWJehnjsEA+DwQm/cjwCgR5I2txEAbBZogNsFAyDvYwcOvCkARKYnpj1FAIiM
+      2AWAyMjZ8FMEAMMiM3WBAGBKbOG/SAAIv4z5BNb3bM7/r1M2x0h/yRsKISpQZPpg1qcIAJER
+      /sOGRNzO/Bd+AM6oqE9Wf2PmV77K/PLZAKeWSDRoZHpk4ikCQGTEPR2A/L+ot78a/NwhvniD
+      F4CkZ72/8++SDxCZfpFw6AjJeTYAGPd//juV9rjXCwAH/eQdYyQlMgKdIzNABISsHhEIAO4T
+      xkR4HwCTw6MFgAj0jQAQASELAJERspmnCABmpGb8GpkBjMssIlcIABERsykViAaxlEUJc/8I
+      AGEW8MTtjc4Aab9XSfPKVeorjMVEeqkLFKqvVNWwwaEBjLjcGO7vRd/ACDzcCnbMhd4H3Rga
+      HZtxBwEglFDt+X+jABz7xIHa9EdFsQSAkP3gwVBXLdZv/GcU3GjA8cTvsXr7cQyMKihaqrDy
+      y7dwpKpLAAgpx/A0MAoA1wl8O8r7fsoMEKRvxl39uJqzG+8s+QaHy2qRk7QdK1duRs39Pty6
+      fAqrPv8DDlW2CQDhGd9B78rtTR/cXOdfCeZGeMdUBCjXAWZzgzI34NxKAUB/V3nG0FJViITk
+      VKzfsx0HrlbjSOpe9XsyjhVVoTAvHbvjPkF+lRcAqj1tbW1oampCY2MjSktLMTg4iNHRUTnD
+      IIPhvgY0HfvP/jd65W7vim8gABgjxK1Sp88A7Zdfw6hzZEof3b17Fx0dHfrHSphbqrHVP7E7
+      gMMRqf0BPO4RXMrdincWvIOnf/c0Fm7NxL7kdOQdO42M5K3Yk3ICJ/d96QdAfS709fWhp6cH
+      9+/fR0VFBYaHhzE2NiZnGGTgfFiPxiP/4B/QJZu8GWABAfijA9cTZgLQceV1jLldU/qotbVV
+      AFA1B+AeHcFATxuyclJxpOwWTuYcRnFlNXK2rEfGmVqUHF2LMzUz3xRiBIf5lahu7x5UM+1k
+      ANT2p4z7MQqA2ACh+kqpQg/7+zAwMoqBhw8x7FQ/7/dgYMilvEL3MOB0iw0QSoZh+H8BIAxC
+      teuWMgPYJcnA94k2AK6Rftx7OKRsPzcedLWgrr4RfcOusHzxqNgAVr6JAGBceuPuQfQ3paKv
+      Lk47H9yKw91Lcei4Fofe296/8RzpKdZuHk0APO4hXDwQh0XJBehpvoHdq1fh61XfYf/JUgzP
+      VAiMC2PaFQKAZRHG/g3cw8qDlvdzZdQ+oZ0VO55A1mtPIP/TJ1Cb4f0bz57qFdEFQC2MdtZe
+      ws5Vi/H2ngLcKErD7txr6Ou8jZR96bjd7bRd2AKA7SKNvRt6AfhHv1endIvXq5P7ztTQhUgA
+      QHd2eXk56urqtLO3t9cvMFd/CzIT47Evcw8+TMhH8Yl4JBXVYuxhK7YqAEpaBmwXrgBgu0hj
+      74aBANj3igMlaosjLnTRh99x+WWMdF+Ba6AhrF6g+vp6PFROD55cy/EdA63lWP31Ynzw9sv4
+      X/OXYF/GDuw6UIzuu9exJyEddT2P2tolZQHALknG8H0CAcBsroNvOcDNL7RFrMx/ibZzT2G0
+      /1ZYAQi0EOZRKpDLNYrOm0VYc+iyGvi3kLB2JRYvXYqMw+UYmRkaZlnqAoBlEcb+DQIBwGyu
+      9GmLWK2F/y9qAPgkOe4aQe+QU1WoHkN/TyfutrYpV3kYLGD1QAEg9sev5U9oFIChe2fRcOg/
+      +G2Gq/8sC2GWO8GuG4gb1KgkPehvzlS7Pf6tNqCp719Seb1c2Z19Bvg1Oovn+wPhGN9//HPv
+      KrCsBBuVfRjaCwBGhepBV+lC/9v8phrQ2sbWE6VMZqpAv9aMYV9gm1YBYmJzPAHAqOzD0F4A
+      MCrUaQCoig7ZEyVNOAOkqUjOip2PPEEtBf8H7eefnQKAVvuHJVAChENPh0jyAYz2kYH2AoAB
+      YWlNgwPAam8sd16lQp45cOv2/xXuHPgbAcComCPVXgAwJulx9wA6Lk1SaVIeqTS+mj7Jyh4o
+      VhGf0+P5+TtVIJkBjMk8rK0FAGPiHbl/wW8Ac0BzoDOBfXJBK84CegDYq3aGKVHXTy+MJSqQ
+      sT6x1FoAMCa+4a6zSqX5a//bvXDF1MFPEAIBUJPsQNl2tRvMa94SiEc+UINfzQgCgLE+sLW1
+      AGBMnDMAWK4PAFZ4KPjKq/6kPK92g3nBgavrvWqSAGCsD2xtLQAYE6dZAOj/Z7CcT1XixniV
+      uwQAY9IPQ2sBwJhQLQGwQAAwJu0ItBYAjAnZNgCU4SwzgDHZh6W1AGBMrHYBkKtmA1/UqNgA
+      xvrA1tYCgDFx2gVAoTKefesEAoCxPrC1tQBgTJxmAWCVZ+YK+Izgom8FAGOSD1NrAcCYYM0A
+      QA8QSyBy4UsAMCbvsLcWAIyJ2AwAF793IHPe1PUCmQGMyT1srQUAY6I1DMBEIdzJoRL8twBg
+      TO5hay0AGBOtGQDyPpq5WiwAGJN72FoLAMZEKwAEl5fkBBsbT3OutR4AmOjCDS6YGHNbqUAy
+      A8RwN8sMYKxz9ACgRYSqnICz3wgAz6kBFp4qpMb6LWBrAcCYIPUCQAhOq+jP2WaAVBUGMTlf
+      QBbCjPWBra0FAGPinAGAestP9/D4fg8EwIH5KgRaLYzJSrAx2YeltQCgX6wejxsP6+NVnu/P
+      /HH8xz8NDMCJRd5aoVNsAJUIc+jdqTVEp88AmSphpjpR9gjT3zMWWgoA+oU37nqIloL/7X9z
+      V+1R2V2vewFIUQkuma96M718MwAXvxjxORmAHBUEd00V06VqNNsMwOsLpu0PLFUh9PeR4ZYC
+      gH6Rjbv6cPfU/3y02Z3y8lCf54A/udiB86u8pU58ABCKsm1TATj1xcw3++QZgABcXDt7Qr1s
+      kaS/r3S3FAB0iwqzAjAR33N2mYr3+UEAkHUA/eNpzrUMBAD3BriwWgBghwoAc25Y6//AgQBg
+      lYdqta2pzAACgP7RNAdbBgKAtT5Z3kQAEADm4LDW/5EFgNCyEhUotIzmbAszAFzb6sDRD72e
+      oQy1ecZsHh7xAkVxSIgXSL/wzQDAZBjaCKwWd2HN1AUwn3+fi2WEhC7QSLpBx8bGMDw8TMMV
+      PT09uHr1KgYHB7XT6TS3g6TMAPrH05xraQaAM8o9ymK5BOCK2hlmtoK5XBTj/7FdJAEoKyvD
+      J598Av4sLCzEk08+iffeew+vvfYadu3aBQJi9BAAjEpsDrU3BcDX3sEfFABVHtG31WqkAPB4
+      PDhy5Ah++OEHbN26Fdu3b8eaNWuQn5+PFStWaFCYOQQAM1KbI9dYAYCrwqwEPesMEAUARkZG
+      sG7dOqxatQoJCQnYs2cP3n33Xfz444+YP38+Dh06BEJi9BAAjEpsDrW3AgDtAF8luNkgiPQM
+      QLFzT2GqPhz8Fy5cwIcffoj09HSkpaXh3Llzmm1g9AgKAIniQ6lb8aTR0dfXB9JIo8MMcUY/
+      4PT2YgTrl6AVAA6/510riJUZgOOQ6s7mzZvx9NNP4/e//z1Wr16N1NRU7SwqKrIfAO7kvWTJ
+      Ek33am5u1qYaGhwffPABFi1ahO7ubv29YVNLAUC/IK0AwIhQ3w7ysTADuN1uXLlyRXvb//GP
+      f8Qrr7yindnZ2Thx4gTKy8tNvZCDzgCtra2a1U3CqGslJyfju+++Q25uLnbu3GnK6vZ2nwcD
+      XXXITt2CPRk5aL73ADUX8nHyci1cYx6M9Xcg79A+VLX2z+htASC8ADC0mQZwrAHg+9Z8KXMm
+      4MuXGklbW5t+gczSMigAeXl5+Pjjj7Fjxw7s3btXM0B8hsc333yDoaEhcw9XWZc3SwuQcugI
+      chJ3IjevEOnbV2PRsgS0DzrRXnUeXy58EgfKZn45AUC/yEPNAExz5MYXvnBo5gUfUqoPQ6Rj
+      FQCq3zk5OcjIyMDp06f9Z2Vlpf0zgMvlQn19PdavX4+bN2/io48+wrZt27SZICsrC/39M9/Q
+      ertnfMyN9ptFWLt8GXJPXkZ2chK2bInDuZstKD6Tg42rFiCvygsAbQ3aHFwE4aLH9evXtd8J
+      g5yBZeAaakHzif/m1+Mrdqh8ABUO7YsFYv3Pc6rmJ3eA0SBQC1t8+/PfdgDQceV1sJ8n9xHf
+      2B0dHXqHib8d79HZ2elXeTj4+VL2nTSObTeCq6qqNNJefPFF/PnPf/Zb3ZmZmTh8+DAGBgYM
+      fxHfBePjYxgZ6EbJyQSsiU9AamIqsg4cQs7Bo8jNyEJ2yhfInwCABnhDQ4MGYU1NjTb1ET6+
+      DeQMLIPum5v86ZBcvDq3Ui1eqVBoHwDU7bk96vRN8+wCoO3SPIwMD03pI9qSZgBgP3Oxa8OG
+      Dbh37x5oE9Aw9p1mHTJBVaBbt25pBjCNDa64/fKXv9RmgKNHj2pTD9/GZg7P2Cgqio8j5+w5
+      nDq4DZvTMpCRvA+F5y8jZdNyxO0vwfn9X/kB8M0C/JKEgRDwi8sRXAIPatb43/7c8+swd4hX
+      b/dIAWB3Rhj7vrS0FElJSdpi2FdffaWdK1euBF/WZiAIuQ7Am9LKbmxsBIEoLi62Pu7UPfva
+      a5CR8CN+2JWC681tqCmvRFNHF6oLinC9vhvN14/jVsdDMYItSHs6ANTvYxkAj9uJ6osHEZ+w
+      B4WVjXAOPURpQQ7iU9JRcrtdqT8HtfF39uxZnDlzBnfu3NFOqsS0V8MSCkEAuMwcHx+vLULQ
+      38qTLinq5JE+xAjWL/G5BsBoTyOSlcp99ISCYH0iii+dxOZ1STh67ABSMg7hTHGl5pChO54q
+      +eLFi/1nSkqK/QBQzyZxvDkHfGJiorYMzZN2AF1SkT4EAH0S9yhPW3fVUr8KVJ3kQPafY2MG
+      uHv3rt8umPLW9oxjqK8LxzI3YPXavSjMi0fimZsY7W3Grn1pqGgf0pwf9PgQhK6uLn80KG0E
+      M0dQFejUqVNaoBEXGTjwaHj4TjMWt5kPOP0aAUCfFEcf3kJT3j/6AeAevz5vTzRtAHqBSkpK
+      NIcGT4Y1+w+lbbhdTrTeKcX2TSuwM349kgpvwd17FzsUAOVtXpuTABECjkUCRGcMbQAzYzIo
+      ALwhF8MYe8E3/tdff42lS5dqP7kYEQ1DVADQB4CztxL1OX/nB+CSivP31QAKBQDDnAtZJ1R5
+      iQKdZSpxhi5VM9Gg7e3tmsHqO33faLCrFpnHj6O0pAjbNq/EwUPZiNuUhcLTyg7YmYv6e/2a
+      Hbpp0ybNGdPU1KSFQ9A9v2DBAtBtb/QICgAt7mPHjuHGjRvYv38/bt++jbq6Ou0nV4MlFMKo
+      uCPX3goAdItqlaKDAMD/9xXWsqsu0NjoAK4ot/i6H9ch6VQJBvq6UXgwEd9vjMOlGx04d/4C
+      3nzzTbz88st46qmn8O2332qDnx7Jzz77zH4A6Pk5cOAA/vKXv2gPnWx0kDwBIHID2uiTLAHw
+      B7U+EB8cgOuqytyBN83NAKHWAaa7M32/0/PDEBwuzNIpQxX9pZdewttvv60ZxbbPABQ69Syq
+      QfS7VlRUaIYvT+pdZnQuox0pNoA5iYUbAO4ZnPtOeACY7RvT+GX4DQc8BztnArrnGRjHNaq3
+      3norPADwwzDmh14geoU46Gl40IAxuxBmrku9V4kNoE96wQDgptdMbA+0EpymYwZgqLQvL9gu
+      FSjYN+OYY1TCvHnztABNaiWcSZgTwMVa/m77DMCH0uLmwgMfQKODgUhUhZ5//nltESLShwCg
+      T+KBANCS3VVVOF+o82yhEHoA4PXHP4vcDMBvzVgg2qIci9T9GQfENz//HZYZ4MGDB9p0wwf8
+      4he/wDvvvKO5RWkX0OigQRzpQwDQJ/GRnlLlBfrbGV4genhKNj/S780CwNmD5dTNeIFC2QDB
+      viHtAWojdNDwxcyfDI1hZpjtK8E0cpkQQyubCTAFBQWa5f36669rVrgAoG8wRrqVx+PCvWsf
+      oS7rX2sAsIzJ6SXewTrXAbh//75mBDMgktoJgfB5JW0H4OTJk/jVr36FL7/8Er/97W+1bBwG
+      HnG6efbZZwWASI9snc/zjDvRVvRPj1aB1eYVzPFlHNBcB4AOGRrCGzdu1NYCGJbDyASziTFB
+      1wE4tXCgsxTFM888ow14Ppj5AFSLZAbQOSIj3Gw2ADJentsA+FIiqep8+umnmupDG4AqOWcD
+      s0dQAOh6Ytw/Bz2N3t27d2sq0Pvvvy8zgFmJR+C6xxEARh0cV6vETM+lS54lUggDQyI4A/Bl
+      HJZwaPYXjZaDBw+iurpaCztlcgpnAVrlkT7ECA4tcaMApCu35+SN8/R4gWhbnF2ukmnUtYEq
+      yNmZD0AA6PfnoOdiGHNUGBBHIKihMC+As4TRQ1c+AKNAuQrHOAz6WrkeQE+QrAQbFXdk2hsB
+      oCbZu0k2bQMfBHoBYIQp6wMxtXK2sAk7AeC4u3TpkhaDxvAcvoi5MLZs2TItQYsqUVhmAL5x
+      6XdlEBzT0WgYk0K6osxY3VaHgMwAoSVoBAAO3BsKgmwV1mAUgGCxQvw/OwHgt6YBzLc/VSCe
+      a9eu1dJ1rSRpBZ0BmBBP1ycrQVy+fFkjjZUhOO2YWXUL3XWhWwgAoWVkFAC6SQ9O5AoQAr0z
+      QKQBYAgO3/Q0eiefVtYVggLATDDmX1LXYiFS0seSdFyNo/vJjM4VuvuCtxAAQkvwcQUg9Dc3
+      3iIoAMy15GCnyrNw4UIt9pp5ATSAuSrMDP9IHwJAaIk/rgBQx58tANNXLCG0ZGa2CAoAA95Y
+      dZcn4/9ZkpqLYISALikJhjMj8vBfYxUArhlwU+1QKk6o/7fbBuALmTYoXZ70SPpO2qNM2jJj
+      kwYFgHmWrL3Ieiw8ufLG2qCMxY6G+sOhIzNAaICsAsAgN1+0aKhBHuz/7QaAnkiq4hyD3Bzj
+      ueeewwsvvKAt0oYlI4yDnA/losP333+vWd38SZuAFnk0DgEgtNQtAaDihbiDvJWB77vWTgA4
+      FrngxeQXluv84osvtLAcAsHFWYbrmHHMhFwH4OIDV3456BmDQQi4Isy8TAYmRfoQAEJL/HEE
+      gAthfPnyrc+yKKxQzrB8LoAxUJOn7QBwsNH1ySA45gJQ/6IBzAUwGsdW3E+hu3H2FgJAaMk9
+      jgDwWzMjkeOOEcqcCeiIoYv+jTfeCI8KxJxLPoil0WlkMJufH4KLECyKZWblLXT3iRvUqoym
+      A8D8XW55Ols0qC9c2r8OEKMqEO1RaiF0yLBIw2QjmGsDXCE2k6IbVAXiwgN1fS58Me2MA55/
+      Y1xQNEqiiBGsBw1VSbu3DE35/8WbC6BSH4tYAXqiDPr0cOi5AgAHN4viMgSHnkgavVyU9Z38
+      u+0AMOGAK8AMgyB9dDdt2bJFiwmK1iEqUHDJj410ovXM/1WD/wkNgLJtDqRPvP3n8gzg+9YM
+      xGSEMlVzjk2enAHM7lURdAbggKe6Q5cTd4ahG5TZOAyOM2Nw2AGNABBciu7BJjQe+Qe/F6dk
+      09RAt0AzABPlfXsExKIXiN+aGsjy5cs17w9PVoTgnmFxcXHYt2+f/esAvodyJZh1GPkBWA6F
+      4RFmd+a2CoEAYD8ALJ1eqEKbtf2BVVQoq8jFmhuU35oLXRz41ECYB0CDmF5KqkZ0zphZmwo6
+      A3CwMTGexi8fQk8QjQ0zD7I68H3XCwD2A6CpSnHe2qH733DgekLsAeDbIOPVV1/VijVz8HPH
+      Uu5URGeN2TEZFAAOfvpe+TBONdS7qAJF8xAArAGQ/pLXLpj+hmetTwKQ87Y3iT7WZgD2O93u
+      9AAxLN9nhzJtl4GZZo+gANDfzxU20sekY5ImAJgVdWSuC2YDpE5kb80W5hDrAFD94aD31ahi
+      UgwNYL6YrexTERIA1gQlcfT+cLWNucH8Nw1hTkGRPmQGMD8DZLziQLWqEDHb271S7RXGpJj8
+      T1XRLGUTxNoMQJuTleFoBP/mN7/RXsQcl7QJCILZIyQADINmKhprunM9gNlhdDuxHns0DGEB
+      IDwAcNCzIG4gQMwAYWcskO9bM/yGBi/HAZ0yvu2RwgYAVSAWHuJUQ1tAVCCzoo7MdcFUoGAz
+      gJkBHuoauwHgC5daB9enqPacO3cOtbW1pg1g9kjQGYAuT8b+0/PDN/7Fixe1ILhoHjIDmJ8B
+      Dsz35v+GGrh2/b/dAFDVoepNFZzeH76Uz58/b2k4howGnbyLB+ljnnA0DwHAHADc/b1ohX36
+      vR5I7AaAoflcg6LLkwYxQQg7ANEc7LM9WwAwD8DldZF7+4ejKgQBYCg0w3J4ck2ARZr5b2Yo
+      2h4LFGuDf0Jnk42yg3RMIBuAM8DjAABrAVEVomOGSTEc/PydtoCZ6OSQKlCsQSAzwE97BmBY
+      PmPUmJRFN6ioQLFGaJQ/z+M8AzAHgJGgLNBAW5Rvf5bpsXLIDGBFejF47eMMgK8sik/XZ2i0
+      1bRcASAGB7GVjxQIgL2/UzvDbJzbRrAVuQS6VgAIh1SjeM9AAOSoeP8atbGdHvelXW3sdoOG
+      Q6wCQDikGsV7BgLg8MJHG+PZNcBD3UcACDYQWOZORfiNMaZDtfOon+Pqb97DWwLP/+uk+4gX
+      KIQXaKBh1owwAWB2uUVnBvCMoa32ArZ8/zVWrd+O6w3tuHJ0L1KPXoPT7YGruxGJO3/ExTsP
+      ZnxqASAIAOqN0Vu7AXcO/I2m6jDA7dx33kwvASCGAPCMjeJ62VmcLr6G4wnbkJZ9Gum7fsSX
+      3+xEc/8wmsuKsOzDp5Fd3iYAGFGnPOPoLJ7v1/O5mTUTXJjrKwDEEAA+Ncc1eB8FWdk4e7UM
+      OXtTsF35dQvKG3D51H5sWbcQx6q8AND9xV1pent70dPTo+WDMhqQSRJyTpKB24WOq2/6AaDR
+      yxTHaAHQceV1jKnPNLmPWGYnGgXVYs4L5B7sxsUstahx+BoeDt3H0Yx9OJiThwMq+jQrNQeH
+      U5cgfwIACrClpUVb/ODu9MxNYKQqaxPJOUkGzhG0X/5TzADQdmkeRtVnmtxHDGUOCICawUYG
+      H6qX3AMMOl3qxTfxu3rxOV3jRuZC3W2jYgN43CO4mrUFn3+4FllHz6CuSdV6ydiP85eLsXf9
+      cmzLrcDF7KU4PgHA5G8jNkAwG2CqChTtGcCoF2ikrwlJW1fgi88/xsbkAnS2NiB1/SosWrYc
+      hy/UYDQMDEQHAGUD3C7OQ5rKMEvPyEVlXSsa6xvQ9aAPzRXVaO7sx72ma2h5MCQ2gO53meZK
+      m2IDzD0A2lB88w46Gsqwa/UOnD6RgZ3pF9HeVIVUVfenoddlRBq62kYFAF2fLEAjmQFMzgDv
+      x8Y6AIsrMKaHKi1PqrKTD497CDeLTiPz4AWUnE5AUlEtxh62Ytu+dJS0TG1rZRz5rhUA7JBi
+      rNwjwAzAanBnl8UOAExmYaE1npNLGmqD/4wa/Iln0No3hLoLaYg/WoH+zlrsSUnDzXtO2yUt
+      ANgu0ijeMAAAqS86ULEjsmEQZhJiHtwpxKJ587F09Xpk5J5H460ybP/ue6xZtwrJ6Rcw4PIt
+      lNonYwHAPllG/07TAOBG1lmvOUAAKnfFPgDO/i5UVxSrLVCLcf1mM4aco+hsvoVrFVW412//
+      258dJgBEf9ja9glG+6rRdNxbFp3nJZUCybLocwUA2wRh4EYE4P8D0F5N1EQ9tCUAAAAASUVO
+      RK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='公司投资分析' width='192'>
+      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
+      QmCC
+    </thumbnail>
+  </thumbnails>
+</workbook>

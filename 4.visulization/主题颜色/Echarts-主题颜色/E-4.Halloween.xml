@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Halloween">
+<a:dk1><a:srgbClr val="ffaf51"/>
+</a:dk1><a:lt1><a:srgbClr val="404040"/>
+</a:lt1><a:dk2><a:srgbClr val="73a373"/>
+</a:dk2><a:lt2><a:srgbClr val="73b9bc"/>
+</a:lt2><a:accent1><a:srgbClr val="ff715e"/>
+</a:accent1><a:accent2><a:srgbClr val="ffaf51"/>
+</a:accent2><a:accent3><a:srgbClr val="ffee51"/>
+</a:accent3><a:accent4><a:srgbClr val="8c6ac4"/>
+</a:accent4><a:accent5><a:srgbClr val="715c87"/>
+</a:accent5><a:accent6><a:srgbClr val="643C78"/>
+</a:accent6><a:hlink><a:srgbClr val="0000ff"/>
+</a:hlink><a:folHlink><a:srgbClr val="6400ff"/>
+</a:folHlink></a:clrScheme>
+
+

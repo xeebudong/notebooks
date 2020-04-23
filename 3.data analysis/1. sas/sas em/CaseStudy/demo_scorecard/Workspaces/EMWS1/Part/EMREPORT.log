@@ -1,0 +1,595 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月27日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "21时25分22秒" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 报表日志";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* 报表日志
+日期:       2019年08月27日
+时间:       21时25分22秒
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0QSVDN1 "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\demo_scorecard\Workspaces\EMWS1\Part\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0QSVDN1 new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data WORK.M109JS8V;
+MPRINT(EM_DIAGRAM):   set WORK.M109JS8V;
+MPRINT(EM_DIAGRAM):   where(ROLE = "TARGET" or ROLE = "FREQ");
+MPRINT(EM_DIAGRAM):   run;
+23516      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23517      * Part: 为分类目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为分类目标变量计算统计量;
+23518      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23519      ods listing close;
+MPRINT(EM_DIAGRAM):   ods listing close;
+23520      ods output onewayfreqs=WORK.TEMPFREQ;
+MPRINT(EM_DIAGRAM):   ods output onewayfreqs=WORK.TEMPFREQ;
+23521      proc freq data = EMWS1.Ids_DATA order=formatted addnames;
+MPRINT(EM_DIAGRAM):   proc freq data = EMWS1.Ids_DATA order=formatted addnames;
+23522      table GB / missing;
+MPRINT(EM_DIAGRAM):   table GB / missing;
+23523      weight _freq_;
+MPRINT(EM_DIAGRAM):   weight _freq_;
+23524      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: “视图 EMWS1.IDS_DATA.VIEW”所用时间（总处理时间）:
+      实际时间          0.02 秒
+      CPU 时间          0.03 秒
+      
+NOTE: 从数据集 SAMPSIO.CS_ACCEPTS. 读取了 3000 个观测
+NOTE: 数据集 WORK.TEMPFREQ 有 2 个观测和 8 个变量。
+NOTE: 从数据集 EMWS1.IDS_DATA. 读取了 3000 个观测
+NOTE: “PROCEDURE FREQ”所用时间（总处理时间）:
+      实际时间          0.03 秒
+      CPU 时间          0.03 秒
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+23525      quit;
+23526      ods listing;
+MPRINT(EM_DIAGRAM):   ods listing;
+23527      data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+MPRINT(EM_DIAGRAM):    data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+23528      label _VARIABLE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" Type = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,         NOQUOTE))" _X_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_numValue_vlabel, NOQUOTE))" _XLABEL_ =
+23529         "%sysfunc(sasmsg(sashelp.dmine, rpt_fmtValue_vlabel ,    NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel,        NOQUOTE))" PERCENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_percent_vlabel,      NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _VARIABLE_ = "变量" Type = "类型" _X_ = "数值型值" _XLABEL_ = "格式化值" COUNT = "频数计数" PERCENT = "百分比";
+23530      dsid = open("WORK.TEMPFREQ");
+MPRINT(EM_DIAGRAM):   dsid = open("WORK.TEMPFREQ");
+23531      varnum = varnum(dsid, 'VARIABLE');
+MPRINT(EM_DIAGRAM):   varnum = varnum(dsid, 'VARIABLE');
+23532      freqnum = varnum(dsid, 'FREQUENCY');
+MPRINT(EM_DIAGRAM):   freqnum = varnum(dsid, 'FREQUENCY');
+23533      pvarnum = varnum(dsid, 'PERCENT');
+MPRINT(EM_DIAGRAM):   pvarnum = varnum(dsid, 'PERCENT');
+23534      typenum = varnum(dsid, '_TYPE_');
+MPRINT(EM_DIAGRAM):   typenum = varnum(dsid, '_TYPE_');
+23535      length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+MPRINT(EM_DIAGRAM):   length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+23536      do while(^fetch(dsid));
+MPRINT(EM_DIAGRAM):   do while(^fetch(dsid));
+23537      _VARIABLE_ = strip(getvarc(dsid, varnum));
+MPRINT(EM_DIAGRAM):   _VARIABLE_ = strip(getvarc(dsid, varnum));
+23538      count = getvarn(dsid, freqnum);
+MPRINT(EM_DIAGRAM):   count = getvarn(dsid, freqnum);
+23539      percent= getvarn(dsid, pvarnum);
+MPRINT(EM_DIAGRAM):   percent= getvarn(dsid, pvarnum);
+23540      vvarnum = varnum(dsid, _VARIABLE_);
+MPRINT(EM_DIAGRAM):   vvarnum = varnum(dsid, _VARIABLE_);
+23541      type = vartype(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   type = vartype(dsid, vvarnum);
+23542      fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+MPRINT(EM_DIAGRAM):   fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+23543      _XLABEL_ = left(getvarc(dsid, fvarnum));
+MPRINT(EM_DIAGRAM):   _XLABEL_ = left(getvarc(dsid, fvarnum));
+23544      _X_ = .;
+MPRINT(EM_DIAGRAM):   _X_ = .;
+23545      if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+23546      output;
+MPRINT(EM_DIAGRAM):   output;
+23547      end;
+MPRINT(EM_DIAGRAM):   end;
+23548      dsid = close(dsid);
+MPRINT(EM_DIAGRAM):   dsid = close(dsid);
+23549      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23550      proc sort data=WORK.Part_BAR NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Part_BAR NOTHREADS;
+23551      by _VARIABLE_;
+MPRINT(EM_DIAGRAM):   by _VARIABLE_;
+23552      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23553      proc sort data=WORK.M109JS8V;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.M109JS8V;
+23554      by Name;
+MPRINT(EM_DIAGRAM):   by Name;
+23555      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.M109JS8V. 读取了 2 个观测
+NOTE: 数据集 WORK.M109JS8V 有 2 个观测和 21 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23556      data WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   data WORK.Part_BAR;
+23557      merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+MPRINT(EM_DIAGRAM):   merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+23558      by _Variable_;
+MPRINT(EM_DIAGRAM):   by _Variable_;
+23559      label Role = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Role = "角色";
+23560      label Label = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Label = "标签";
+23561      if _a then output;
+MPRINT(EM_DIAGRAM):   if _a then output;
+23562      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 变量 Label 未初始化。
+WARNING: 输入数据集为 BY 变量 _VARIABLE_ 指定了多个长度。这可能导致意外的结果。
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 从数据集 WORK.M109JS8V. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 8 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23563      data EMWS1.Part_CLASS;
+MPRINT(EM_DIAGRAM):    data EMWS1.Part_CLASS;
+23564      length DATA $8;
+MPRINT(EM_DIAGRAM):   length DATA $8;
+23565      set WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   set WORK.Part_BAR;
+23566      DATA = "DATA";
+MPRINT(EM_DIAGRAM):   DATA = "DATA";
+23567      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 EMWS1.PART_CLASS 有 2 个观测和 9 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+23568      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23569      * Part: 为区间型目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为区间型目标变量计算统计量;
+23570      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23571      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23572      * Part: 为分类目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为分类目标变量计算统计量;
+23573      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23574      ods listing close;
+MPRINT(EM_DIAGRAM):   ods listing close;
+23575      ods output onewayfreqs=WORK.TEMPFREQ;
+MPRINT(EM_DIAGRAM):   ods output onewayfreqs=WORK.TEMPFREQ;
+23576      proc freq data = EMWS1.Part_TRAIN order=formatted addnames;
+MPRINT(EM_DIAGRAM):   proc freq data = EMWS1.Part_TRAIN order=formatted addnames;
+23577      table GB / missing;
+MPRINT(EM_DIAGRAM):   table GB / missing;
+23578      weight _freq_;
+MPRINT(EM_DIAGRAM):   weight _freq_;
+23579      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.TEMPFREQ 有 2 个观测和 8 个变量。
+NOTE: 从数据集 EMWS1.PART_TRAIN. 读取了 2099 个观测
+NOTE: “PROCEDURE FREQ”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+23580      quit;
+23581      ods listing;
+MPRINT(EM_DIAGRAM):   ods listing;
+23582      data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+MPRINT(EM_DIAGRAM):    data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+23583      label _VARIABLE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" Type = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,         NOQUOTE))" _X_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_numValue_vlabel, NOQUOTE))" _XLABEL_ =
+23584         "%sysfunc(sasmsg(sashelp.dmine, rpt_fmtValue_vlabel ,    NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel,        NOQUOTE))" PERCENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_percent_vlabel,      NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _VARIABLE_ = "变量" Type = "类型" _X_ = "数值型值" _XLABEL_ = "格式化值" COUNT = "频数计数" PERCENT = "百分比";
+23585      dsid = open("WORK.TEMPFREQ");
+MPRINT(EM_DIAGRAM):   dsid = open("WORK.TEMPFREQ");
+23586      varnum = varnum(dsid, 'VARIABLE');
+MPRINT(EM_DIAGRAM):   varnum = varnum(dsid, 'VARIABLE');
+23587      freqnum = varnum(dsid, 'FREQUENCY');
+MPRINT(EM_DIAGRAM):   freqnum = varnum(dsid, 'FREQUENCY');
+23588      pvarnum = varnum(dsid, 'PERCENT');
+MPRINT(EM_DIAGRAM):   pvarnum = varnum(dsid, 'PERCENT');
+23589      typenum = varnum(dsid, '_TYPE_');
+MPRINT(EM_DIAGRAM):   typenum = varnum(dsid, '_TYPE_');
+23590      length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+MPRINT(EM_DIAGRAM):   length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+23591      do while(^fetch(dsid));
+MPRINT(EM_DIAGRAM):   do while(^fetch(dsid));
+23592      _VARIABLE_ = strip(getvarc(dsid, varnum));
+MPRINT(EM_DIAGRAM):   _VARIABLE_ = strip(getvarc(dsid, varnum));
+23593      count = getvarn(dsid, freqnum);
+MPRINT(EM_DIAGRAM):   count = getvarn(dsid, freqnum);
+23594      percent= getvarn(dsid, pvarnum);
+MPRINT(EM_DIAGRAM):   percent= getvarn(dsid, pvarnum);
+23595      vvarnum = varnum(dsid, _VARIABLE_);
+MPRINT(EM_DIAGRAM):   vvarnum = varnum(dsid, _VARIABLE_);
+23596      type = vartype(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   type = vartype(dsid, vvarnum);
+23597      fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+MPRINT(EM_DIAGRAM):   fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+23598      _XLABEL_ = left(getvarc(dsid, fvarnum));
+MPRINT(EM_DIAGRAM):   _XLABEL_ = left(getvarc(dsid, fvarnum));
+23599      _X_ = .;
+MPRINT(EM_DIAGRAM):   _X_ = .;
+23600      if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+23601      output;
+MPRINT(EM_DIAGRAM):   output;
+23602      end;
+MPRINT(EM_DIAGRAM):   end;
+23603      dsid = close(dsid);
+MPRINT(EM_DIAGRAM):   dsid = close(dsid);
+23604      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+23605      proc sort data=WORK.Part_BAR NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Part_BAR NOTHREADS;
+23606      by _VARIABLE_;
+MPRINT(EM_DIAGRAM):   by _VARIABLE_;
+23607      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23608      proc sort data=WORK.M109JS8V;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.M109JS8V;
+23609      by Name;
+MPRINT(EM_DIAGRAM):   by Name;
+23610      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 输入数据集已排序，故未进行排序。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23611      data WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   data WORK.Part_BAR;
+23612      merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+MPRINT(EM_DIAGRAM):   merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+23613      by _Variable_;
+MPRINT(EM_DIAGRAM):   by _Variable_;
+23614      label Role = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Role = "角色";
+23615      label Label = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Label = "标签";
+23616      if _a then output;
+MPRINT(EM_DIAGRAM):   if _a then output;
+23617      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 变量 Label 未初始化。
+WARNING: 输入数据集为 BY 变量 _VARIABLE_ 指定了多个长度。这可能导致意外的结果。
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 从数据集 WORK.M109JS8V. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 8 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23618      data WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):    data WORK.Part_BAR;
+23619      length DATA $8;
+MPRINT(EM_DIAGRAM):   length DATA $8;
+23620      set WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   set WORK.Part_BAR;
+23621      DATA = "TRAIN";
+MPRINT(EM_DIAGRAM):   DATA = "TRAIN";
+23622      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 9 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23623      data EMWS1.Part_CLASS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Part_CLASS;
+23624      set EMWS1.Part_CLASS WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CLASS WORK.Part_BAR;
+23625      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CLASS. 读取了 2 个观测
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 EMWS1.PART_CLASS 有 4 个观测和 9 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+23626      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23627      * Part: 为区间型目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为区间型目标变量计算统计量;
+23628      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23629      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23630      * Part: 为分类目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为分类目标变量计算统计量;
+23631      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23632      ods listing close;
+MPRINT(EM_DIAGRAM):   ods listing close;
+23633      ods output onewayfreqs=WORK.TEMPFREQ;
+MPRINT(EM_DIAGRAM):   ods output onewayfreqs=WORK.TEMPFREQ;
+23634      proc freq data = EMWS1.Part_VALIDATE order=formatted addnames;
+MPRINT(EM_DIAGRAM):   proc freq data = EMWS1.Part_VALIDATE order=formatted addnames;
+23635      table GB / missing;
+MPRINT(EM_DIAGRAM):   table GB / missing;
+23636      weight _freq_;
+MPRINT(EM_DIAGRAM):   weight _freq_;
+23637      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.TEMPFREQ 有 2 个观测和 8 个变量。
+NOTE: 从数据集 EMWS1.PART_VALIDATE. 读取了 901 个观测
+NOTE: “PROCEDURE FREQ”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+23638      quit;
+23639      ods listing;
+MPRINT(EM_DIAGRAM):   ods listing;
+23640      data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+MPRINT(EM_DIAGRAM):    data WORK.Part_BAR(keep=_VARIABLE_ TYPE COUNT PERCENT _X_ _XLABEL_);
+23641      label _VARIABLE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" Type = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,         NOQUOTE))" _X_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_numValue_vlabel, NOQUOTE))" _XLABEL_ =
+23642         "%sysfunc(sasmsg(sashelp.dmine, rpt_fmtValue_vlabel ,    NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel,        NOQUOTE))" PERCENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_percent_vlabel,      NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _VARIABLE_ = "变量" Type = "类型" _X_ = "数值型值" _XLABEL_ = "格式化值" COUNT = "频数计数" PERCENT = "百分比";
+23643      dsid = open("WORK.TEMPFREQ");
+MPRINT(EM_DIAGRAM):   dsid = open("WORK.TEMPFREQ");
+23644      varnum = varnum(dsid, 'VARIABLE');
+MPRINT(EM_DIAGRAM):   varnum = varnum(dsid, 'VARIABLE');
+23645      freqnum = varnum(dsid, 'FREQUENCY');
+MPRINT(EM_DIAGRAM):   freqnum = varnum(dsid, 'FREQUENCY');
+23646      pvarnum = varnum(dsid, 'PERCENT');
+MPRINT(EM_DIAGRAM):   pvarnum = varnum(dsid, 'PERCENT');
+23647      typenum = varnum(dsid, '_TYPE_');
+MPRINT(EM_DIAGRAM):   typenum = varnum(dsid, '_TYPE_');
+23648      length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+MPRINT(EM_DIAGRAM):   length _VARIABLE_ $32 TYPE $1 _XLABEL_ $32;
+23649      do while(^fetch(dsid));
+MPRINT(EM_DIAGRAM):   do while(^fetch(dsid));
+23650      _VARIABLE_ = strip(getvarc(dsid, varnum));
+MPRINT(EM_DIAGRAM):   _VARIABLE_ = strip(getvarc(dsid, varnum));
+23651      count = getvarn(dsid, freqnum);
+MPRINT(EM_DIAGRAM):   count = getvarn(dsid, freqnum);
+23652      percent= getvarn(dsid, pvarnum);
+MPRINT(EM_DIAGRAM):   percent= getvarn(dsid, pvarnum);
+23653      vvarnum = varnum(dsid, _VARIABLE_);
+MPRINT(EM_DIAGRAM):   vvarnum = varnum(dsid, _VARIABLE_);
+23654      type = vartype(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   type = vartype(dsid, vvarnum);
+23655      fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+MPRINT(EM_DIAGRAM):   fvarnum = varnum(dsid, 'F_'!!substr(_VARIABLE_, 1, 30));
+23656      _XLABEL_ = left(getvarc(dsid, fvarnum));
+MPRINT(EM_DIAGRAM):   _XLABEL_ = left(getvarc(dsid, fvarnum));
+23657      _X_ = .;
+MPRINT(EM_DIAGRAM):   _X_ = .;
+23658      if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+MPRINT(EM_DIAGRAM):   if TYPE eq 'N' then _X_ = getvarn(dsid, vvarnum);
+23659      output;
+MPRINT(EM_DIAGRAM):   output;
+23660      end;
+MPRINT(EM_DIAGRAM):   end;
+23661      dsid = close(dsid);
+MPRINT(EM_DIAGRAM):   dsid = close(dsid);
+23662      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+23663      proc sort data=WORK.Part_BAR NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Part_BAR NOTHREADS;
+23664      by _VARIABLE_;
+MPRINT(EM_DIAGRAM):   by _VARIABLE_;
+23665      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 6 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23666      proc sort data=WORK.M109JS8V;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.M109JS8V;
+23667      by Name;
+MPRINT(EM_DIAGRAM):   by Name;
+23668      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 输入数据集已排序，故未进行排序。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23669      data WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   data WORK.Part_BAR;
+23670      merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+MPRINT(EM_DIAGRAM):   merge WORK.Part_BAR(in=_a) WORK.M109JS8V(keep=Name Label Role rename=(Name=_Variable_ Label=_Label_));
+23671      by _Variable_;
+MPRINT(EM_DIAGRAM):   by _Variable_;
+23672      label Role = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Role = "角色";
+23673      label Label = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Label = "标签";
+23674      if _a then output;
+MPRINT(EM_DIAGRAM):   if _a then output;
+23675      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 变量 Label 未初始化。
+WARNING: 输入数据集为 BY 变量 _VARIABLE_ 指定了多个长度。这可能导致意外的结果。
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 从数据集 WORK.M109JS8V. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 8 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+23676      data WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):    data WORK.Part_BAR;
+23677      length DATA $8;
+MPRINT(EM_DIAGRAM):   length DATA $8;
+23678      set WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   set WORK.Part_BAR;
+23679      DATA = "VALIDATE";
+MPRINT(EM_DIAGRAM):   DATA = "VALIDATE";
+23680      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 WORK.PART_BAR 有 2 个观测和 9 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23681      data EMWS1.Part_CLASS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Part_CLASS;
+23682      set EMWS1.Part_CLASS WORK.Part_BAR;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CLASS WORK.Part_BAR;
+23683      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CLASS. 读取了 4 个观测
+NOTE: 从数据集 WORK.PART_BAR. 读取了 2 个观测
+NOTE: 数据集 EMWS1.PART_CLASS 有 6 个观测和 9 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23684      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23685      * Part: 为区间型目标变量计算统计量;
+MPRINT(EM_DIAGRAM):   * Part: 为区间型目标变量计算统计量;
+23686      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23687      data EMWS1.Part_CLASS(rename=(_VARIABLE_=VARIABLE _X_=VALUE _XLABEL_=FORMATTEDVALUE));
+MPRINT(EM_DIAGRAM):   data EMWS1.Part_CLASS(rename=(_VARIABLE_=VARIABLE _X_=VALUE _XLABEL_=FORMATTEDVALUE));
+23688      label DATA = "%sysfunc(sasmsg(sashelp.dmine, rpt_data_vlabel ,   NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label DATA = "数据";
+23689      set EMWS1.Part_CLASS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_CLASS;
+23690      drop type role;
+MPRINT(EM_DIAGRAM):   drop type role;
+23691      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CLASS. 读取了 6 个观测
+NOTE: 数据集 EMWS1.PART_CLASS 有 6 个观测和 7 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23692      proc sort data=EMWS1.Part_CLASS NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Part_CLASS NOTHREADS;
+23693      by DATA;
+MPRINT(EM_DIAGRAM):   by DATA;
+23694      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.PART_CLASS. 读取了 6 个观测
+NOTE: 数据集 EMWS1.PART_CLASS 有 6 个观测和 7 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+23695      %let _cn = %sysfunc(getoption(CENTER));
+23696      %let _nb = %sysfunc(getoption(NUMBER));
+23697      options nonumber nocenter;
+MPRINT(EM_DIAGRAM):   options nonumber nocenter;
+23698      proc print data=EMWS1.Part_CLASS noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Part_CLASS noobs label;
+23699      by DATA;
+MPRINT(EM_DIAGRAM):   by DATA;
+23700      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+23701      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_classTargetStats_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "分类目标的汇总统计量";
+MPRINT(EM_DIAGRAM):   run;
+23702      run;
+
+NOTE: 从数据集 EMWS1.PART_CLASS. 读取了 6 个观测
+NOTE: PROCEDURE PRINT 已打印第 6 页。
+NOTE: “PROCEDURE PRINT”所用时间（总处理时间）:
+      实际时间          0.06 秒
+      CPU 时间          0.01 秒
+      
+
+23703      title10;
+MPRINT(EM_DIAGRAM):   title10;
+23704      options &_cn &_nb;
+MPRINT(EM_DIAGRAM):   options NOCENTER NONUMBER;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

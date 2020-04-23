@@ -1,0 +1,24 @@
+#HLM2 MDM CREATION TEMPLATE
+vknown:n
+growthmodel:n
+rawdattype:spss
+l1fname:E:\git\notebooks\spss\统计分析与SPSS的应用（第三版）\评委打分.sav
+l2fname:E:\git\notebooks\spss\统计分析与SPSS的应用（第三版）\评委打分.sav
+l1missing:n
+timeofdeletion:now
+mdmname:MSM
+*begin l1vars
+level2id:FS1
+     FS2    
+     FS3    
+     FS4    
+     FS5    
+*end l1vars
+*begin l2vars
+level2id:FS1
+     FS2    
+     FS3    
+     FS4    
+     FS5    
+     FS6    
+*end l2vars

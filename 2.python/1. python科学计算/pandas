@@ -1,0 +1,147 @@
+pandas特点										
+	1.按轴自动或者显式对其									
+	2.时间序列功能									
+	3.缺失处理灵活									
+	4.合并及其它SQL中的关系型运算									
+										
+引入库										
+	frompandasimportSeries,DataFrame									
+	importpandasaspd									
+										
+数据结构										
+	Series	类似一维数组的对象，与numpy有什么区别？Numpy是一个数组，可以是多维的，series就只是一维的且带索引，也可以将其视为定长有序的字典;Series的一个重要功能是索引对齐								
+	DataFrame									
+										
+										
+Series										
+	obj=Series([1,2,3])									
+	obj.values		值							
+	obj.index		键值							
+	obj.name									pd.isnull(obj)
+	obj.index.name									pd.notnull(obj)
+										
+										
+DataFrame										
+	特点									
+		看成由Series组成的字典								
+		既有行索引，也有列索引								
+										
+	索引对象									
+		Index	Index对象是不可修改的，因此用户不能对其进行修改							
+		方法和属性								
+			append							
+			diff							
+			intersection							
+			union							
+			isin							
+			delete							
+			drop							
+			insert							
+			is_monitonic							
+			is_unique							
+			unique							
+										
+	基本功能									
+		reindex	重新索引	"-重要方法,返回一个适应新索引顺序的对象
+-可以对列和行进行重新索引
+-使用ix进行重新索引更简洁"						
+		drop	丢弃指定轴上的项	obj.drop(idx_list,axis=)						
+		索引	Series索引	标签的切片运算包含了末端，与Python切片运算不一样						
+			DataFrame索引	"-选择一个或多个列
+-有几种特殊情况，通过切片或者bool型索引是选取行的"	容易混					
+										
+			ix[row,col=None]	"-当col没有传入时，选择row
+-当df的columns或者index为整数时，row、col中传入整数，指的是row或col的值=该传入整数的记录"	此处有坑	padas这些混乱的地方，就是设计的有瑕疵的地方，过于灵活带来的就是混乱				
+			xs(cnt,axis=0)	返回单行或者单列,axis默认为0，表示选取行，如果显式设为1，表示选取列						
+			icol							
+			irow							
+			get_value	根据行列标签获得单个值						
+			set_value	根据行列标签赋值给单个值						
+			at							
+										
+		函数应用与映射								
+			df.apply(func,axis=0)	默认对列进行处理，如果axis显式=1，则对行进行处理						
+			df.applymap(func)	"对每个元素进行处理，例如格式化浮点数
+-format=lambdax:""%.2f""%x
+-df.applymap(format)"						
+		排序								
+			sort_index(axis=0,acending=True,by=None)	默认对行索引升序排序，如果显式键入by值，则按该行或者该列排序						
+			order()	Series按照值排序，3.6版本之后无此方法						
+			rank(method="average")	"返回各索引排名值，从1开始，NaN返回NaN，默认情况下，数值相同，返回的rank值一致，method还有其他选择
+-min
+-max
+-first"						
+										
+		带有重复值的轴索引								
+			obj.index.is_unique							
+										
+		描述统计								
+			describe							
+			count							
+			min\max\argmin\argmax							
+			idxmin\idxmax							
+			quantile							
+			sum\mean\median\mad\var\std							
+			skew\kurt							
+			cumsum\cummin\cummax\cumprod							
+			diff							
+			pct_change							
+		斜方法与相关系数								
+			cov()							
+			corr()							
+			corrwith()							
+		唯一值、值计数、成员资格								
+			unique()							
+			value_counts()							
+			isin()							
+		缺失值处理								
+			dropna(how=,axis=,thresh=)							
+			fillna(value=,method=,axis=,inplace,limit=)							
+			isnull							
+			notnull							
+		层次化索引								
+			stack\unstack							
+										
+		数据读入导出								
+			read_csv\read_table函数参数	P167						
+			chunksize							
+			parse_dates\date_parser							
+										
+										
+		连接								
+			merge(how="inner", on="", right_on="", left_on="", suffixes=('_x', '_y'))							
+			join							
+			concatenate							
+			concat							
+										
+			combine_first	np.where						
+										
+		数据清理								
+			pivot							
+			duplicated							
+			drop_duplicates							
+			map							
+			replace							
+			pd.cut(var, bins, labels=)	分箱						
+			pd.qcut							
+										
+		排列和随机采样								
+			np.random.pernutation()							
+			df.take()							
+										
+										
+		哑变量	pd.get_dummies							
+										
+										
+		字符串函数	count							
+			endswith							
+			startswith							
+			join							
+			index							
+			find							
+			rfind							
+			replace							
+			strip\rstrip\lstrip							
+			split							
+			lower\upper							
+			ljust\rjust							

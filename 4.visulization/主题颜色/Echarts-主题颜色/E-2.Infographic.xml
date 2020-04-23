@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="E-Infographic">
+<a:dk1><a:srgbClr val="27727b"/>
+</a:dk1><a:lt1><a:srgbClr val="ffffff"/>
+</a:lt1><a:dk2><a:srgbClr val="9bca63"/>
+</a:dk2><a:lt2><a:srgbClr val="fad860"/>
+</a:lt2><a:accent1><a:srgbClr val="c1232b"/>
+</a:accent1><a:accent2><a:srgbClr val="27727b"/>
+</a:accent2><a:accent3><a:srgbClr val="fcce10"/>
+</a:accent3><a:accent4><a:srgbClr val="e87c25"/>
+</a:accent4><a:accent5><a:srgbClr val="b5c334"/>
+</a:accent5><a:accent6><a:srgbClr val="fe8463"/>
+</a:accent6><a:hlink><a:srgbClr val="f3a43b"/>
+</a:hlink><a:folHlink><a:srgbClr val="60c0dd"/>
+</a:folHlink></a:clrScheme>
+
+

@@ -1,0 +1,10 @@
+http://www.jianshu.com/p/609193efee1a
+
+IPython Notebook引入ECharts做可视化
+
+原理：在IPython，可以通过IPython.display导入HTML
+
+步骤：
+1. 获取源数据
+2. 对数据进行统计加工
+3. echarts绘图

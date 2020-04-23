@@ -1,0 +1,824 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月25日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "17时36分25秒" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 训练日志";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* 训练日志
+日期:       2019年08月25日
+时间:       17时36分25秒
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3K70F4J "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3K70F4J new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月25日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "17时36分25秒" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "用户:       hp";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "软件安装点: 12001462";
+MPRINT(EM_DIAGRAM):   put "平台:       X64_8PRO";
+MPRINT(EM_DIAGRAM):   put "维护版本:   9.04.01M2P072314";
+MPRINT(EM_DIAGRAM):   put "EM 版本:    13.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "2019年08月25日" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "17时36分25秒" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "用户:       hp";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 训练输出";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 评分输出";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* 报表输出";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+17066      proc freq data=EMWS1.Reg_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.Reg_VariableSet noprint;
+17067      table ROLE*LEVEL/out=WORK.RegMETA;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.RegMETA;
+17068      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_VARIABLESET. 读取了 13 个观测
+NOTE: 数据集 WORK.REGMETA 有 4 个观测和 4 个变量。
+NOTE: “PROCEDURE FREQ”所用时间（总处理时间）:
+      实际时间          0.01 秒
+      CPU 时间          0.01 秒
+      
+
+17069      proc print data=WORK.RegMETA label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.RegMETA label noobs;
+17070      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+17071      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "角色" LEVEL = "测度水平" COUNT = "频数计数";
+17072      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+17073      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "变量汇总";
+MPRINT(EM_DIAGRAM):   run;
+17074      run;
+
+NOTE: 从数据集 WORK.REGMETA. 读取了 4 个观测
+NOTE: PROCEDURE PRINT 已打印第 1 页。
+NOTE: “PROCEDURE PRINT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17075      title10;
+MPRINT(EM_DIAGRAM):   title10;
+17076      %let EMNORLEN = %DMNORLEN;
+MPRINT(EM_DIAGRAM):   
+EMWS1.Part_TRAIN EMWS1.Part_TRAIN 
+EMWS1.Part_TRAIN EMWS1.Part_TRAIN EMWS1 Part_TRAIN 
+EMWS1.Part_TRAIN EMWS1.Part_TRAIN 
+EMWS1.Part_TRAIN EMWS1.Part_TRAIN EMWS1 Part_TRAIN 
+MPRINT(EM_DIAGRAM):    proc dmdb data=EMWS1.Part_TRAIN classout=WORK._DMDBCLASSTARGET(keep=NAME NRAW CRAW LEVEL FREQUENCY NMISSPERCENT);
+MPRINT(EM_DIAGRAM):   class BAD(DESC) ;
+MPRINT(EM_DIAGRAM):   run;
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   set WORK._DMDBCLASSTARGET;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="BAD";
+MPRINT(EM_DIAGRAM):   if _N_=1 then call symput('_newevent', strip(LEVEL));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK._DMDBCLASSTARGET out=_TEMPCLASS(keep=LEVEL FREQUENCY NMISSPERCENT rename=(LEVEL=BAD));
+MPRINT(EM_DIAGRAM):   by LEVEL;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="BAD";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   set _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   NMISSPERCENT= NMISSPERCENT/100;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Ids_BAD_DD out=_sortedDecdata;
+MPRINT(EM_DIAGRAM):   by BAD;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   merge _TEMPCLASS(in=_a) _sortedDecdata(in=_b);
+MPRINT(EM_DIAGRAM):   by BAD;
+MPRINT(EM_DIAGRAM):   if (_a and ^_b) or (^_a and _b) then call symput('_emresetDec', '1');
+MPRINT(EM_DIAGRAM):   run;
+17105      data WORK.Reg_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+MPRINT(EM_DIAGRAM):    data WORK.Reg_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+17106      length ORDER $20;
+MPRINT(EM_DIAGRAM):   length ORDER $20;
+17107      label VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_target_vlabel,  NOQUOTE))" EVENT = "%sysfunc(sasmsg(sashelp.dmine, assmt_event_vlabel, NOQUOTE))" NUMLEVELS = "%sysfunc(sasmsg(sashelp.dmine, rpt_numcat_vlabel, NOQUOTE))" LEVEL =
+17108         "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" ORDER = "%sysfunc(sasmsg(sashelp.dmine, meta_order_vlabel, NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label VARIABLE = "目标" EVENT = "事件" NUMLEVELS = "水平数" LEVEL = "测度水平" ORDER = "顺序" LABEL = "标签";
+17109      set EMWS1.IDS_BAD_DM( where=(_TYPE_="TARGET"));
+MPRINT(EM_DIAGRAM):   set EMWS1.IDS_BAD_DM( where=(_TYPE_="TARGET"));
+17110      NumLevels=2;
+MPRINT(EM_DIAGRAM):   NumLevels=2;
+17111      select(upcase(ORDER));
+MPRINT(EM_DIAGRAM):   select(upcase(ORDER));
+17112      when('DESC') ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   when('DESC') ORDER = 'Descending';
+17113      when('ASC') ORDER = 'Ascending';
+MPRINT(EM_DIAGRAM):   when('ASC') ORDER = 'Ascending';
+17114      when('FMTDESC') ORDER = 'Formatted Descending';
+MPRINT(EM_DIAGRAM):   when('FMTDESC') ORDER = 'Formatted Descending';
+17115      when('FMTASC') ORDER = 'Formatted Ascending';
+MPRINT(EM_DIAGRAM):   when('FMTASC') ORDER = 'Formatted Ascending';
+17116      otherwise ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   otherwise ORDER = 'Descending';
+17117      end;
+MPRINT(EM_DIAGRAM):   end;
+17118      output;
+MPRINT(EM_DIAGRAM):   output;
+17119      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.IDS_BAD_DM. 读取了 1 个观测
+      WHERE _TYPE_='TARGET';
+NOTE: 数据集 WORK.REG_EVENT 有 1 个观测和 6 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.01 秒
+      CPU 时间          0.00 秒
+      
+
+17120      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+17121      proc print data=WORK.Reg_EVENT noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Reg_EVENT noobs label;
+17122      var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+MPRINT(EM_DIAGRAM):   var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+17123      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+17124      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_modelEvent_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "模型事件";
+MPRINT(EM_DIAGRAM):   run;
+17125      run;
+
+NOTE: 从数据集 WORK.REG_EVENT. 读取了 1 个观测
+NOTE: PROCEDURE PRINT 已打印第 2 页。
+NOTE: “PROCEDURE PRINT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17126      title10;
+MPRINT(EM_DIAGRAM):   title10;
+"没有为目标 BAD 定义决策。" 
+17127      proc print data = EMWS1.Ids_BAD_DM noobs label;
+MPRINT(EM_DIAGRAM):    proc print data = EMWS1.Ids_BAD_DM noobs label;
+17128      var _type_ variable label;
+MPRINT(EM_DIAGRAM):   var _type_ variable label;
+17129      where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+MPRINT(EM_DIAGRAM):   where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+17130      label _TYPE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,     NOQUOTE))" VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _TYPE_ = "类型" VARIABLE = "变量" LABEL = "标签";
+17131      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+17132      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_predDecVars_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "预测变量和决策变量";
+MPRINT(EM_DIAGRAM):   run;
+17133      run;
+
+NOTE: 从数据集 EMWS1.IDS_BAD_DM. 读取了 7 个观测
+      WHERE _type_ not in ('DATAPRIOR', 'DECISION', 'DECPRIOR', 'MATRIX', 'TRAINPRIOR');
+NOTE: PROCEDURE PRINT 已打印第 3 页。
+NOTE: “PROCEDURE PRINT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17134      title10;
+MPRINT(EM_DIAGRAM):   title10;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg: Preparing metadata for Training *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data WORK.M0WZJ9LH;
+MPRINT(EM_DIAGRAM):   set WORK.M0WZJ9LH;
+MPRINT(EM_DIAGRAM):   where use = 'Y' or (role = 'INPUT' and use = 'D') ;
+MPRINT(EM_DIAGRAM):   if (role = 'REJECTED') then role = 'INPUT';
+MPRINT(EM_DIAGRAM):   if use = 'D' then use = 'Y';
+MPRINT(EM_DIAGRAM):   run;
+17144      data WORK.M0WZJ9LH;
+MPRINT(EM_DIAGRAM):    data WORK.M0WZJ9LH;
+17145      set WORK.M0WZJ9LH end=eof;
+MPRINT(EM_DIAGRAM):   set WORK.M0WZJ9LH end=eof;
+17146      output;
+MPRINT(EM_DIAGRAM):   output;
+17147      if eof then do;
+MPRINT(EM_DIAGRAM):   if eof then do;
+17148      NAME="";
+MPRINT(EM_DIAGRAM):   NAME="";
+17149      ROLE="COST";
+MPRINT(EM_DIAGRAM):   ROLE="COST";
+17150      LEVEL="INTERVAL";
+MPRINT(EM_DIAGRAM):   LEVEL="INTERVAL";
+17151      TYPE="N";
+MPRINT(EM_DIAGRAM):   TYPE="N";
+17152      output;
+MPRINT(EM_DIAGRAM):   output;
+17153      end;
+MPRINT(EM_DIAGRAM):   end;
+17154      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.M0WZJ9LH. 读取了 13 个观测
+NOTE: 数据集 WORK.M0WZJ9LH 有 14 个观测和 21 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+NOTE: 从数据集 EMWS1.IDS_BAD_DD. 读取了 2 个观测
+NOTE: 数据集 WORK.BAD 有 2 个观测和 7 个变量。
+NOTE: 从数据集 EMWS1.IDS_BAD_DD. 读取了 2 个观测
+NOTE: 数据集 WORK.BAD 有 2 个观测和 7 个变量。
+17155      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+17156      * Reg: Create decision matrix;
+MPRINT(EM_DIAGRAM):   * Reg: Create decision matrix;
+17157      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17158      data WORK.BAD;
+MPRINT(EM_DIAGRAM):   data WORK.BAD;
+17159        length   BAD                              $  32
+17160                 COUNT                                8
+17161                 DATAPRIOR                            8
+17162                 TRAINPRIOR                           8
+17163                 DECPRIOR                             8
+17164                 DECISION1                            8
+17165                 DECISION2                            8
+17166                 ;
+MPRINT(EM_DIAGRAM):   length BAD $ 32 COUNT 8 DATAPRIOR 8 TRAINPRIOR 8 DECPRIOR 8 DECISION1 8 DECISION2 8 ;
+17167      
+17168        label    COUNT="Level Counts"
+17169                 DATAPRIOR="Data Proportions"
+17170                 TRAINPRIOR="Training Proportions"
+17171                 DECPRIOR="Decision Priors"
+17172                 DECISION1="1"
+17173                 DECISION2="0"
+17174                 ;
+MPRINT(EM_DIAGRAM):   label COUNT= "Level Counts" DATAPRIOR= "Data Proportions" TRAINPRIOR= "Training Proportions" DECPRIOR= "Decision Priors" DECISION1= "1" DECISION2= "0" ;
+17175        format   COUNT 10.
+17176                 ;
+MPRINT(EM_DIAGRAM):   format COUNT 10. ;
+17177      BAD="1"; COUNT=1189; DATAPRIOR=0.1994966442953; TRAINPRIOR=0.1994966442953; DECPRIOR=.; DECISION1=1; DECISION2=0;
+MPRINT(EM_DIAGRAM):   BAD="1";
+MPRINT(EM_DIAGRAM):   COUNT=1189;
+MPRINT(EM_DIAGRAM):   DATAPRIOR=0.1994966442953;
+MPRINT(EM_DIAGRAM):   TRAINPRIOR=0.1994966442953;
+MPRINT(EM_DIAGRAM):   DECPRIOR=.;
+MPRINT(EM_DIAGRAM):   DECISION1=1;
+MPRINT(EM_DIAGRAM):   DECISION2=0;
+17178      output;
+MPRINT(EM_DIAGRAM):   output;
+17179      BAD="0"; COUNT=4771; DATAPRIOR=0.80050335570469; TRAINPRIOR=0.80050335570469; DECPRIOR=.; DECISION1=0; DECISION2=1;
+MPRINT(EM_DIAGRAM):   BAD="0";
+MPRINT(EM_DIAGRAM):   COUNT=4771;
+MPRINT(EM_DIAGRAM):   DATAPRIOR=0.80050335570469;
+MPRINT(EM_DIAGRAM):   TRAINPRIOR=0.80050335570469;
+MPRINT(EM_DIAGRAM):   DECPRIOR=.;
+MPRINT(EM_DIAGRAM):   DECISION1=0;
+MPRINT(EM_DIAGRAM):   DECISION2=1;
+17180      output;
+MPRINT(EM_DIAGRAM):   output;
+17181      ;
+MPRINT(EM_DIAGRAM):   ;
+17182      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 数据集 WORK.BAD 有 2 个观测和 7 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17183      proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+17184      modify BAD(type=PROFIT label=BAD);
+MPRINT(EM_DIAGRAM):   modify BAD(type=PROFIT label= BAD);
+MPRINT(EM_DIAGRAM):   label DECISION1= '1';
+MPRINT(EM_DIAGRAM):   label DECISION2= '0';
+MPRINT(EM_DIAGRAM):   run;
+17185      label DECISION1= '1';
+17186      label DECISION2= '0';
+17187      run;
+
+NOTE: WORK.BAD.DATA 修改成功。
+17188      quit;
+MPRINT(EM_DIAGRAM):   quit;
+
+NOTE: “PROCEDURE DATASETS”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17189      data EM_DMREG / view=EM_DMREG;
+MPRINT(EM_DIAGRAM):   data EM_DMREG / view=EM_DMREG;
+17190      set EMWS1.Part_TRAIN(keep=
+17191      BAD CLAGE CLNO DEBTINC DELINQ DEROG JOB LOAN MORTDUE NINQ REASON VALUE YOJ );
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_TRAIN(keep= BAD CLAGE CLNO DEBTINC DELINQ DEROG JOB LOAN MORTDUE NINQ REASON VALUE YOJ );
+17192      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: DATA STEP 视图已保存在文件 WORK.EM_DMREG 中。
+NOTE: 存储的 DATA STEP 视图无法在不同的操作系统下运行。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Reg: DMDBClass Macro ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+17193      *------------------------------------------------------------* ;
+17194      * Reg: DMDBClass Macro ;
+17195      *------------------------------------------------------------* ;
+17196      %macro DMDBClass;
+17197          BAD(DESC) JOB(ASC) REASON(ASC)
+17198      %mend DMDBClass;
+17199      *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+17200      * Reg: DMDBVar Macro ;
+MPRINT(EM_DIAGRAM):   * Reg: DMDBVar Macro ;
+17201      *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+17202      %macro DMDBVar;
+17203          CLAGE CLNO DEBTINC DELINQ DEROG LOAN MORTDUE NINQ VALUE YOJ
+17204      %mend DMDBVar;
+17205      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17206      * Reg: Create DMDB;
+MPRINT(EM_DIAGRAM):   * Reg: Create DMDB;
+17207      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17208      proc dmdb batch data=WORK.EM_DMREG
+17209      dmdbcat=WORK.Reg_DMDB
+17210      maxlevel = 513
+17211      ;
+MPRINT(EM_DIAGRAM):   proc dmdb batch data=WORK.EM_DMREG dmdbcat=WORK.Reg_DMDB maxlevel = 513 ;
+MPRINT(EM_DIAGRAM):   class
+17212      class %DMDBClass;
+MPRINT(DMDBCLASS):   BAD(DESC) JOB(ASC) REASON(ASC)
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   var
+17213      var %DMDBVar;
+MPRINT(DMDBVAR):   CLAGE CLNO DEBTINC DELINQ DEROG LOAN MORTDUE NINQ VALUE YOJ
+MPRINT(EM_DIAGRAM):  ;
+17214      target
+17215      BAD
+17216      ;
+MPRINT(EM_DIAGRAM):   target BAD ;
+17217      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Records processed = 2382   Memory used = 511K.
+NOTE: “视图 WORK.EM_DMREG.VIEW”所用时间（总处理时间）:
+      实际时间          0.05 秒
+      CPU 时间          0.04 秒
+      
+NOTE: 从数据集 EMWS1.PART_TRAIN. 读取了 2382 个观测
+NOTE: 从数据集 WORK.EM_DMREG. 读取了 2382 个观测
+NOTE: “PROCEDURE DMDB”所用时间（总处理时间）:
+      实际时间          0.06 秒
+      CPU 时间          0.04 秒
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   *--- end code ---*;
+17218      quit;
+17219      *--- end code ---*;
+
+17220      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+17221      * Reg: Run DMREG procedure;
+MPRINT(EM_DIAGRAM):   * Reg: Run DMREG procedure;
+17222      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17223      proc dmreg data=EM_DMREG dmdbcat=WORK.Reg_DMDB
+17224      validata = EMWS1.Part_VALIDATE
+17225      outest = EMWS1.Reg_EMESTIMATE
+17226      outterms = EMWS1.Reg_OUTTERMS
+17227      outmap= EMWS1.Reg_MAPDS namelen=200
+17228      ;
+MPRINT(EM_DIAGRAM):   proc dmreg data=EM_DMREG dmdbcat=WORK.Reg_DMDB validata = EMWS1.Part_VALIDATE outest = EMWS1.Reg_EMESTIMATE outterms = EMWS1.Reg_OUTTERMS outmap= EMWS1.Reg_MAPDS namelen=200 ;
+17229      class
+17230      BAD
+17231      JOB
+17232      REASON
+17233      ;
+MPRINT(EM_DIAGRAM):   class BAD JOB REASON ;
+17234      model BAD =
+17235      CLAGE
+17236      CLNO
+17237      DEBTINC
+17238      DELINQ
+17239      DEROG
+17240      JOB
+17241      LOAN
+17242      MORTDUE
+17243      NINQ
+17244      REASON
+17245      VALUE
+17246      YOJ
+17247      /error=binomial link=LOGIT
+17248      coding=DEVIATION
+17249      nodesignprint
+17250      ;
+MPRINT(EM_DIAGRAM):   model BAD = CLAGE CLNO DEBTINC DELINQ DEROG JOB LOAN MORTDUE NINQ REASON VALUE YOJ /error=binomial link=LOGIT coding=DEVIATION nodesignprint ;
+17251      ;
+MPRINT(EM_DIAGRAM):   ;
+17252      score data=EMWS1.Part_TEST
+17253      out=_null_
+17254      outfit=EMWS1.Reg_FITTEST
+17255      role = TEST
+17256      ;
+MPRINT(EM_DIAGRAM):   score data=EMWS1.Part_TEST out=_null_ outfit=EMWS1.Reg_FITTEST role = TEST ;
+17257      code file="D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMPUBLISHSCORE.sas"
+17258      group=Reg
+17259      ;
+MPRINT(EM_DIAGRAM):   code file="D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMPUBLISHSCORE.sas" group=Reg ;
+17260      code file="D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMFLOWSCORE.sas"
+17261      group=Reg
+17262      residual
+17263      ;
+MPRINT(EM_DIAGRAM):   code file="D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMFLOWSCORE.sas" group=Reg residual ;
+17264      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 1003 observations in the training data were not used due to missing values in the target or input variables or to invalid frequency values.
+NOTE: The training data contains 1003 cases that have missing input values. The fit statistics in the OUTEST= data set (which are based on all cases) might differ from those in the printed output (which are based only on cases with no missing inputs).
+
+NOTE: PROC DMREG is modeling the probability that BAD=1.
+NOTE: Convergence criterion (GCONV=1E-6) satisfied.
+NOTE: External file D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMPUBLISHSCORE.sas opened.
+NOTE: External file D:\git\notebooks\5. data analysis\1. sas\sas em\CaseStudy\My Project\Workspaces\EMWS1\Reg\EMFLOWSCORE.sas opened.
+NOTE: “视图 WORK.EM_DMREG.VIEW”所用时间（总处理时间）:
+      实际时间          0.54 秒
+      CPU 时间          0.14 秒
+      
+NOTE: 从数据集 EMWS1.PART_TRAIN. 读取了 2382 个观测
+NOTE: 从数据集 WORK.EM_DMREG. 读取了 2382 个观测
+NOTE: 从数据集 EMWS1.PART_VALIDATE. 读取了 1788 个观测
+NOTE: 从数据集 EMWS1.PART_TEST. 读取了 1790 个观测
+NOTE: 数据集 EMWS1.REG_EMESTIMATE 有 3 个观测和 51 个变量。
+NOTE: 数据集 EMWS1.REG_OUTTERMS 有 17 个观测和 6 个变量。
+NOTE: 数据集 EMWS1.REG_MAPDS 有 2 个观测和 18 个变量。
+NOTE: 数据集 EMWS1.REG_FITTEST 有 1 个观测和 14 个变量。
+NOTE: PROCEDURE DMREG 已打印第 4-5 页。
+NOTE: “PROCEDURE DMREG”所用时间（总处理时间）:
+      实际时间          0.56 秒
+      CPU 时间          0.15 秒
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+17265      quit;
+
+17266      proc datasets lib=WORK nolist;
+MPRINT(EM_DIAGRAM):    proc datasets lib=WORK nolist;
+17267      delete Reg_DMDB;
+MPRINT(EM_DIAGRAM):   delete Reg_DMDB;
+17268      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 文件 WORK.REG_DMDB (memtype=DATA) 没有找到，但出现在 DELETE 语句中。
+17269      quit;
+MPRINT(EM_DIAGRAM):   quit;
+
+NOTE: “PROCEDURE DATASETS”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17270      proc datasets lib=WORK nolist;
+MPRINT(EM_DIAGRAM):    proc datasets lib=WORK nolist;
+17271      delete Reg_DMDB / memtype=catalog;
+MPRINT(EM_DIAGRAM):   delete Reg_DMDB / memtype=catalog;
+17272      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 正在删除 WORK.REG_DMDB (memtype=CATALOG)。
+17273      quit;
+MPRINT(EM_DIAGRAM):   quit;
+
+NOTE: “PROCEDURE DATASETS”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17274      data WORK.ESTIMATE;
+MPRINT(EM_DIAGRAM):    data WORK.ESTIMATE;
+17275      length _NAME_ $32;
+MPRINT(EM_DIAGRAM):   length _NAME_ $32;
+17276      set EMWS1.Reg_EMESTIMATE;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg_EMESTIMATE;
+17277      drop _AIC_--_VMISC_;
+MPRINT(EM_DIAGRAM):   drop _AIC_--_VMISC_;
+17278      where _TYPE_ in('PARMS', 'T', 'P');
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('PARMS', 'T', 'P');
+17279      select(_TYPE_);
+MPRINT(EM_DIAGRAM):   select(_TYPE_);
+17280      when('PARMS') _NAME_='Coefficient';
+MPRINT(EM_DIAGRAM):   when('PARMS') _NAME_='Coefficient';
+17281      when('T') _NAME_='tValue';
+MPRINT(EM_DIAGRAM):   when('T') _NAME_='tValue';
+17282      when('P') _NAME_='PValue';
+MPRINT(EM_DIAGRAM):   when('P') _NAME_='PValue';
+17283      otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+17284      end;
+MPRINT(EM_DIAGRAM):   end;
+17285      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_EMESTIMATE. 读取了 3 个观测
+      WHERE _TYPE_ in ('P', 'PARMS', 'T');
+NOTE: 数据集 WORK.ESTIMATE 有 3 个观测和 19 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17286      proc transpose data=WORK.ESTIMATE out=WORK.ESTIMATE(rename=(_NAME_=Effect));
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.ESTIMATE out=WORK.ESTIMATE(rename=(_NAME_=Effect));
+17287      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.ESTIMATE. 读取了 3 个观测
+NOTE: 数据集 WORK.ESTIMATE 有 17 个观测和 5 个变量。
+NOTE: “PROCEDURE TRANSPOSE”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17288      proc transpose data=EMWS1.Reg_MAPDS out=WORK.MAP(rename=(_NAME_=Effect INPUT=Variable
+17289      ));
+MPRINT(EM_DIAGRAM):   proc transpose data=EMWS1.Reg_MAPDS out=WORK.MAP(rename=(_NAME_=Effect INPUT=Variable ));
+17290      var 'CLAGE'n--'YOJ'n;
+MPRINT(EM_DIAGRAM):   var 'CLAGE'n--'YOJ'n;
+17291      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_MAPDS. 读取了 2 个观测
+NOTE: 数据集 WORK.MAP 有 16 个观测和 4 个变量。
+NOTE: “PROCEDURE TRANSPOSE”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17292      proc sort data=WORK.MAP;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.MAP;
+17293      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+17294      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.MAP. 读取了 16 个观测
+NOTE: 数据集 WORK.MAP 有 16 个观测和 4 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17295      proc sort data=WORK.ESTIMATE;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.ESTIMATE;
+17296      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+17297      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.ESTIMATE. 读取了 17 个观测
+NOTE: 数据集 WORK.ESTIMATE 有 17 个观测和 5 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17298      data EMWS1.Reg_EFFECTS(rename=(_LABEL_=EffectLabel));
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg_EFFECTS(rename=(_LABEL_=EffectLabel));
+17299      length Variable ClassLevel $32;
+MPRINT(EM_DIAGRAM):   length Variable ClassLevel $32;
+17300      merge WORK.ESTIMATE WORK.MAP;
+MPRINT(EM_DIAGRAM):   merge WORK.ESTIMATE WORK.MAP;
+17301      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+17302      label Effect = "%sysfunc(sasmsg(sashelp.dmine, rpt_effect_vlabel, NOQUOTE))" Variable = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" Sign = "%sysfunc(sasmsg(sashelp.dmine, rpt_sign_vlabel, NOQUOTE))" ClassLevel =
+17303         "%sysfunc(sasmsg(sashelp.dmine, rpt_level_vlabel, NOQUOTE))" Abscoefficient = "%sysfunc(sasmsg(sashelp.dmine, rpt_abscoefficient_vlabel, NOQUOTE))" Coefficient = "%sysfunc(sasmsg(sashelp.dmine, rpt_coefficient_vlabel, NOQUOTE))" _LABEL_ =
+17304         "%sysfunc(sasmsg(sashelp.dmine, rpt_effectLabel_vlabel, NOQUOTE))" CODE = "%sysfunc(sasmsg(sashelp.dmine, rpt_scorecodevar_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Effect = "效应" Variable = "变量" Sign = "标记" ClassLevel = "水平" Abscoefficient = "绝对系数" Coefficient = "系数" _LABEL_ = "效应标签" CODE = "评分代码变量";
+17305      label tvalue = "%sysfunc(sasmsg(sashelp.dmine, rpt_tvalue_vlabel,         NOQUOTE))" abstvalue = "%sysfunc(sasmsg(sashelp.dmine, rpt_absoluteTvalue_vlabel, NOQUOTE))" PValue = "%sysfunc(sasmsg(sashelp.dmine, rpt_pvalue_vlabel,         NOQUOTE))"
+17305    ! ;
+MPRINT(EM_DIAGRAM):   label tvalue = "T 值" abstvalue = "绝对 T 值" PValue = "P 值";
+17306      abstvalue = abs(tValue);
+MPRINT(EM_DIAGRAM):   abstvalue = abs(tValue);
+17307      if index(Effect, 'Intercept') then do;
+MPRINT(EM_DIAGRAM):   if index(Effect, 'Intercept') then do;
+17308      variable = 'Intercept';
+MPRINT(EM_DIAGRAM):   variable = 'Intercept';
+17309      classLevel = scan(_LABEL_, 2, '=');
+MPRINT(EM_DIAGRAM):   classLevel = scan(_LABEL_, 2, '=');
+17310      end;
+MPRINT(EM_DIAGRAM):   end;
+17311      if ^indexc(variable, '*') then do;
+MPRINT(EM_DIAGRAM):   if ^indexc(variable, '*') then do;
+17312      if length(effect)>length(variable) then classlevel = substr(Effect, length(variable)+1);
+MPRINT(EM_DIAGRAM):   if length(effect)>length(variable) then classlevel = substr(Effect, length(variable)+1);
+17313      end;
+MPRINT(EM_DIAGRAM):   end;
+17314      if Effect eq '' then Effect = Variable;
+MPRINT(EM_DIAGRAM):   if Effect eq '' then Effect = Variable;
+17315      if coefficient < 0 then sign = '-';
+MPRINT(EM_DIAGRAM):   if coefficient < 0 then sign = '-';
+17316      else sign = '+';
+MPRINT(EM_DIAGRAM):   else sign = '+';
+17317      abscoefficient = abs(coefficient);
+MPRINT(EM_DIAGRAM):   abscoefficient = abs(coefficient);
+17318      if _LABEL_ = '' then _LABEL_ = Effect;
+MPRINT(EM_DIAGRAM):   if _LABEL_ = '' then _LABEL_ = Effect;
+17319      if coefficient ne . then output;
+MPRINT(EM_DIAGRAM):   if coefficient ne . then output;
+17320      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 WORK.ESTIMATE. 读取了 17 个观测
+NOTE: 从数据集 WORK.MAP. 读取了 16 个观测
+NOTE: 数据集 EMWS1.REG_EFFECTS 有 17 个观测和 11 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.01 秒
+      CPU 时间          0.01 秒
+      
+
+17321      proc sort data =EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):    proc sort data =EMWS1.Reg_EFFECTS;
+17322      by
+17323      descending abstvalue;
+MPRINT(EM_DIAGRAM):   by descending abstvalue;
+17324      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_EFFECTS. 读取了 17 个观测
+NOTE: 数据集 EMWS1.REG_EFFECTS 有 17 个观测和 11 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17325      data EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg_EFFECTS;
+17326      set EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg_EFFECTS;
+17327      format TEffectNum 3.;
+MPRINT(EM_DIAGRAM):   format TEffectNum 3.;
+17328      label TEffectNum = "%sysfunc(sasmsg(sashelp.dmine, rpt_teffectnum_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label TEffectNum = "TScore 数";
+17329      retain TEffectNum;
+MPRINT(EM_DIAGRAM):   retain TEffectNum;
+17330      TEffectNum = _N_;
+MPRINT(EM_DIAGRAM):   TEffectNum = _N_;
+17331      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_EFFECTS. 读取了 17 个观测
+NOTE: 数据集 EMWS1.REG_EFFECTS 有 17 个观测和 12 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+17332      proc sort data =EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):    proc sort data =EMWS1.Reg_EFFECTS;
+17333      by
+17334      descending absCoefficient;
+MPRINT(EM_DIAGRAM):   by descending absCoefficient;
+17335      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_EFFECTS. 读取了 17 个观测
+NOTE: 数据集 EMWS1.REG_EFFECTS 有 17 个观测和 12 个变量。
+NOTE: “PROCEDURE SORT”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.01 秒
+      
+
+17336      data EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg_EFFECTS;
+17337      set EMWS1.Reg_EFFECTS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg_EFFECTS;
+17338      format EffectNum 3.;
+MPRINT(EM_DIAGRAM):   format EffectNum 3.;
+17339      label EffectNum = "%sysfunc(sasmsg(sashelp.dmine, rpt_effectnum_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label EffectNum = "效应数";
+17340      retain EffectNum;
+MPRINT(EM_DIAGRAM):   retain EffectNum;
+17341      EffectNum = _N_;
+MPRINT(EM_DIAGRAM):   EffectNum = _N_;
+17342      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: 从数据集 EMWS1.REG_EFFECTS. 读取了 17 个观测
+NOTE: 数据集 EMWS1.REG_EFFECTS 有 17 个观测和 13 个变量。
+NOTE: “DATA 语句”所用时间（总处理时间）:
+      实际时间          0.00 秒
+      CPU 时间          0.00 秒
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

@@ -1,0 +1,779 @@
+<!DOCTYPE html> <html lang=en style><!--
+ Page saved with SingleFile 
+ url: https://github.com/ls0f/phone 
+ saved date: Fri Apr 17 2020 23:31:55 GMT+0800 (中国标准时间)
+--><meta charset=utf-8>
+<style>.octicon{display:inline-block;fill:currentColor}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,details,main,nav{display:block}summary{display:list-item}[hidden],template{display:none!important}a{background-color:initial}a:active,a:hover{outline-width:0}h1{margin:.67em 0}img{border-style:none}svg:not(:root){overflow:hidden}button,input{font:inherit;margin:0}button,input{overflow:visible}button{text-transform:none}[type=submit],html [type=button]{-webkit-appearance:button}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}*{box-sizing:border-box}button,input{font-family:inherit;font-size:inherit;line-height:inherit}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;line-height:1.5;color:#24292e;background-color:#fff}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:600}table{border-spacing:0;border-collapse:collapse}th{padding:0}button{border-radius:0}[hidden][hidden]{display:none!important}details summary{cursor:pointer}details:not([open])>:not(summary){display:none!important}h2{margin-top:0;margin-bottom:0}h2{font-weight:600}h2{font-size:24px}ol,ul{padding-left:0;margin-top:0;margin-bottom:0}code,pre{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace}.octicon{vertical-align:text-bottom}.Box{background-color:#fff;border:1px solid #d1d5da;border-radius:3px}.Box--condensed{line-height:1.25}.Box--condensed .Box-body,.Box--condensed .Box-header{padding:8px 16px}.Box-header{margin:-1px -1px 0;background-color:#f6f8fa;border:1px solid #d1d5da;border-top-left-radius:3px;border-top-right-radius:3px}.Box-title{font-size:14px;font-weight:600}.Box-body{border-bottom:1px solid #e1e4e8}.Box-body:last-of-type{margin-bottom:-1px;border-bottom-right-radius:2px;border-bottom-left-radius:2px}.Box-header--blue{background-color:#f1f8ff;border-color:#c8e1ff}.btn{position:relative;display:inline-block;font-weight:600;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-repeat:repeat-x;background-position:-1px -1px;background-size:110% 110%;border:1px solid rgba(27,31,35,.2);border-radius:.25em;-webkit-appearance:none;-moz-appearance:none}.btn i{font-style:normal;font-weight:500;opacity:.75}.btn .octicon{vertical-align:text-top}.btn:hover{text-decoration:none;background-repeat:repeat-x}.btn:focus{outline:0}.btn.disabled,.btn:disabled,.btn[aria-disabled=true]{cursor:default;background-position:0 0}.btn.selected,.btn:active,.btn[aria-selected=true]{background-image:none}.btn{color:#24292e;background-color:#eff3f6;background-image:linear-gradient(-180deg,#fafbfc,#eff3f6 90%)}.btn.focus,.btn:focus{box-shadow:0 0 0 .2em rgba(3,102,214,.3)}.btn.hover,.btn:hover{background-color:#e6ebf1;background-image:linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);background-position:-.5em;border-color:rgba(27,31,35,.35)}.btn.selected,.btn:active,.btn[aria-selected=true],[open]>.btn{background-color:#e9ecef;background-image:none;border-color:rgba(27,31,35,.35);box-shadow:inset 0 .15em .3em rgba(27,31,35,.15)}.btn.disabled,.btn:disabled,.btn[aria-disabled=true]{color:rgba(36,41,46,.4);background-color:#eff3f6;background-image:none;border-color:rgba(27,31,35,.2);box-shadow:none}.btn-primary{color:#fff;background-color:#28a745;background-image:linear-gradient(-180deg,#34d058,#28a745 90%)}.btn-primary.focus,.btn-primary:focus{box-shadow:0 0 0 .2em rgba(52,208,88,.4)}.btn-primary.hover,.btn-primary:hover{background-color:#269f42;background-image:linear-gradient(-180deg,#2fcb53,#269f42 90%);background-position:-.5em;border-color:rgba(27,31,35,.5)}.btn-primary.selected,.btn-primary:active,.btn-primary[aria-selected=true],[open]>.btn-primary{background-color:#279f43;background-image:none;border-color:rgba(27,31,35,.5);box-shadow:inset 0 .15em .3em rgba(27,31,35,.15)}.btn-primary.disabled,.btn-primary:disabled,.btn-primary[aria-disabled=true]{color:hsla(0,0%,100%,.75);background-color:#94d3a2;background-image:none;border-color:rgba(27,31,35,.2);box-shadow:none}.btn-with-count{float:left;border-top-right-radius:0;border-bottom-right-radius:0}.btn-sm{padding:3px 10px;font-size:12px;line-height:20px}.BtnGroup{display:inline-block;vertical-align:middle}.BtnGroup:after,.BtnGroup:before{display:table;content:""}.BtnGroup:after{clear:both}.BtnGroup-item{position:relative;float:left;border-right-width:0;border-radius:0}.BtnGroup-item:first-child{border-top-left-radius:3px;border-bottom-left-radius:3px}.BtnGroup-item:last-child{border-right-width:1px;border-top-right-radius:3px;border-bottom-right-radius:3px}.BtnGroup-item.selected,.BtnGroup-item:active,.BtnGroup-item:focus,.BtnGroup-item:hover,.BtnGroup-item[aria-selected=true]{border-right-width:1px}.BtnGroup-item.selected+.BtnGroup-item,.BtnGroup-item.selected+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:active+.BtnGroup-item,.BtnGroup-item:active+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:focus+.BtnGroup-item,.BtnGroup-item:focus+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item:hover+.BtnGroup-item,.BtnGroup-item:hover+.BtnGroup-parent .BtnGroup-item,.BtnGroup-item[aria-selected=true]+.BtnGroup-item,.BtnGroup-item[aria-selected=true]+.BtnGroup-parent .BtnGroup-item{border-left-width:0}.BtnGroup-parent{float:left}.BtnGroup-parent:first-child .BtnGroup-item{border-top-left-radius:3px;border-bottom-left-radius:3px}.BtnGroup-parent:last-child .BtnGroup-item{border-right-width:1px;border-top-right-radius:3px;border-bottom-right-radius:3px}.BtnGroup-parent .BtnGroup-item{border-right-width:0;border-radius:0}.BtnGroup-parent.selected .BtnGroup-item,.BtnGroup-parent:active .BtnGroup-item,.BtnGroup-parent:focus .BtnGroup-item,.BtnGroup-parent:hover .BtnGroup-item,.BtnGroup-parent[aria-selected=true] .BtnGroup-item{border-right-width:1px}.BtnGroup-parent.selected+.BtnGroup-item,.BtnGroup-parent.selected+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:active+.BtnGroup-item,.BtnGroup-parent:active+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:focus+.BtnGroup-item,.BtnGroup-parent:focus+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent:hover+.BtnGroup-item,.BtnGroup-parent:hover+.BtnGroup-parent .BtnGroup-item,.BtnGroup-parent[aria-selected=true]+.BtnGroup-item,.BtnGroup-parent[aria-selected=true]+.BtnGroup-parent .BtnGroup-item{border-left-width:0}.BtnGroup-item:active,.BtnGroup-item:focus,.BtnGroup-parent:active,.BtnGroup-parent:focus{z-index:1}.social-count{float:left;padding:3px 10px;font-size:12px;font-weight:600;line-height:20px;color:#24292e;vertical-align:middle;background-color:#fff;border:1px solid rgba(27,31,35,.2);border-left:0;border-top-right-radius:3px;border-bottom-right-radius:3px}.social-count:active,.social-count:hover{text-decoration:none}.social-count:hover{color:#0366d6;cursor:pointer}.form-control{padding:6px 8px;vertical-align:middle;background-color:#fff;background-repeat:no-repeat;background-position:right 8px center;border-radius:3px;outline:none}.form-control.focus,.form-control:focus,.form-select.focus,.form-select:focus{border-color:#2188ff;outline:none;box-shadow:inset 0 1px 2px rgba(27,31,35,.075),0 0 0 .2em rgba(3,102,214,.3)}@media (min-width:768px){.form-control{font-size:14px}}::placeholder{color:#6a737d}.input-sm{min-height:28px;padding-top:3px;padding-bottom:3px;line-height:20px}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none;appearance:none}.container-lg{max-width:1012px}.container-lg{margin-right:auto;margin-left:auto}.tooltipped{position:relative}.tooltipped:after{z-index:1000000;padding:.5em .75em;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;-webkit-font-smoothing:subpixel-antialiased;color:#fff;text-align:center;text-decoration:none;text-shadow:none;text-transform:none;letter-spacing:normal;word-wrap:break-word;white-space:pre;content:attr(aria-label);background:#1b1f23;border-radius:3px}.tooltipped:after,.tooltipped:before{position:absolute;display:none;pointer-events:none;opacity:0}.tooltipped:before{z-index:1000001;width:0;height:0;color:#1b1f23;content:"";border:6px solid transparent}@keyframes tooltip-appear{0%{opacity:0}to{opacity:1}}.tooltipped:active:after,.tooltipped:active:before,.tooltipped:focus:after,.tooltipped:focus:before,.tooltipped:hover:after,.tooltipped:hover:before{display:inline-block;text-decoration:none;animation-name:tooltip-appear;animation-duration:.1s;animation-fill-mode:forwards;animation-timing-function:ease-in;animation-delay:.4s}.tooltipped-s:after,.tooltipped-se:after,.tooltipped-sw:after{top:100%;right:50%;margin-top:6px}.tooltipped-s:before,.tooltipped-se:before,.tooltipped-sw:before{top:auto;right:50%;bottom:-7px;margin-right:-6px;border-bottom-color:#1b1f23}.tooltipped-sw:after{margin-right:-16px}.tooltipped-n:after,.tooltipped-s:after{transform:translateX(50%)}.css-truncate.css-truncate-target,.css-truncate .css-truncate-target{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.css-truncate.css-truncate-target,.css-truncate .css-truncate-target{display:inline-block;max-width:125px;vertical-align:top}@keyframes fade-in{0%{opacity:0}to{opacity:1}}@keyframes fade-out{0%{opacity:1}to{opacity:0}}@keyframes fade-up{0%{opacity:.8;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}@keyframes fade-down{0%{opacity:1;transform:translateY(0)}to{opacity:.5;transform:translateY(100%)}}@keyframes grow-x{to{width:100%}}@keyframes shrink-x{to{width:0}}@keyframes scale-in{0%{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}@keyframes pulse{0%{opacity:.3}10%{opacity:1}to{opacity:.3}}@keyframes pulse-in{0%{transform:scaleX(1)}50%{transform:scale3d(1.1,1.1,1.1)}to{transform:scaleX(1)}}.border-top{border-top:1px solid #e1e4e8!important}.border-bottom-0{border-bottom:0!important}.rounded-top-1{border-top-left-radius:3px!important;border-top-right-radius:3px!important}.rounded-bottom-0{border-bottom-right-radius:0!important;border-bottom-left-radius:0!important}.border-gray-light{border-color:#eaecef!important}.box-shadow-large{box-shadow:0 1px 15px rgba(27,31,35,.15)!important}.bg-blue{background-color:#0366d6!important}.bg-gray-light{background-color:#fafbfc!important}.text-gray-light{color:#6a737d!important}.text-gray{color:#586069!important}.text-gray-dark{color:#24292e!important}.text-green{color:#28a745!important}.text-white{color:#fff!important}.text-inherit{color:inherit!important}.link-gray{color:#586069!important}.link-gray:hover{color:#0366d6!important}.details-reset>summary{list-style:none}.details-reset>summary:before{display:none}.details-reset>summary::-webkit-details-marker{display:none}.flex-column{flex-direction:column!important}.flex-wrap{flex-wrap:wrap!important}.flex-justify-center{justify-content:center!important}.flex-justify-between{justify-content:space-between!important}.flex-items-start{align-items:flex-start!important}.flex-items-center{align-items:center!important}.flex-items-baseline{align-items:baseline!important}.flex-auto{flex:auto!important}.flex-shrink-0{flex-shrink:0!important}.flex-self-start{align-self:flex-start!important}.flex-self-center{align-self:center!important}.flex-self-stretch{align-self:stretch!important}.position-relative{position:relative!important}.position-absolute{position:absolute!important}.position-fixed{position:fixed!important}.top-0{top:0!important}.left-0{left:0!important}.v-align-middle{vertical-align:middle!important}.v-align-text-bottom{vertical-align:text-bottom!important}.clearfix:after,.clearfix:before{display:table;content:""}.clearfix:after{clear:both}.float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}.width-fit{max-width:100%!important}.width-full{width:100%!important}.min-width-0{min-width:0!important}.m-0{margin:0!important}.mr-0{margin-right:0!important}.mb-0{margin-bottom:0!important}.mt-1{margin-top:4px!important}.mr-1{margin-right:4px!important}.mt-2{margin-top:8px!important}.mr-2{margin-right:8px!important}.mb-2{margin-bottom:8px!important}.ml-2{margin-left:8px!important}.mr-3{margin-right:16px!important}.mb-3{margin-bottom:16px!important}.m-4{margin:24px!important}.mb-4{margin-bottom:24px!important}.mt-6{margin-top:40px!important}.mx-auto{margin-right:auto!important;margin-left:auto!important}@media (min-width:1012px){.mx-lg-4{margin-right:24px!important;margin-left:24px!important}}.p-0{padding:0!important}.pb-0{padding-bottom:0!important}.pb-1{padding-bottom:4px!important}.pb-2{padding-bottom:8px!important}.p-3{padding:16px!important}.pt-3{padding-top:16px!important}.pr-3{padding-right:16px!important}.pl-3,.px-3{padding-left:16px!important}.px-3{padding-right:16px!important}.p-5{padding:32px!important}.pt-6{padding-top:40px!important}.pb-6{padding-bottom:40px!important}.f4{font-size:16px!important}@media (min-width:768px){.f4{font-size:16px!important}}.f6{font-size:12px!important}.no-wrap{white-space:nowrap!important}.break-word{word-break:break-word!important;word-wrap:break-word!important;overflow-wrap:break-word!important}.text-emphasized{font-weight:600;color:#24292e}.list-style-none{list-style:none!important}.d-flex{display:flex!important}.d-inline{display:inline!important}.d-inline-block{display:inline-block!important}.d-none{display:none!important}@media (min-width:1012px){.d-lg-block{display:block!important}}@media (max-width:543px){.hide-sm{display:none!important}}@media (min-width:544px) and (max-width:767px){.hide-md{display:none!important}}.sr-only{padding:0;clip:rect(0,0,0,0);word-wrap:normal;border:0}.show-on-focus,.sr-only{position:absolute;width:1px;height:1px;overflow:hidden}.show-on-focus{margin:0;clip:rect(1px,1px,1px,1px)}.show-on-focus:focus{z-index:20;width:auto;height:auto;clip:auto}@keyframes blink{50%{background-color:initial}}include-fragment{display:block}@keyframes dropdown-display{0%{opacity:0;transform:scale(.98) translateY(-.6em)}to{opacity:1;transform:scale(1) translateY(0)}}.header-nav-current-user{padding-bottom:0;font-size:inherit}.header-search-wrapper{width:100%;max-width:100%;padding:0;font-size:inherit;font-weight:400;color:#fff;vertical-align:middle;background-color:hsla(0,0%,100%,.125);border:0;box-shadow:none}.header-search-input{display:table-cell;width:100%;padding-top:0;padding-bottom:0;font-size:inherit;color:inherit;background:none;border:0;box-shadow:none}.header-search-input::placeholder{color:hsla(0,0%,100%,.75)}.header-search-input:focus{border:0;box-shadow:none}.header-search-input:focus~.header-search-key-slash{display:none!important}.scoped-search .header-search-wrapper{display:flex}.header-search{min-width:300px;transition:.2s ease-in-out;transition-property:min-width,padding-bottom,padding-top}@media (min-width:768px){.header-search:focus-within{min-width:470px}}.flash-close{float:right;padding:16px;margin:-16px;color:inherit;text-align:center;cursor:pointer;background:none;border:0;-webkit-appearance:none;-moz-appearance:none;opacity:.6}.flash-close:hover{opacity:1}.avatar{display:inline-block;overflow:hidden;line-height:1;vertical-align:middle;border-radius:3px}.AvatarStack{position:relative;height:20px}.AvatarStack .AvatarStack-body{position:absolute}.AvatarStack.AvatarStack--two{min-width:36px}.AvatarStack-body{display:flex}.AvatarStack-body .avatar{position:relative;z-index:2;display:flex;width:20px;height:20px;box-sizing:initial;margin-right:-11px;background-color:#fff;border-right:1px solid #fff;border-radius:2px;transition:margin .1s ease-in-out}.AvatarStack-body .avatar:first-child{z-index:3}.AvatarStack-body .avatar:last-child{z-index:1;border-right:0}.AvatarStack-body .avatar img{border-radius:2px}.AvatarStack-body .avatar:nth-child(n+4){display:none;opacity:0}.AvatarStack-body:hover .avatar{margin-right:3px}.AvatarStack-body:hover .avatar:nth-child(n+4){display:flex;opacity:1}.dropdown{position:relative}.dropdown-caret{display:inline-block;width:0;height:0;vertical-align:middle;content:"";border-top-style:solid;border-top-width:4px;border-right:4px solid transparent;border-bottom:0 solid transparent;border-left:4px solid transparent}.dropdown-menu{position:absolute;z-index:100;padding-top:4px;padding-bottom:4px;margin-top:2px;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(27,31,35,.15);border-radius:4px;box-shadow:0 1px 15px rgba(27,31,35,.15)}.dropdown-menu:after,.dropdown-menu:before{position:absolute;display:inline-block;content:""}.dropdown-menu:before{border:8px solid transparent;border-bottom-color:rgba(27,31,35,.15)}.dropdown-menu:after{border:7px solid transparent;border-bottom-color:#fff}.dropdown-item{display:block;padding:4px 8px 4px 16px;overflow:hidden;color:#24292e;text-overflow:ellipsis;white-space:nowrap}.dropdown-item:focus,.dropdown-item:hover{color:#fff;text-decoration:none;background-color:#0366d6;outline:none}.dropdown-divider{display:block;height:0;margin:8px 0;border-top:1px solid #e1e4e8}.dropdown-header{padding:4px 16px;font-size:12px;color:#586069}.dropdown-menu-sw{right:0;left:auto}.dropdown-menu-sw:before{top:-16px;right:9px;left:auto}.dropdown-menu-sw:after{top:-14px;right:10px;left:auto}.Header{z-index:32;padding:16px;font-size:14px;line-height:1.5;color:hsla(0,0%,100%,.7);background-color:#24292e}.Header,.Header-item{display:flex;align-items:center;flex-wrap:nowrap}.Header-item{margin-right:16px;align-self:stretch}.Header-item--full{flex:auto}.Header-link{font-weight:600;color:#fff;white-space:nowrap}.Header-link:focus,.Header-link:hover{color:hsla(0,0%,100%,.7);text-decoration:none}.Counter{display:inline-block;font-size:12px;font-weight:600;line-height:1;background-color:rgba(27,31,35,.08);border-radius:20px}.Counter:empty{visibility:hidden}@keyframes AnimatedEllipsis-keyframes{0%{transform:translateX(-100%)}}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body pre,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body h2,.markdown-body h3,.markdown-body h4{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eaecef}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body ul{padding-left:2em}.markdown-body li+li{margin-top:.25em}.markdown-body img{box-sizing:initial;background-color:#fff}.markdown-body code{padding:.2em .4em;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{font-size:100%;word-break:normal;white-space:pre;background:transparent}.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:initial;border:0}.Popover{position:absolute;z-index:100}.Popover-message{position:relative;margin-right:auto}.Popover-message:after,.Popover-message:before{position:absolute;left:50%;display:inline-block;content:""}.Popover-message:before{top:-16px;margin-left:-9px;border:8px solid transparent;border-bottom-color:rgba(27,31,35,.15)}.Popover-message:after{top:-14px;margin-left:-8px;border:7px solid transparent;border-bottom-color:#fff}.Popover-message--bottom-left:after,.Popover-message--bottom-left:before,.Popover-message--bottom-right:after,.Popover-message--bottom-right:before,.Popover-message--bottom:after,.Popover-message--bottom:before{top:auto;border-bottom-color:transparent}.Popover-message--bottom-left:before,.Popover-message--bottom-right:before,.Popover-message--bottom:before{bottom:-16px;border-top-color:rgba(27,31,35,.15)}.Popover-message--bottom-left:after,.Popover-message--bottom-right:after,.Popover-message--bottom:after{bottom:-14px;border-top-color:#fff}.Popover-message--bottom-left,.Popover-message--top-left{left:-9px;margin-left:0}.Popover-message--bottom-left:after,.Popover-message--bottom-left:before,.Popover-message--top-left:after,.Popover-message--top-left:before{left:24px;margin-left:0}.Popover-message--bottom-left:after,.Popover-message--top-left:after{left:25px}@media (min-width:544px){.Popover-message--large{min-width:320px}}.Progress{display:flex;overflow:hidden;background-color:#e1e4e8;border-radius:3px}.SelectMenu-modal{position:relative;z-index:99;display:flex;margin:auto 0;overflow:hidden;pointer-events:auto;flex-direction:column;background-color:#f6f8fa;border-radius:6px;box-shadow:0 0 18px rgba(0,0,0,.4);animation:SelectMenu-modal-animation .12s cubic-bezier(0,.1,.1,1) backwards}@keyframes SelectMenu-modal-animation{0%{opacity:0;transform:scale(.9)}}@keyframes SelectMenu-modal-animation--sm{0%{opacity:0;transform:translateY(-16px)}}@media (min-width:544px){.SelectMenu-modal{width:300px;height:auto;max-height:480px;margin:4px 0 16px;font-size:12px;border:1px solid #d1d5da;border-radius:3px;box-shadow:0 1px 5px rgba(27,31,35,.15);animation-name:SelectMenu-modal-animation--sm}}.SelectMenu--hasFilter .SelectMenu-modal{height:80%;max-height:none;margin-top:0}@media (min-width:544px){.SelectMenu--hasFilter .SelectMenu-modal{height:auto;max-height:480px;margin-top:4px}}@keyframes Toast--animateIn{0%{opacity:0;transform:translateY(100%)}}@keyframes Toast--animateOut{to{pointer-events:none;opacity:0;transform:translateY(100%)}}.ajax-error-message>.octicon-alert{vertical-align:text-top}.select-menu-button:after{display:inline-block;width:0;height:0;vertical-align:-2px;content:"";border:4px solid transparent;border-top-color:currentcolor}.select-menu-header{padding:8px 10px;line-height:16px;background:#f6f8fa;border-bottom:1px solid #e1e4e8}.select-menu-header:focus{outline:none}.select-menu-list{position:relative;max-height:400px;overflow:auto}.breadcrumb{color:#586069}.commit-tease{position:relative;font-size:13px;line-height:20px;color:#586069}.commit-tease-sha{display:inline-block;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:90%;color:#444d56}.commit-build-statuses{position:relative;display:inline-block;text-align:left}.footer-octicon{color:#c6cbd1}.footer-octicon:hover{color:#959da5}@keyframes konami-color{0%{background:#c1fa9c;border-bottom:2px solid #a2f76b}50%{background:#40e37a;border-bottom:2px solid #00cc4c}to{background:#40c4d7;border-bottom:2px solid #1eb4c9}}@keyframes konami-enter-link{0%{background:#c1fa9c}50%{background:#40e37a}to{background:#40c4d7}}.user-mention{font-weight:600;color:#24292e;white-space:nowrap}.pagehead{position:relative;padding-top:24px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #e1e4e8}.pagehead ul.pagehead-actions{position:relative;z-index:31;float:right;margin:0}.pagehead .path-divider{margin:0 .25em}.pagehead h1{margin-top:0;margin-bottom:0;font-weight:400}.pagehead-actions>li{float:left;margin:0 10px 0 0;font-size:11px;color:#24292e;list-style-type:none}.pagehead-actions>li:last-child{margin-right:0}.pagehead-actions .select-menu{position:relative}.pagehead-actions .select-menu:before{display:table;content:""}.pagehead-actions .select-menu:after{display:table;clear:both;content:""}.repohead h1{position:relative;min-height:32px;font-size:18px;color:#586069}.repohead h1 .octicon{color:#959da5}.reponav{position:relative;top:1px;margin-top:-5px}.reponav:after,.reponav:before{display:table;content:""}.reponav:after{clear:both}.reponav-item{float:left;color:#586069;white-space:nowrap;border:1px solid transparent;border-top:3px solid transparent;border-radius:3px 3px 0 0}.reponav-item .octicon{color:rgba(27,31,35,.3)}.reponav-item .Counter{color:#444d56}.reponav-item:focus,.reponav-item:hover{color:#24292e;text-decoration:none}.reponav-item.selected{color:#24292e;background-color:#fff;border-color:#e36209 #e1e4e8 transparent}.reponav-item.selected .octicon{color:inherit}@keyframes skeleton-loading{0%{background-position:200% 0}to{background-position:-200% 0}}.commit-tease .AvatarStack-body{background:#f1f8ff}[hidden]{display:none!important}body{word-wrap:break-word}@keyframes lightbulb{0%,8%,14%{opacity:.1}0%,10%,25%{opacity:.25}5%,30%,50%,70%{opacity:.5}16%,60%,80%{opacity:.75}90%{opacity:.8}94%{opacity:.5}to{opacity:1;stddeviation:0}}@keyframes pull-string{50%{transform:translate3d(0,12px,0)}75%{opacity:1;transform:none}to{opacity:0}}.TagsearchPopover{width:inherit;max-width:600px}@keyframes broadCastMaskFade{0%{opacity:0}30%{opacity:1}70%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes dropBox{0%{opacity:1;transform:translateY(-110%)}7%{opacity:1;transform:translateY(20%);transform:translateX(0)}80%{opacity:1}to{opacity:0;transform:translateX(-250%)}}.repository-lang-stats-graph{width:100%;overflow:hidden;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #ddd;border-top:0;border-bottom-right-radius:3px;border-bottom-left-radius:3px}.repository-lang-stats-graph .language-color{line-height:8px;text-indent:-9999px}.repository-lang-stats-graph .language-color:first-child{border-bottom-left-radius:3px}.repository-lang-stats-graph .language-color:last-child{border-bottom-right-radius:3px}.repository-lang-stats-graph .language-color:not(:first-child){border-left:1px solid #fff}@keyframes blinkingText{0%{color:#e1e4e8}50%{color:hsla(0,0%,100%,.15)}33%{color:#e1e4e8}to{color:#e1e4e8}}.progress-pjax-loader{z-index:99999;height:2px;background:transparent;opacity:0;transition:opacity .4s linear .4s}.progress-pjax-loader>.progress-pjax-loader-bar{background-color:#79b8ff;box-shadow:0 0 10px rgba(121,184,255,.7);transition:width .4s ease}@keyframes show-pane{0%{transform:translateX(390px)}to{transform:translateX(0)}}.overall-summary{position:relative;margin-bottom:10px;border:1px solid #dfe2e5;border-radius:3px}.numbers-summary{display:table;width:100%;table-layout:fixed}.numbers-summary li{display:table-cell;padding:0;text-align:center;white-space:nowrap}.numbers-summary li>a{display:block;padding:10px 0;color:#586069;text-decoration:none}.numbers-summary li>a:hover{color:#0366d6}.numbers-summary li>a:hover .num{color:inherit}.numbers-summary .octicon{color:#6a737d}.file-navigation:after,.file-navigation:before{display:table;content:""}.file-navigation:after{clear:both}.file-navigation.in-mid-page{margin-top:16px}.file-navigation .new-pull-request-btn{float:left}.file-navigation .breadcrumb{float:left;margin-top:0;margin-left:5px;font-size:16px;line-height:26px}.file-navigation .get-repo-modal{top:6px;width:352px}table.files{width:100%;background:#fff;border-radius:3px}table.files tr.navigation-focus td{background:#f6f8fa}table.files td{padding:8px 4px;line-height:20px;border-top:1px solid #eaecef}table.files td.icon{width:17px;padding-right:2px;padding-left:16px;color:rgba(3,47,98,.55)}table.files td.icon .octicon-file-directory{color:rgba(3,47,98,.5)}table.files td .css-truncate{max-width:100%}table.files td.content{max-width:180px}table.files td.message{max-width:442px;padding-left:10px;overflow:hidden;color:#6a737d}table.files td.message a{color:#6a737d}table.files td.message a:hover{color:#0366d6}table.files td.age{width:125px;padding-right:16px;color:#6a737d;text-align:right;white-space:nowrap}table.files tbody tr:first-child td{border-top:0}@keyframes toggle-color{0%{background-color:initial}50%{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}to{background-color:initial}}@keyframes sponsors-progress-animation{0%{background-position:100%}to{background-position:0}}.user-status-container{white-space:normal}.user-status-container{word-break:break-word;word-wrap:break-word}@keyframes rotate{to{transform:rotate(1turn)}}@keyframes hx_code-search-anim-pulse{0%{opacity:1}30%{opacity:.3}to{opacity:1}}.hx_reponav .reponav-item{padding:7px 12px 8px!important}.hx_reponav .reponav-item .Counter{padding:2px 4px!important}@media (max-width:543px){@keyframes dropdown-menu-animation{0%{opacity:0;transform:scale(.9)}}}@media (max-width:767px){@keyframes hx_rsm-trigger-animation{0%{opacity:0}}@keyframes hx_rsm-modal-animation{0%{opacity:0;transform:scale(.9)}}}@media (hover:none){.tooltipped:hover:after,.tooltipped:hover:before{display:none}}@media (hover:none){.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link{visibility:visible!important}}.min-width-lg{min-width:1012px}@keyframes Toast--spinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.starring-container .unstarred{display:block}</style>
+<meta name=viewport content="width=device-width">
+<title>ls0f/phone: 手机号码归属地库</title>
+<meta name=description content="手机号码归属地库. Contribute to ls0f/phone development by creating an account on GitHub.">
+<link rel=search type=application/opensearchdescription+xml href=https://github.com/opensearch.xml title=GitHub>
+<meta property=fb:app_id content=1401488693436528>
+<meta name=twitter:image:src content="https://avatars1.githubusercontent.com/u/1734093?s=400&amp;v=4"><meta name=twitter:site content=@github><meta name=twitter:card content=summary><meta name=twitter:title content=ls0f/phone><meta name=twitter:description content="手机号码归属地库. Contribute to ls0f/phone development by creating an account on GitHub.">
+<meta property=og:image content="https://avatars1.githubusercontent.com/u/1734093?s=400&amp;v=4"><meta property=og:site_name content=GitHub><meta property=og:type content=object><meta property=og:title content=ls0f/phone><meta property=og:url content=https://github.com/ls0f/phone><meta property=og:description content="手机号码归属地库. Contribute to ls0f/phone development by creating an account on GitHub.">
+<link rel=assets href=https://github.githubassets.com/>
+<link rel=web-socket href="wss://live.github.com/_sockets/VjI6NTE3ODA0Mjg1OjA2Yjg2YzA5NWNlYmEzZDM1YjJkZDNkYzEwNmFjMDRiODYxOWY0MTY5Y2M1N2JiOGJiNDM0ZTNlOWZlYjRhOWE=--4875b3c27bba436585598d97d5299ee34dda7219">
+<link rel=sudo-modal href=https://github.com/sessions/sudo_modal>
+<meta name=request-id content=A145:1C82:14EB95:1BCE72:5E99CB19 data-pjax-transient=true><meta name=html-safe-nonce content=502f7b097a90952524149712acc10e177eb77a8b data-pjax-transient=true><meta name=visitor-payload content="eyJyZWZlcnJlciI6bnVsbCwicmVxdWVzdF9pZCI6IkExNDU6MUM4MjoxNEVCOTU6MUJDRTcyOjVFOTlDQjE5IiwidmlzaXRvcl9pZCI6IjE0NzQwOTYyMDk5MzU3ODQwODkiLCJyZWdpb25fZWRnZSI6InNlYSIsInJlZ2lvbl9yZW5kZXIiOiJpYWQifQ==" data-pjax-transient=true><meta name=visitor-hmac content=745d669a5f65a1451b6f3c926ad2281552508fc482ea345cf5e9f2b9f207a30d data-pjax-transient=true>
+<meta name=github-keyboard-shortcuts content=repository data-pjax-transient=true>
+<meta name=selected-link value=repo_source data-pjax-transient>
+<meta name=google-site-verification content=KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU>
+<meta name=google-site-verification content=ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA>
+<meta name=google-site-verification content=GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc>
+<meta name=octolytics-host content=collector.githubapp.com><meta name=octolytics-app-id content=github><meta name=octolytics-event-url content=https://collector.githubapp.com/github-external/browser_event><meta name=octolytics-dimension-ga_id content=261531359.1576589587 class=js-octo-ga-id><meta name=octolytics-actor-id content=22268775><meta name=octolytics-actor-login content=xeebudong><meta name=octolytics-actor-hash content=3a849773f02210537d32f72ae898c9d7ef6d7f2f0f79c5aadf07d5dff71732f9>
+<meta name=analytics-location content="/<user-name>/<repo-name>" data-pjax-transient=true>
+<meta name=google-analytics content=UA-3769691-2>
+<meta class=js-ga-set name=userId content=1e730cc67ef9e97a41e3f88726c7c105>
+<meta class=js-ga-set name=dimension1 content="Logged In">
+<meta name=hostname content=github.com>
+<meta name=user-login content=xeebudong>
+<meta name=expected-hostname content=github.com>
+<meta name=js-proxy-site-detection-payload content="YjM1ODA4N2ZlN2VmZWIxODQyYjNkOTBiNDg4MDYwMzAxMjllNTdmNGM4ZGE3ZDY5OWYyZjBiOWU1YzY2MzM0Y3x7InJlbW90ZV9hZGRyZXNzIjoiMTE5LjEyMy43NC4yNDUiLCJyZXF1ZXN0X2lkIjoiQTE0NToxQzgyOjE0RUI5NToxQkNFNzI6NUU5OUNCMTkiLCJ0aW1lc3RhbXAiOjE1ODcxMzczMDYsImhvc3QiOiJnaXRodWIuY29tIn0=">
+<meta name=enabled-features content=MARKETPLACE_SOCIAL_PROOF_CUSTOMERS,MARKETPLACE_TRENDING_SOCIAL_PROOF,MARKETPLACE_RECOMMENDATIONS,MARKETPLACE_PENDING_INSTALLATIONS,RELATED_ISSUES,GHE_CLOUD_TRIAL,PAGE_STALE_CHECK>
+<meta http-equiv=x-pjax-version content=e435b5b9021ef4f4f3d2c4a4c7b05441>
+<link href=https://github.com/ls0f/phone/commits/master.atom rel=alternate title="Recent Commits to phone:master" type=application/atom+xml>
+<meta name=go-import content="github.com/ls0f/phone git https://github.com/ls0f/phone.git">
+<meta name=octolytics-dimension-user_id content=1734093><meta name=octolytics-dimension-user_login content=ls0f><meta name=octolytics-dimension-repository_id content=20393757><meta name=octolytics-dimension-repository_nwo content=ls0f/phone><meta name=octolytics-dimension-repository_public content=true><meta name=octolytics-dimension-repository_is_fork content=false><meta name=octolytics-dimension-repository_network_root_id content=20393757><meta name=octolytics-dimension-repository_network_root_nwo content=ls0f/phone><meta name=octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown content=false>
+<link rel=canonical href=https://github.com/ls0f/phone data-pjax-transient>
+<meta name=browser-stats-url content=https://api.github.com/_private/browser/stats>
+<meta name=browser-errors-url content=https://api.github.com/_private/browser/errors>
+<meta name=theme-color content=#1e2327>
+<link rel=manifest href=https://github.com/manifest.json crossorigin=use-credentials>
+<meta itemprop=position content=1><meta itemprop=position content=2><meta itemprop=position content=4><link rel=icon class=js-site-favicon type=image/svg+xml href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNiAwQzcuMTYgMCAwIDcuMTYgMCAxNkMwIDIzLjA4IDQuNTggMjkuMDYgMTAuOTQgMzEuMThDMTEuNzQgMzEuMzIgMTIuMDQgMzAuODQgMTIuMDQgMzAuNDJDMTIuMDQgMzAuMDQgMTIuMDIgMjguNzggMTIuMDIgMjcuNDRDOCAyOC4xOCA2Ljk2IDI2LjQ2IDYuNjQgMjUuNTZDNi40NiAyNS4xIDUuNjggMjMuNjggNSAyMy4zQzQuNDQgMjMgMy42NCAyMi4yNiA0Ljk4IDIyLjI0QzYuMjQgMjIuMjIgNy4xNCAyMy40IDcuNDQgMjMuODhDOC44OCAyNi4zIDExLjE4IDI1LjYyIDEyLjEgMjUuMkMxMi4yNCAyNC4xNiAxMi42NiAyMy40NiAxMy4xMiAyMy4wNkM5LjU2IDIyLjY2IDUuODQgMjEuMjggNS44NCAxNS4xNkM1Ljg0IDEzLjQyIDYuNDYgMTEuOTggNy40OCAxMC44NkM3LjMyIDEwLjQ2IDYuNzYgOC44MiA3LjY0IDYuNjJDNy42NCA2LjYyIDguOTggNi4yIDEyLjA0IDguMjZDMTMuMzIgNy45IDE0LjY4IDcuNzIgMTYuMDQgNy43MkMxNy40IDcuNzIgMTguNzYgNy45IDIwLjA0IDguMjZDMjMuMSA2LjE4IDI0LjQ0IDYuNjIgMjQuNDQgNi42MkMyNS4zMiA4LjgyIDI0Ljc2IDEwLjQ2IDI0LjYgMTAuODZDMjUuNjIgMTEuOTggMjYuMjQgMTMuNCAyNi4yNCAxNS4xNkMyNi4yNCAyMS4zIDIyLjUgMjIuNjYgMTguOTQgMjMuMDZDMTkuNTIgMjMuNTYgMjAuMDIgMjQuNTIgMjAuMDIgMjYuMDJDMjAuMDIgMjguMTYgMjAgMjkuODggMjAgMzAuNDJDMjAgMzAuODQgMjAuMyAzMS4zNCAyMS4xIDMxLjE4QzI3LjQyIDI5LjA2IDMyIDIzLjA2IDMyIDE2QzMyIDcuMTYgMjQuODQgMCAxNiAwVjBaIiBmaWxsPSIjMjQyOTJFIi8+Cjwvc3ZnPgo="><style>.sf-hidden{display:none!important}</style></head>
+ <body class="logged-in env-production min-width-lg">
+ 
+ <div class="position-relative js-header-wrapper">
+ <a href=#start-of-content class="p-3 bg-blue text-white show-on-focus js-skip-to-content">Skip to content</a>
+ <span class="Progress progress-pjax-loader position-fixed width-full js-pjax-loader-bar">
+ <span class="progress-pjax-loader-bar top-0 left-0" style=width:0%></span>
+ </span>
+ 
+ 
+ <header class=Header role=banner>
+ <div class=Header-item>
+ <a class=Header-link href=https://github.com/ data-hotkey="g d" aria-label="Homepage " data-ga-click="Header, go to dashboard, icon:logo">
+ <svg class="octicon octicon-mark-github v-align-middle" height=32 viewBox="0 0 16 16" version=1.1 width=32 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+ </div>
+ <div class="Header-item Header-item--full">
+ <div class="header-search mr-3 scoped-search site-scoped-search js-site-search position-relative js-jump-to" role=combobox aria-owns=jump-to-results aria-label="Search or jump to" aria-haspopup=listbox aria-expanded=false>
+ <div class=position-relative>
+ <form class=js-site-search-form role=search aria-label=Site data-scope-type=Repository data-scope-id=20393757 data-scoped-search-url=/ls0f/phone/search data-unscoped-search-url=/search action=/ls0f/phone/search accept-charset=UTF-8>
+ <label class="form-control input-sm header-search-wrapper p-0 header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center js-chromeless-input-container">
+ <input type=text class="form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" data-hotkey=s,/ name=q value placeholder="Search or jump to…" data-unscoped-placeholder="Search or jump to…" data-scoped-placeholder="Search or jump to…" autocapitalize=off aria-autocomplete=list aria-controls=jump-to-results aria-label="Search or jump to…" data-jump-to-suggestions-path=/_graphql/GetSuggestedNavigationDestinations spellcheck=false autocomplete=off>
+ 
+ 
+ <img src=data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMTlweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMTkgMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE5IDIwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CgkgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTc5QTlDIiBvcGFjaXR5PSIwLjQiIGQ9Ik0zLjUsMC41aDEyYzEuNywwLDMsMS4zLDMsM3YxM2MwLDEuNy0xLjMsMy0zLDNoLTEyYy0xLjcsMC0zLTEuMy0zLTN2LTEzQzAuNSwxLjgsMS44LDAuNSwzLjUsMC41eiIvPgoJIDxwYXRoIGZpbGw9IiM5NzlBOUMiIGQ9Ik0xMS44LDZMOCwxNS4xSDcuMUwxMC44LDZMMTEuOCw2eiIvPgo8L3N2Zz4K alt class="mr-2 header-search-key-slash">
+ <div class="Box position-absolute overflow-hidden d-none jump-to-suggestions js-jump-to-suggestions-container sf-hidden">
+ 
+<ul class="d-none js-jump-to-suggestions-template-container">
+ 
+</ul>
+<ul class="d-none js-jump-to-no-results-template-container">
+ 
+</ul>
+<ul id=jump-to-results role=listbox class="p-0 m-0 js-navigation-container jump-to-suggestions-results-container js-jump-to-suggestions-results-container">
+ 
+ 
+ 
+</ul>
+ </div>
+ </label>
+</form> </div>
+</div>
+ <nav class=d-flex aria-label=Global>
+ <a class="js-selected-navigation-item Header-link mr-3" data-hotkey="g p" data-ga-click="Header, click, Nav menu - item:pulls context:user" aria-label="Pull requests you created" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls" href=https://github.com/pulls>
+ Pull requests
+</a>
+ <a class="js-selected-navigation-item Header-link mr-3" data-hotkey="g i" data-ga-click="Header, click, Nav menu - item:issues context:user" aria-label="Issues you created" data-selected-links="/issues /issues/assigned /issues/mentioned /issues" href=https://github.com/issues>
+ Issues
+</a>
+ <div class=mr-3>
+ <a class="js-selected-navigation-item Header-link" data-ga-click="Header, click, Nav menu - item:marketplace context:user" data-octo-click=marketplace_click data-octo-dimensions=location:nav_bar data-selected-links=" /marketplace" href=https://github.com/marketplace>
+ Marketplace
+</a> 
+ </div>
+ <a class="js-selected-navigation-item Header-link mr-3" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship showcases showcases_search showcases_landing /explore" href=https://github.com/explore>
+ Explore
+</a>
+</nav>
+ </div>
+ <div class=Header-item>
+ 
+ <a aria-label="You have no unread notifications" class="Header-link notification-indicator position-relative tooltipped tooltipped-sw js-socket-channel js-notification-indicator" data-hotkey="g n" data-ga-click="Header, go to notifications, icon:read" data-channel=notification-changed:22268775 href=https://github.com/notifications/beta>
+ <span class="js-indicator-modifier mail-status sf-hidden"></span>
+ <svg class="octicon octicon-bell" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M14 12v1H0v-1l.73-.58c.77-.77.81-2.55 1.19-4.42C2.69 3.23 6 2 6 2c0-.55.45-1 1-1s1 .45 1 1c0 0 3.39 1.23 4.16 5 .38 1.88.42 3.66 1.19 4.42l.66.58H14zm-7 4c1.11 0 2-.89 2-2H5c0 1.11.89 2 2 2z"></path></svg>
+</a>
+ </div>
+ <div class="Header-item position-relative">
+ <details class="details-overlay details-reset">
+ <summary class=Header-link aria-label="Create new…" data-ga-click="Header, create new, icon:add" aria-haspopup=menu role=button>
+ <svg class="octicon octicon-plus" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg> <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="dropdown-menu dropdown-menu-sw sf-hidden" role=menu>
+ 
+<a role=menuitem class=dropdown-item href=https://github.com/new data-ga-click="Header, create new repository">
+ New repository
+</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/new/import data-ga-click="Header, import a repository">
+ Import repository
+ </a>
+<a role=menuitem class=dropdown-item href=https://gist.github.com/ data-ga-click="Header, create new gist">
+ New gist
+</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/organizations/new data-ga-click="Header, create new organization">
+ New organization
+ </a>
+ <div role=none class=dropdown-divider></div>
+ <div class=dropdown-header>
+ 
+ </div>
+ <a role=menuitem class=dropdown-item href=https://github.com/ls0f/phone/issues/new/choose data-ga-click="Header, create new issue" data-skip-pjax>
+ New issue
+ </a>
+ </details-menu>
+</details>
+ </div>
+ <div class="Header-item position-relative mr-0">
+ 
+ <details class="details-overlay details-reset js-feature-preview-indicator-container" data-feature-preview-indicator-src=/users/xeebudong/feature_preview/indicator_check>
+ <summary class=Header-link aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar" aria-haspopup=menu role=button>
+ <img class=avatar alt=@xeebudong width=20 height=20 src=data:>
+ <span class="feature-preview-indicator js-feature-preview-indicator sf-hidden" hidden></span>
+ <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="dropdown-menu dropdown-menu-sw mt-2 sf-hidden" style=width:180px role=menu>
+ <div class="header-nav-current-user css-truncate"></div>
+ <div role=none class=dropdown-divider></div>
+ <div class="pl-3 pr-3 f6 user-status-container js-user-status-context pb-1" data-url="/users/status?compact=1&amp;link_mentions=0&amp;truncate=1">
+ 
+ </div>
+ <div role=none class=dropdown-divider></div>
+ <a role=menuitem class=dropdown-item href=https://github.com/xeebudong data-ga-click="Header, go to profile, text:your profile">Your profile</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=repositories" data-ga-click="Header, go to repositories, text:your repositories">Your repositories</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=projects" data-ga-click="Header, go to projects, text:your projects">Your projects</a>
+ <a role=menuitem class=dropdown-item href="https://github.com/xeebudong?tab=stars" data-ga-click="Header, go to starred repos, text:your stars">Your stars</a>
+ <a role=menuitem class=dropdown-item href=https://gist.github.com/mine data-ga-click="Header, your gists, text:your gists">Your gists</a>
+ <div role=none class=dropdown-divider></div>
+ 
+<div id=feature-enrollment-toggle class="hide-sm hide-md feature-preview-details position-relative">
+ 
+ 
+</div>
+ <a role=menuitem class=dropdown-item href=https://help.github.com/ data-ga-click="Header, go to help, text:help">Help</a>
+ <a role=menuitem class=dropdown-item href=https://github.com/settings/profile data-ga-click="Header, go to settings, icon:settings">Settings</a>
+ <form class=logout-form action=/logout accept-charset=UTF-8 method=post>
+ 
+ 
+ 
+</form> </details-menu>
+</details>
+ </div>
+</header>
+ 
+ </div>
+ <div id=start-of-content class=show-on-focus></div>
+ <div id=js-flash-container>
+ <template class=js-flash-template>
+    <div class="flash flash-full  js-flash-template-container">
+  <div class="container-lg px-2">
+    <button class="flash-close js-flash-close" type="button" aria-label="Dismiss this message">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+    </button>
+    
+      <div class="js-flash-template-message"></div>
+
+  </div>
+</div>
+  </template>
+</div>
+ 
+ <include-fragment class=js-notification-shelf-include-fragment data-base-src=https://github.com/notifications/beta/shelf></include-fragment>
+ <div class=application-main data-commit-hovercards-enabled>
+ <div itemscope itemtype=http://schema.org/SoftwareSourceCode>
+ <main id=js-repo-pjax-container data-pjax-container>
+ 
+ 
+ <div class="pagehead repohead hx_repohead readability-menu bg-gray-light pb-0 pt-3">
+ <div class="d-flex container-lg mb-4 px-3">
+ <div class="flex-auto min-width-0 width-fit mr-3">
+ <h1 class="public d-flex flex-wrap flex-items-center break-word float-none">
+ <span class=flex-self-stretch style=margin-top:-2px>
+ <svg class="octicon octicon-repo" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+ </span>
+ <span class="author ml-2 flex-self-stretch" itemprop=author>
+ <a class="url fn" rel=author data-hovercard-type=user data-hovercard-url=/users/ls0f/hovercard data-octo-click=hovercard-link-click data-octo-dimensions=link_type:self href=https://github.com/ls0f>ls0f</a>
+ </span>
+ <span class="path-divider flex-self-stretch">/</span>
+ <strong itemprop=name class="mr-2 flex-self-stretch">
+ <a data-pjax=#js-repo-pjax-container href=https://github.com/ls0f/phone>phone</a>
+ </strong>
+ 
+</h1>
+ </div>
+ <ul class="pagehead-actions flex-shrink-0">
+ <li hidden class=sf-hidden>
+ 
+ <details class="dropdown details-reset details-overlay d-inline-block float-left" data-deferred-details-content-url=/ls0f/phone/used_by_contents>
+ 
+ 
+ </details>
+ <a class=social-count href="https://github.com/ls0f/phone/network/dependents?package_id=UGFja2FnZS01MjQwOTUwOQ%3D%3D" aria-label="81 repositories depend on this package">
+ 81
+ </a>
+ </li>
+ <li>
+ 
+ <form data-remote=true class="clearfix js-social-form js-social-container" action=/notifications/subscribe accept-charset=UTF-8 method=post> 
+ <details class="details-reset details-overlay select-menu float-left">
+ <summary class="select-menu-button float-left btn btn-sm btn-with-count" data-hydro-click='{"event_type":"repository.click","payload":{"target":"WATCH_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=759f9584b39084bda646c9cd7496e0fc05e5371a78dafa33026b13b972703f57 data-ga-click="Repository, click Watch settings, action:files#disambiguate" aria-haspopup=menu role=button> <span data-menu-button>
+ <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+ Watch
+ </span>
+</summary> <details-menu class="select-menu-modal position-absolute mt-5 sf-hidden" style=z-index:99 role=menu>
+ <div class=select-menu-header>
+ 
+ </div>
+ <div class=select-menu-list>
+ 
+ 
+ 
+ 
+ </div>
+ </details-menu>
+ </details>
+ <a class="social-count js-social-count" href=https://github.com/ls0f/phone/watchers aria-label="51 users are watching this repository">
+ 51
+ </a>
+</form>
+ </li>
+ <li>
+ <div class="js-toggler-container js-social-container starring-container">
+ <form class="starred js-social-form sf-hidden" action=/ls0f/phone/unstar accept-charset=UTF-8 method=post>
+ 
+ <button type=submit class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar ls0f/phone" data-hydro-click='{"event_type":"repository.click","payload":{"target":"UNSTAR_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=6e939a4d62f61b1d8ac5102b02beec226218e7e01dac258dc7913e6b80fc5a76 data-ga-click="Repository, click unstar button, action:files#disambiguate; text:Unstar"> <svg height=16 class="octicon octicon-star v-align-text-bottom" vertical_align=text_bottom viewBox="0 0 14 16" version=1.1 width=14 aria-hidden=true><path fill-rule=evenodd d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+ Unstar
+</button> <a class="social-count js-social-count" href=https://github.com/ls0f/phone/stargazers aria-label="616 users starred this repository">
+ 616
+ </a>
+</form>
+ <form class="unstarred js-social-form" action=/ls0f/phone/star accept-charset=UTF-8 method=post>
+ 
+ <button type=submit class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Star ls0f/phone" data-hydro-click='{"event_type":"repository.click","payload":{"target":"STAR_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=b20f4ec34e8d6e4889b7dc3a5c9975b17b23181831780390fa5f21351de01f8c data-ga-click="Repository, click star button, action:files#disambiguate; text:Star"> <svg height=16 class="octicon octicon-star v-align-text-bottom" vertical_align=text_bottom viewBox="0 0 14 16" version=1.1 width=14 aria-hidden=true><path fill-rule=evenodd d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+ Star
+</button> <a class="social-count js-social-count" href=https://github.com/ls0f/phone/stargazers aria-label="616 users starred this repository">
+ 616
+ </a>
+</form> </div>
+ </li>
+ <li>
+ <form class=btn-with-count action=/ls0f/phone/fork accept-charset=UTF-8 method=post>
+ <button class="btn btn-sm btn-with-count" data-hydro-click='{"event_type":"repository.click","payload":{"target":"FORK_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=e86566ff8f3fc9b0c727ba326e07fd472d6b3862d28af537bd431b2e134becae data-ga-click="Repository, show fork modal, action:files#disambiguate; text:Fork" type=submit title="Fork your own copy of ls0f/phone to your account" aria-label="Fork your own copy of ls0f/phone to your account"> <svg class="octicon octicon-repo-forked v-align-text-bottom" viewBox="0 0 10 16" version=1.1 width=10 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 1a1.993 1.993 0 00-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 002 1a1.993 1.993 0 00-1 3.72V6.5l3 3v1.78A1.993 1.993 0 005 15a1.993 1.993 0 001-3.72V9.5l3-3V4.72A1.993 1.993 0 008 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+ Fork
+</button></form>
+ <a href=https://github.com/ls0f/phone/network/members class=social-count aria-label="167 users forked this repository">
+ 167
+ </a>
+ </li>
+</ul>
+ </div>
+ 
+<nav class="hx_reponav reponav js-repo-nav js-sidenav-container-pjax clearfix container-lg px-3" itemscope itemtype=http://schema.org/BreadcrumbList aria-label=Repository data-pjax=#js-repo-pjax-container>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a class="js-selected-navigation-item selected reponav-item" itemprop=url data-hotkey="g c" aria-current=page data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /ls0f/phone" href=https://github.com/ls0f/phone>
+ <div class=d-inline><svg class="octicon octicon-code" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg></div>
+ <span itemprop=name>Code</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a itemprop=url data-hotkey="g i" class="js-selected-navigation-item reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /ls0f/phone/issues" href=https://github.com/ls0f/phone/issues>
+ <div class=d-inline><svg class="octicon octicon-issue-opened" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 011.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>
+ <span itemprop=name>Issues</span>
+ <span class=Counter>5</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement>
+ <a data-hotkey="g p" data-skip-pjax=true itemprop=url class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /ls0f/phone/pulls" href=https://github.com/ls0f/phone/pulls>
+ <div class=d-inline><svg class="octicon octicon-git-pull-request" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0010 15a1.993 1.993 0 001-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 00-1 3.72v6.56A1.993 1.993 0 002 15a1.993 1.993 0 001-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg></div>
+ <span itemprop=name>Pull requests</span>
+ <span class=Counter>0</span>
+ 
+</a> </span>
+ <span itemscope itemtype=http://schema.org/ListItem itemprop=itemListElement class="position-relative float-left">
+ <a data-hotkey="g w" data-skip-pjax=true class="js-selected-navigation-item reponav-item" data-selected-links="repo_actions /ls0f/phone/actions" href=https://github.com/ls0f/phone/actions>
+ <div class=d-inline><svg class="octicon octicon-play" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M14 8A7 7 0 110 8a7 7 0 0114 0zm-8.223 3.482l4.599-3.066a.5.5 0 000-.832L5.777 4.518A.5.5 0 005 4.934v6.132a.5.5 0 00.777.416z"></path></svg></div>
+ Actions
+</a>
+ </span>
+ <a data-hotkey="g b" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /ls0f/phone/projects" href=https://github.com/ls0f/phone/projects>
+ <div class=d-inline><svg class="octicon octicon-project" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 00-1 1v14a1 1 0 001 1h13a1 1 0 001-1V1a1 1 0 00-1-1z"></path></svg></div>
+ Projects
+ <span class=Counter>0</span>
+</a>
+ <a class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /ls0f/phone/wiki" href=https://github.com/ls0f/phone/wiki>
+ <div class=d-inline><svg class="octicon octicon-book" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg></div>
+ Wiki
+</a>
+ <a data-skip-pjax=true class="js-selected-navigation-item reponav-item" data-selected-links="security overview alerts policy token_scanning code_scanning /ls0f/phone/security" href=https://github.com/ls0f/phone/security>
+ <div class=d-inline><svg class="octicon octicon-shield" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M0 2l7-2 7 2v6.02C14 12.69 8.69 16 7 16c-1.69 0-7-3.31-7-7.98V2zm1 .75L7 1l6 1.75v5.268C13 12.104 8.449 15 7 15c-1.449 0-6-2.896-6-6.982V2.75zm1 .75L7 2v12c-1.207 0-5-2.482-5-5.985V3.5z"></path></svg></div>
+ Security
+</a>
+ <a class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people /ls0f/phone/pulse" href=https://github.com/ls0f/phone/pulse>
+ <div class=d-inline><svg class="octicon octicon-graph" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg></div>
+ Insights
+</a>
+</nav>
+ </div>
+<div class="container-lg clearfix new-discussion-timeline px-3">
+ <div class=repository-content>
+ 
+ 
+ 
+ <div class=mb-3> <div class=f4>
+ <span class="text-gray-dark mr-2" itemprop=about>
+ 手机号码归属地库
+ </span>
+ <span itemprop=url><a rel=nofollow href=https://github.com/ls0f/phone>https://github.com/ls0f/phone</a></span>
+ </div>
+</div>
+ <div class="overall-summary border-bottom-0 mb-0 rounded-bottom-0">
+ <ul class=numbers-summary>
+ <li class=commits>
+ <a data-pjax href=https://github.com/ls0f/phone/commits/master>
+ <svg class="octicon octicon-git-commit" viewBox="0 0 14 16" version=1.1 width=14 height=16 aria-hidden=true><path fill-rule=evenodd d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z"></path></svg>
+ <span class="num text-emphasized">
+ 33
+ </span>
+ commits
+ </a>
+ </li>
+ <li>
+ <a data-pjax href=https://github.com/ls0f/phone/branches>
+ <svg class="octicon octicon-git-branch" viewBox="0 0 10 16" version=1.1 width=10 height=16 aria-hidden=true><path fill-rule=evenodd d="M10 5c0-1.11-.89-2-2-2a1.993 1.993 0 00-1 3.72v.3c-.02.52-.23.98-.63 1.38-.4.4-.86.61-1.38.63-.83.02-1.48.16-2 .45V4.72a1.993 1.993 0 00-1-3.72C.88 1 0 1.89 0 3a2 2 0 001 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2 1.11 0 2-.89 2-2 0-.53-.2-1-.53-1.36.09-.06.48-.41.59-.47.25-.11.56-.17.94-.17 1.05-.05 1.95-.45 2.75-1.25S8.95 7.77 9 6.73h-.02C9.59 6.37 10 5.73 10 5zM2 1.8c.66 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2C1.35 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2zm0 12.41c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm6-8c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+ <span class="num text-emphasized">
+ 2
+ </span>
+ branches
+ </a>
+ </li>
+ <li>
+ <a data-pjax href=https://github.com/ls0f/phone/packages data-ga-click="Repository, packages click, location:repo overview">
+ <svg class="octicon octicon-package" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M1 4.27v7.47c0 .45.3.84.75.97l6.5 1.73c.16.05.34.05.5 0l6.5-1.73c.45-.13.75-.52.75-.97V4.27c0-.45-.3-.84-.75-.97l-6.5-1.74a1.4 1.4 0 00-.5 0L1.75 3.3c-.45.13-.75.52-.75.97zm7 9.09l-6-1.59V5l6 1.61v6.75zM2 4l2.5-.67L11 5.06l-2.5.67L2 4zm13 7.77l-6 1.59V6.61l2-.55V8.5l2-.53V5.53L15 5v6.77zm-2-7.24L6.5 2.8l2-.53L15 4l-2 .53z"></path></svg>
+ <span class="num text-emphasized">
+ 0
+ </span>
+ packages
+ </a>
+ </li>
+ <li>
+ <a href=https://github.com/ls0f/phone/releases>
+ <svg class="octicon octicon-tag" viewBox="0 0 15 16" version=1.1 width=15 height=16 aria-hidden=true><path fill-rule=evenodd d="M7.73 1.73C7.26 1.26 6.62 1 5.96 1H3.5C2.13 1 1 2.13 1 3.5v2.47c0 .66.27 1.3.73 1.77l6.06 6.06c.39.39 1.02.39 1.41 0l4.59-4.59a.996.996 0 000-1.41L7.73 1.73zM2.38 7.09c-.31-.3-.47-.7-.47-1.13V3.5c0-.88.72-1.59 1.59-1.59h2.47c.42 0 .83.16 1.13.47l6.14 6.13-4.73 4.73-6.13-6.15zM3.01 3h2v2H3V3h.01z"></path></svg>
+ <span class="num text-emphasized">
+ 1
+ </span>
+ release
+ </a>
+ </li>
+ <li data-contributors-hovercards-enabled>
+ <a href=https://github.com/ls0f/phone/graphs/contributors data-hovercard-type=contributors data-hovercard-url=/ls0f/phone/community_contributors/hovercard>
+ <svg class="octicon octicon-organization" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4z"></path></svg>
+ <span class="num text-emphasized">
+ 8
+ </span>
+ contributors
+</a> </li>
+ </ul>
+ </div>
+ <details class=details-reset>
+ <summary title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
+ <div class="d-flex repository-lang-stats-graph">
+ <span class=language-color aria-label="Python 100.0%" style=width:100.0%;background-color:#3572A5 itemprop=keywords>Python</span>
+ </div>
+ </summary>
+ <div class="repository-lang-stats sf-hidden">
+ <ol class=repository-lang-stats-numbers>
+ 
+ </ol>
+ </div>
+ </details>
+ <div class=mt-2>
+ 
+ </div>
+<div class="file-navigation in-mid-page mb-2 d-flex flex-items-start">
+ 
+<details class="details-reset details-overlay branch-select-menu" id=branch-select-menu>
+ <summary class="btn css-truncate btn-sm" data-hotkey=w title="Switch branches or tags" aria-haspopup=menu role=button>
+ <i>Branch:</i>
+ <span class=css-truncate-target data-menu-button>master</span>
+ <span class=dropdown-caret></span>
+ </summary>
+ <details-menu class="SelectMenu SelectMenu--hasFilter sf-hidden" src="/ls0f/phone/refs/master?source_action=disambiguate&amp;source_controller=files" preload role=menu>
+ <div class=SelectMenu-modal>
+ 
+ </div>
+ </details-menu>
+</details>
+ <a class="btn btn-sm new-pull-request-btn ml-2" data-hydro-click='{"event_type":"repository.click","payload":{"target":"NEW_PULL_REQUEST_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=fcf2585dc39289a9b5f326ee4dfda94a9d091e60cbfba3a12adb4ad5e6c6539f data-ga-click="Repository, new pull request, location:repo overview" data-pjax=true href=https://github.com/ls0f/phone/pull/new/master>New pull request</a>
+ <div class="breadcrumb flex-auto">
+ 
+ </div>
+ <div class="BtnGroup ml-2">
+ 
+ <form class=BtnGroup-parent action=/ls0f/phone/new/master accept-charset=UTF-8 method=post>
+ <button class="btn btn-sm BtnGroup-item" type=submit data-disable-with="Creating file…">
+ Create new file
+ </button>
+</form>
+ 
+ <a href=https://github.com/ls0f/phone/upload/master class="btn btn-sm BtnGroup-item">
+ Upload files
+ </a>
+ <a class="btn btn-sm empty-icon float-right BtnGroup-item" data-hydro-click='{"event_type":"repository.click","payload":{"target":"FIND_FILE_BUTTON","repository_id":20393757,"originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=86f3fb849d9ffa09371d643edd659d752fce91487d8f11387b7a6c328db18d5f data-ga-click="Repository, find file, location:repo overview" data-hotkey=t data-pjax=true href=https://github.com/ls0f/phone/find/master>Find file</a>
+ </div>
+ <span class=d-flex>
+ 
+ <details class="get-repo-select-menu js-get-repo-select-menu position-relative details-overlay details-reset">
+ <summary class="btn btn-sm ml-2 btn-primary" data-hydro-click='{"event_type":"repository.click","payload":{"repository_id":20393757,"target":"CLONE_OR_DOWNLOAD_BUTTON","originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=39bf2cb84854805650e631fbc47ff3776b05c94349799dfbb738ca992d0633d0>
+ Clone or download
+ <span class=dropdown-caret></span>
+</summary> <div class="position-relative sf-hidden">
+ <div class="get-repo-modal dropdown-menu dropdown-menu-sw pb-0 js-toggler-container js-get-repo-modal">
+ 
+ 
+ 
+ 
+ 
+ </div>
+ </div>
+</details>
+ </span>
+ 
+</div>
+<div class="Box mb-3 Box--condensed">
+ <div class="Box-header Box-header--blue position-relative" style=margin-bottom:-1px>
+ <h2 class=sr-only>Latest commit</h2>
+ <div class="commit-tease js-details-container Details d-flex rounded-top-1 flex-auto" data-issue-and-pr-hovercards-enabled>
+ 
+ 
+<div class="AvatarStack flex-self-start AvatarStack--two">
+ <div class=AvatarStack-body aria-label="gumblex and ls0f (non-author committer)">
+ <a class=avatar data-skip-pjax=true data-hovercard-type=user data-hovercard-url=/users/gumblex/hovercard data-octo-click=hovercard-link-click data-octo-dimensions=link_type:self href=https://github.com/gumblex>
+ <img height=20 width=20 alt=@gumblex src="data:image/png;base64,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">
+</a> <a class=avatar data-skip-pjax=true data-hovercard-type=user data-hovercard-url=/users/ls0f/hovercard data-octo-click=hovercard-link-click data-octo-dimensions=link_type:self href=https://github.com/ls0f>
+ <img height=20 width=20 alt=@ls0f src="data:image/png;base64,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">
+</a> </div>
+</div>
+ <div class="flex-auto f6 mr-3">
+ 
+ <a href="https://github.com/ls0f/phone/commits?author=gumblex" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by gumblex">gumblex</a>
+ and <a href="https://github.com/ls0f/phone/commits?author=ls0f" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by ls0f">ls0f</a>
+ 
+ <a data-pjax=true title="optimize lookup speed (#31)" class="message text-inherit" href=https://github.com/ls0f/phone/commit/722d1d98da506041ca3cda6d1545ede6b55d847c>optimize lookup speed (</a><a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id=451164096 data-permission-text="Title is private" data-url=https://github.com/ls0f/phone/issues/31 data-hovercard-type=pull_request data-hovercard-url=/ls0f/phone/pull/31/hovercard href=https://github.com/ls0f/phone/pull/31>#31</a><a data-pjax=true title="optimize lookup speed (#31)" class="message text-inherit" href=https://github.com/ls0f/phone/commit/722d1d98da506041ca3cda6d1545ede6b55d847c>)</a>
+ </div>
+ <div class="no-wrap d-flex flex-self-start flex-items-baseline">
+ <span class="mr-2 flex-self-center">
+ 
+ <details class="commit-build-statuses details-overlay details-reset js-dropdown-details" data-deferred-details-content-url="/_render_node/MDE3OlN0YXR1c0NoZWNrUm9sbHVwMjAzOTM3NTc6NzIyZDFkOThkYTUwNjA0MWNhM2NkYTZkMTU0NWVkZTZiNTVkODQ3Yw==/statuses/combined_branch_status">
+ <summary class=text-green>
+ <svg aria-label="1 / 1 checks OK" class="octicon octicon-check" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>
+ </summary>
+ <div class="dropdown-menu dropdown-menu-w overflow-hidden sf-hidden">
+ <include-fragment class="m-4 d-flex flex-column flex-items-center">
+ 
+ 
+ </include-fragment>
+ </div>
+ </details>
+ </span>
+ <span class=mr-1>Latest commit</span>
+ <a class="commit-tease-sha mr-1" href=https://github.com/ls0f/phone/commit/722d1d98da506041ca3cda6d1545ede6b55d847c data-pjax>
+ 722d1d9
+ </a>
+ <span itemprop=dateModified><relative-time datetime=2019-06-03T06:46:51Z class=no-wrap title="2019年6月3日 GMT+8 下午2:46">on 3 Jun 2019</relative-time></span>
+ </div>
+ </div>
+ </div>
+ <h2 id=files class=sr-only>Files</h2>
+ 
+ <a class="d-none js-permalink-shortcut sf-hidden" data-hotkey=y href=https://github.com/ls0f/phone/tree/722d1d98da506041ca3cda6d1545ede6b55d847c>Permalink</a>
+ <table class="files js-navigation-container js-active-navigation-container" data-pjax>
+ <thead>
+ <tr>
+ <th><span class=sr-only>Type</span></th>
+ <th><span class=sr-only>Name</span></th>
+ <th><span class=sr-only>Latest commit message</span></th>
+ <th><span class=sr-only>Commit time</span></th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="warning include-fragment-error sf-hidden">
+ <td class=icon><svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></td>
+ <td class=content colspan=3>Failed to load latest commit information.</td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=phone id=f7a42fe7211f98ac7a60a285ac3a9e87-8d264db1afb6e8044e0754b7e0c4f933ab003756 href=https://github.com/ls0f/phone/tree/master/phone>phone</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="optimize lookup speed (#31)" class=link-gray href=https://github.com/ls0f/phone/commit/722d1d98da506041ca3cda6d1545ede6b55d847c>optimize lookup speed (</a><a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id=451164096 data-permission-text="Title is private" data-url=https://github.com/ls0f/phone/issues/31 data-hovercard-type=pull_request data-hovercard-url=/ls0f/phone/pull/31/hovercard href=https://github.com/ls0f/phone/pull/31>#31</a><a data-pjax=true title="optimize lookup speed (#31)" class=link-gray href=https://github.com/ls0f/phone/commit/722d1d98da506041ca3cda6d1545ede6b55d847c>)</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2019-06-03T06:46:51Z class=no-wrap title="2019年6月3日 GMT+8 下午2:46">11 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class="js-navigation-item navigation-focus">
+ <td class=icon>
+ <svg aria-label=directory class="octicon octicon-file-directory" viewBox="0 0 14 16" version=1.1 width=14 height=16 role=img><path fill-rule=evenodd d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=travis id=7985139ae9b6efb45373e3e36e444224-1b40640e102916115569448516c355411f71c369 href=https://github.com/ls0f/phone/tree/master/travis>travis</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add travis" class=link-gray href=https://github.com/ls0f/phone/commit/bbdfafa3fe5b6a8c058dd71fa73e630d524e0616>add travis</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2016-08-14T04:33:02Z class=no-wrap title="2016年8月14日 GMT+8 下午12:33">4 years ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=.gitignore id=a084b794bc0759e7a6b77810e01874f2-5192bdb83d4fbc89ce8e3879a883d2f5fd01f4b6 href=https://github.com/ls0f/phone/blob/master/.gitignore>.gitignore</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="add .idea folder to git ignore file" class=link-gray href=https://github.com/ls0f/phone/commit/55ced8b7cebbac3f319c5f214caaf39279955f36>add .idea folder to git ignore file</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2016-08-14T03:55:24Z class=no-wrap title="2016年8月14日 GMT+8 上午11:55">4 years ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=.travis.yml id=354f30a63fb0907d4ad57269548329e3-2601c36cfff106076cc836bc403a4f39464dae32 href=https://github.com/ls0f/phone/blob/master/.travis.yml>.travis.yml</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="Update .travis.yml" class=link-gray href=https://github.com/ls0f/phone/commit/2876ca121762101b39380ca486c7c5cde4e00007>Update .travis.yml</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-18T06:21:26Z class=no-wrap title="2018年12月18日 GMT+8 下午2:21">16 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=MANIFEST.in id=97c91a104c431d0c365565d3ac03ac13-30dc1d33ee3491ead19bcbe955ba670e4aff32a4 href=https://github.com/ls0f/phone/blob/master/MANIFEST.in>MANIFEST.in</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title=重构 class=link-gray href=https://github.com/ls0f/phone/commit/c7039d72c300fed0440733d33d7e3d5e50b72642>重构</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2015-08-22T15:17:12Z class=no-wrap title="2015年8月22日 GMT+8 下午11:17">5 years ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=README.md id=04c6e90faac2675aa89e2176d2eec7d8-cca5babf9a5900267720a1c9aa5cca9ab585ca5d href=https://github.com/ls0f/phone/blob/master/README.md>README.md</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="Update README.md" class=link-gray href=https://github.com/ls0f/phone/commit/74c165931844a2cec63a1b0b22ed15132f59eb85>Update README.md</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-18T07:32:29Z class=no-wrap title="2018年12月18日 GMT+8 下午3:32">16 months ago</time-ago></span>
+ </td>
+ </tr>
+ <tr class=js-navigation-item>
+ <td class=icon>
+ <svg aria-label=file class="octicon octicon-file" viewBox="0 0 12 16" version=1.1 width=12 height=16 role=img><path fill-rule=evenodd d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+ <img width=16 height=16 class="spinner sf-hidden" alt src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+ </td>
+ <td class=content>
+ <span class="css-truncate css-truncate-target"><a class=js-navigation-open title=setup.py id=2eeaed663bd0d25b7e608891384b7298-f5eac2905dd5cbfe5248a3cd97969dde3743bd2c href=https://github.com/ls0f/phone/blob/master/setup.py>setup.py</a></span>
+ </td>
+ <td class=message>
+ <span class="css-truncate css-truncate-target">
+ <a data-pjax=true title="bomb version" class=link-gray href=https://github.com/ls0f/phone/commit/ff989067b0557f8b5ec7f66549fbad601e145aeb>bomb version</a>
+ </span>
+ </td>
+ <td class=age>
+ <span class="css-truncate css-truncate-target"><time-ago datetime=2018-12-18T06:22:59Z class=no-wrap title="2018年12月18日 GMT+8 下午2:22">16 months ago</time-ago></span>
+ </td>
+ </tr>
+ </tbody>
+ </table>
+</div>
+ <div id=readme class="Box md js-code-block-container Box--condensed">
+ <div class="Box-header d-flex flex-items-center flex-justify-between">
+ <h2 class="Box-title pr-3">
+ <svg class="octicon octicon-book" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+ README.md
+ </h2>
+ </div>
+ <div class="Popover anim-scale-in js-tagsearch-popover sf-hidden" hidden data-tagsearch-url=/ls0f/phone/find-symbols data-tagsearch-ref=master data-tagsearch-path=README.md data-tagsearch-lang=Markdown data-hydro-click='{"event_type":"code_navigation.click_on_symbol","payload":{"action":"click_on_symbol","repository_id":20393757,"ref":"master","language":"Markdown","originating_url":"https://github.com/ls0f/phone","user_id":22268775}}' data-hydro-click-hmac=5e931d565a565c14b80d02b1c3a8c2b3b33a18bb3cfb21a588901b75bd312af2>
+ <div class="Popover-message Popover-message--large Popover-message--top-left TagsearchPopover mt-1 mb-4 mx-auto Box box-shadow-large">
+ 
+ </div>
+</div>
+ <div class="Box-body p-5">
+ <article class="markdown-body entry-content" itemprop=text><p><a href=https://travis-ci.org/lovedboy/phone rel=nofollow><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5OCIgaGVpZ2h0PSIyMCI+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3Qgcng9IjMiIHdpZHRoPSI5OCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHJ4PSIzIiB4PSIzNyIgd2lkdGg9IjYxIiBoZWlnaHQ9IjIwIiBmaWxsPSIjOWY5ZjlmIi8+PHBhdGggZmlsbD0iIzlmOWY5ZiIgZD0iTTM3IDBoNHYyMGgtNHoiLz48cmVjdCByeD0iMyIgd2lkdGg9Ijk4IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI2EpIi8+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLFZlcmRhbmEsR2VuZXZhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjE5LjUiIHk9IjE1IiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIj5idWlsZDwvdGV4dD48dGV4dCB4PSIxOS41IiB5PSIxNCI+YnVpbGQ8L3RleHQ+PHRleHQgeD0iNjYuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPnVua25vd248L3RleHQ+PHRleHQgeD0iNjYuNSIgeT0iMTQiPnVua25vd248L3RleHQ+PC9nPjwvc3ZnPg==" alt="Build Status" data-canonical-src="https://travis-ci.org/lovedboy/phone.svg?branch=master" style=max-width:100%></a></p>
+<h2><a id=user-content-手机号码库 class=anchor aria-hidden=true href=#%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81%E5%BA%93><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>手机号码库</h2>
+<h4><a id=user-content-安装 class=anchor aria-hidden=true href=#%E5%AE%89%E8%A3%85><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装</h4>
+<p>使用pip安装:</p>
+<pre><code>pip install phone
+
+</code></pre>
+<p>或者直接clone源码。</p>
+<p>使用：</p>
+<pre><code>from phone import Phone
+p  = Phone()
+p.find(1888888)
+</code></pre>
+<h3><a id=user-content-支持号段 class=anchor aria-hidden=true href=#%E6%94%AF%E6%8C%81%E5%8F%B7%E6%AE%B5><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>支持号段</h3>
+<p>13*,15*,18*,14[5,7],17[0,6,7,8]</p>
+<h4><a id=user-content-记录条数 class=anchor aria-hidden=true href=#%E8%AE%B0%E5%BD%95%E6%9D%A1%E6%95%B0><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>记录条数</h4>
+<p>360569 (updated:2018年10月)</p>
+<h4><a id=user-content-其他语言支持 class=anchor aria-hidden=true href=#%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>其他语言支持</h4>
+<p>下载<a href=https://github.com/lovedboy/phone/raw/master/phone/phone.dat>phone.dat</a>文件，用其他语言解析即可。</p>
+<ul>
+<li><a href=https://gist.github.com/lovedboy/bbff19c91e3d98388d52>lua解析</a>，如果不支持bit32，用<a href=https://gist.github.com/lovedboy/fe7750e202572712615a>这个</a>。</li>
+<li><a href=https://github.com/xluohome/phonedata>go解析</a>。</li>
+<li><a href=https://github.com/conzi/phone>Node解析</a>。</li>
+</ul>
+<h4><a id=user-content-phonedat文件格式 class=anchor aria-hidden=true href=#phonedat%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>phone.dat文件格式</h4>
+<pre><code>
+        | 4 bytes |                     &lt;- phone.dat 版本号
+        ------------
+        | 4 bytes |                     &lt;-  第一个索引的偏移
+        -----------------------
+        |  offset - 8            |      &lt;-  记录区
+        -----------------------
+        |  index                 |      &lt;-  索引区
+        -----------------------
+
+</code></pre>
+<ul>
+<li><code>头部</code> 头部为8个字节，版本号为4个字节，第一个索引的偏移为4个字节(&lt;4si)。</li>
+<li><code>记录区</code> 中每条记录的格式为"&lt;省份&gt;|&lt;城市&gt;|&lt;邮编&gt;|&lt;长途区号&gt;\0"。 每条记录以'\0'结束。</li>
+<li><code>索引区</code> 中每条记录的格式为"&lt;手机号前七位&gt;&lt;记录区的偏移&gt;&lt;卡类型&gt;"，每个索引的长度为9个字节(<code>&lt;iiB</code>)。</li>
+</ul>
+<p>解析步骤:</p>
+<ul>
+<li>解析头部8个字节，得到索引区的第一条索引的偏移。</li>
+<li>在索引区用二分查找得出手机号在记录区的记录偏移。</li>
+<li>在记录区从上一步得到的记录偏移处取数据，直到遇到'\0'。</li>
+</ul>
+<p>我定义的卡类型为:</p>
+<ul>
+<li>1 移动</li>
+<li>2 联通</li>
+<li>3 电信</li>
+<li>4 电信虚拟运营商</li>
+<li>5 联通虚拟运营商</li>
+<li>6 移动虚拟运营商</li>
+</ul>
+<h2><a id=user-content-license class=anchor aria-hidden=true href=#license><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
+<h4><a id=user-content-mit class=anchor aria-hidden=true href=#mit><svg class="octicon octicon-link" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href=https://opensource.org/licenses/mit-license.php rel=nofollow>MIT</a></h4>
+</article>
+ </div>
+ </div>
+ </div>
+</div>
+ </main>
+ </div>
+ 
+ </div>
+ 
+<div class="footer container-lg width-full px-3" role=contentinfo>
+ <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light">
+ <ul class="list-style-none d-flex flex-wrap">
+ <li class=mr-3>© 2020 GitHub, Inc.</li>
+ <li class=mr-3><a data-ga-click="Footer, go to terms, text:terms" href=https://github.com/site/terms>Terms</a></li>
+ <li class=mr-3><a data-ga-click="Footer, go to privacy, text:privacy" href=https://github.com/site/privacy>Privacy</a></li>
+ <li class=mr-3><a data-ga-click="Footer, go to security, text:security" href=https://github.com/security>Security</a></li>
+ <li class=mr-3><a href=https://githubstatus.com/ data-ga-click="Footer, go to status, text:status">Status</a></li>
+ <li><a data-ga-click="Footer, go to help, text:help" href=https://help.github.com/>Help</a></li>
+ </ul>
+ <a aria-label=Homepage title=GitHub class="footer-octicon d-none d-lg-block mx-lg-4" href=https://github.com/>
+ <svg height=24 class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=24 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+ <ul class="list-style-none d-flex flex-wrap">
+ <li class=mr-3><a data-ga-click="Footer, go to contact, text:contact" href=https://github.com/contact>Contact GitHub</a></li>
+ <li class=mr-3><a href=https://github.com/pricing data-ga-click="Footer, go to Pricing, text:Pricing">Pricing</a></li>
+ <li class=mr-3><a href=https://developer.github.com/ data-ga-click="Footer, go to api, text:api">API</a></li>
+ <li class=mr-3><a href=https://training.github.com/ data-ga-click="Footer, go to training, text:training">Training</a></li>
+ <li class=mr-3><a href=https://github.blog/ data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+ <li><a data-ga-click="Footer, go to about, text:about" href=https://github.com/about>About</a></li>
+ </ul>
+ </div>
+ <div class="d-flex flex-justify-center pb-6">
+ <span class="f6 text-gray-light"></span>
+ </div>
+</div>
+ <div id=ajax-error-message class="ajax-error-message flash flash-error sf-hidden">
+ <svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+ <button type=button class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+ <svg class="octicon octicon-x" viewBox="0 0 12 16" version=1.1 width=12 height=16 aria-hidden=true><path fill-rule=evenodd d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+ </button>
+ You can’t perform that action at this time.
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="js-stale-session-flash flash flash-warn flash-banner sf-hidden" hidden>
+ <svg class="octicon octicon-alert" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+ <span class=js-stale-session-flash-signed-in hidden>You signed in with another tab or window. to refresh your session.</span>
+ <span class=js-stale-session-flash-signed-out hidden>You signed out in another tab or window. to refresh your session.</span>
+ </div>
+ <template id=site-details-dialog>
+  <details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark hx_rsm" open="">
+    <summary role="button" aria-label="Close dialog"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
+      <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog="">
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+      </button>
+      <div class="octocat-spinner my-6 js-details-dialog-spinner"></div>
+    </details-dialog>
+  </details>
+</template>
+ <div class="Popover js-hovercard-content position-absolute" style=display:none;outline:none tabindex=0>
+ <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style=width:360px>
+ </div>
+</div>
+ <div aria-live=polite class="js-global-screen-reader-notice sr-only"></div>
+ 
