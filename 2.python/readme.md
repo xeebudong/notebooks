@@ -1,4 +1,21 @@
-# Python知识树
+# Python 数据分析学习路线
+
+> 进阶 假设读者已经具备一定的python基础知识
+
+1. 帮助文件 library reference
+2. python howtos
+3. python tuterial
+
+> 初学者，还是要从基础语法开始
+
+
+应用
+python 数据分析：
+
+1. numpy pandas
+2. matplotlib seaborn 文档
+
+
 
 
 ## 时间处理
