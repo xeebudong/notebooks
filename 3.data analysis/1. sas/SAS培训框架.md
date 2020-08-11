@@ -15,11 +15,22 @@
 
    > 用一个程序，实现SAS的所有元素：数据步、过程步、SQL、宏、数组
 
-2. 数据输入输出
+2. 基本概念
 
-   SAS与数据库连接，另外符文章说明
+   - 逻辑库：SAS数据集在硬盘中的目录，类似于数据库
+   - SAS数据集：类似于数据库的表
+   - 数据步 vs 过程步
+     - 数据步：从数据源读入数据，并加以整理形成数据集
+     - 过程步：处理过程
 
-   SAS默认的数据编码格式是ANSI，有时，SAS输出的数据，需要使用其他编译器取读取，不同编译器默认的编码格式可能有差异，这就造成数据不可读，因此，可以显式定义SAS输出文件的编码格式。
+3. 数据输入输出
+
+   - 操作对象
+     - CSV
+     - EXCEL
+     - 数据库连接， SAS与数据库连接，另外符文章说明
+
+   > SAS默认的数据编码格式是ANSI，有时，SAS输出的数据，需要使用其他编译器取读取，不同编译器默认的编码格式可能有差异，这就造成数据不可读，因此，可以显式定义SAS输出文件的编码格式。
 
    ```SAS
    FILE EXPORT “xxx.csv” ENCODING = “utf-8”;
@@ -29,9 +40,31 @@
    RUN;
    ```
 
-   
+   - 读入文本
 
-3. SAS数据集操作
+     ```SAS
+     LIBNAME temp "C\temp";
+     %LET f1 = "c:\temp\abc.txt"; 
+     FILENAME fil "(&f1)";
+     
+     DATA temp.hw;
+     	INFILE fil;
+     	INPUT h w;
+     RUN;
+     ```
+
+   - 输出文本
+
+     ```SAS
+     DATA _NULL_; * 将数据集student写到外部文件中
+     	SET mydb.student;
+     	
+     	FILE "c:\temp\student.txt";
+     	PUT id name $sex $score;
+     RUN;
+     ```
+
+4. SAS数据集操作
 
    - 增
 
@@ -44,6 +77,11 @@
    - 数据转置(transpose)
 
      > UPDATEMODE控制空值是否替代 MISSINGCHECK\NOMISSINGCHECK
+     >
+     > 参考：
+     >
+     > - [data步的转置 和proc transpose转置的灵活运用](https://bbs.pinggu.org/thread-3180742-1-1.html)
+     > - [SAS中database行列转换](http://hssnow.name/2011/04/dataset-transformation/)
 
      ```SAS
      PROC TRANSPOSE
@@ -96,7 +134,7 @@
 
      - Merge、modify、update的区别
 
-4. SAS数据探索
+5. 案例：SAS数据探索
 
    - 空值检验：行/列
 
@@ -105,6 +143,8 @@
    - 数据探索
 
      > PROC UNIVARIATE, 深入解析SAS P331
+     >
+     > PROC TABULATE
 
      - 字符型-频数分析
      - 数字型-描述性分析
@@ -124,7 +164,18 @@
      RUN;
      ```
 
-   
+6. 案例：SAS数据清洗
+
+   - 衍生变量
+   - 求子集，通过筛选
+     - KEEP：保留
+     - DROP：删除
+   - 矩阵变换，Transpose
+   - 排序
+   - 分组
+   - 数据集连接
+   - 数据集合并
+   - 写入文件
 
 ## SAS编码
 
@@ -241,6 +292,8 @@ df2 = pd.read_csv(r"D:\ch.csv")
 
 > 第一章，相当于一个quickstart，掌握第一章的内容，基本上就可以使用SAS编程，实现一些数据分析的功能。
 > 本章，先不对SAS的具体语法进行讲解，而是对SAS编程规范以及SAS中一些关键字进行说明。这将对未来的开发带来一些便利。
+>
+> [System Options Are Your Friends](E:\notebooks\3.data analysis\1. sas\e-book\SUGI 28_ SAS(r) System Options Are Your Friends.pdf)
 
 1. 日志持久化
 
@@ -332,6 +385,54 @@ RUN;
 
 2. 逻辑判断
 
+   - 条件语句：IF THEN\ IF THEN ELSE
+
+     ```SAS
+     DATA baby;
+     	SET child;
+     	IF month <= 12 THEN OUTPUT;
+     RUN;
+     ```
+
+   - 循环语句
+
+     - GOTO
+
+       ```SAS
+       DATA _NULL_;
+       	i = 0;
+       	K:PUT i @@;
+       		i+1;
+       		IF i<=10 THEN GOTO K;
+       RUN;
+       ```
+
+     - DO/END
+
+       ```SAS
+       DATA;
+       	DO c=1 to 8 by 2, 13, 16, 18;
+       		PUT c@@；
+       	END;
+       RUN;
+       ```
+
+       
+
+     - DO WHILE
+
+       ```SAS
+       DATA;
+       	n=0
+       	DO WHILE(n LT 5);
+       		PUT n=；
+       		n+1;
+       	END;
+       RUN;
+       ```
+
+     - DO UNTIL
+
 3. 数值计算
    将小数点显示为百分数，PUT(val, PERCENT8.2); /* 使用PUT */
 
@@ -365,7 +466,8 @@ run;
 
 > 主要讲解时间函数、字符串函数、数值运算函数，并对时间输入输出格式进行讲解。 参考 the little book & 清华大学教材
 
-
+1. 查看变量类型 vtype
+2. SYSFUNC
 
 # Week4 宏-MACRO
 
@@ -480,12 +582,41 @@ PROC PRINT; RUN;
 
 > 坦白讲，时间运算也是我头疼的地方，尤其是涉及到SAS和其他产品的数据对接，如MySQL、Python。下面，就重要对时间以及基于时间的运算进行讲解
 
-1.	根据月份，获得当月最早一天(最晚一天)
-dt_fst = INPUT(PUT(INTNX(“MONTH”, INPUT(PUT(&mth., Z6.), YYMMN6.), 0, “BEGIN”), YYMMDDN8.), 8.)
-2.	获取当日所在月份的最早一天
-dt_fst = INPUT(PUT(INTNX(“MONTH”, TODAY(), 0, “BEGIN”), YYMMDDN8.), 8.)
-3.	根据当前月份，获得下一个月
-Call symput(“mth”, PUT(INTNX(“MONTH”, INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
+1. 根据月份，获得当月最早一天(最晚一天)
+
+   - 最晚一天：下一个月的前一天
+
+     ```SAS
+     data _null_;
+       d = '11JUN2011'd;
+       format d date9.;
+       put d;
+       d = intnx('month',d,1)-1; /* 下一个月的前1天 */
+       put d;
+     run;
+     ```
+
+   - 最早一天：上一个月的下一天
+
+     ```SAS
+     data _null_;
+       d = '11JUN2011'd;
+       format d date9.;
+       put d;
+       d = intnx('month',d,-1)+1;  /* 上一个月的后1天 */
+       put d;
+     run;
+     ```
+
+   - 直接用BEGIN\END或者B\E关键字
+
+     `dt_fst = INPUT(PUT(INTNX(“MONTH”, INPUT(PUT(&mth., Z6.), YYMMN6.), 0, “BEGIN”), YYMMDDN8.), 8.)`
+
+2. 获取当日所在月份的最早一天
+   dt_fst = INPUT(PUT(INTNX(“MONTH”, TODAY(), 0, “BEGIN”), YYMMDDN8.), 8.)
+
+3. 根据当前月份，获得下一个月
+   Call symput(“mth”, PUT(INTNX(“MONTH”, INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
 
 
 
@@ -533,9 +664,13 @@ Call symput(“mth”, PUT(INTNX(“MONTH”, INPUT(PUT(201511, Z6.), YYMMN6.), 
 >
 > 在没有索引的情况下，SAS是一条接一条的扫描观测；有索引时，直接跳到该索引对应的观测所在位置，总结一句话：节省时间、节省内存、提高效率
 
+# Week 其他
 
+1. [How to code in Python with SAS9.4](https://blogs.sas.com/content/sgf/2018/01/10/come-on-in-were-open-the-openness-of-sas-94/)
+2. [SASpy模块，利用Python操作SAS](https://cloud.tencent.com/developer/news/231802)
 
 # 参考
 
 1. [SAS Studio](https://odamid.oda.sas.com/SASStudio/)
-2. 
+2. [New to SAS? Ready to learn more? Check out these tips and tricks from the authors of Exercises and Projects for The Little SAS Book, 5th Edition](https://blogs.sas.com/content/sgf/2018/10/15/new-to-sas-ready-to-learn-more-check-out-these-tips-and-tricks-from-the-authors-of-exercises-and-projects-for-the-little-sas-book-5th-edition/)
+3. 炼数成金SAS课程
