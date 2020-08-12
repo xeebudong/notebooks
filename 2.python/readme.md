@@ -1,5 +1,15 @@
 # Python 数据分析学习路线
 
+## 库安装
+
+1. [错误：pip install *:ERROR: Exception: Traceback (most recent call last)](https://blog.csdn.net/weixin_28927079/article/details/103726559)
+
+   > 使用镜像安装，在pip install XXX 后面加上 -i https://pypi.douban.com/simple
+   >
+   > 例如：pip install cpca -i https://pypi.douban.com/simple
+
+2. 
+
 > 进阶 假设读者已经具备一定的python基础知识
 
 1. 帮助文件 library reference
@@ -41,8 +51,6 @@ python 数据分析：
 ## 5. Python 高级话题
 
 ## 6. Python 全栈开发
-
-
 
 
 
