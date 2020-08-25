@@ -85,3 +85,4 @@ python 数据分析：
 
 1. [让你像写SQL一样做数据分析](https://blog.csdn.net/cdk1015/article/details/78744709)
 2. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
+3. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
