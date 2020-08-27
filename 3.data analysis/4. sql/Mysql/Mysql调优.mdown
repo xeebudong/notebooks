@@ -1,5 +1,0 @@
-# Mysql调优
-
-# 参考文献
-1. [MySQL索引原理及慢查询优化](http://tech.meituan.com/mysql-index.html)
-2. [mysql中的存储过程和自定义函数](http://www.jianshu.com/p/0ff862270838)
