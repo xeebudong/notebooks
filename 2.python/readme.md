@@ -1,5 +1,7 @@
 # Python 数据分析学习路线
 
+> python作为一门数据分析利器，已经被应用到各行各业，资料也非常的成熟，市面上，有各种教授python的书籍、网络资源也非常丰富。笔者也是通过学习这些资料，才进入到python的开发阵营。市面上，刊发的书籍，少有从工程角度出发，去透视python在数据分析中的应用。通过本系列资料，读者可以很轻松的使用python去做数据清理、数据分析以及实现可视化。
+
 ## 库安装
 
 1. [错误：pip install *:ERROR: Exception: Traceback (most recent call last)](https://blog.csdn.net/weixin_28927079/article/details/103726559)
@@ -8,51 +10,74 @@
    >
    > 例如：pip install cpca -i https://pypi.douban.com/simple
 
-2. 
 
-> 进阶 假设读者已经具备一定的python基础知识
+## 1. Python 语法基础
 
-1. 帮助文件 library reference
-2. python howtos
-3. python tuterial
+## 2. Python数据结构
 
-> 初学者，还是要从基础语法开始
+> collections是Python内建的一个集合模块，提供了许多有用的集合类
 
+> import collections
+>
+> from collections import Counter
 
-应用
-python 数据分析：
+1. 查看collections中所有的数据结构
 
-1. numpy pandas
-2. matplotlib seaborn 文档
+   ```python
+   import collections
+   collections.__all__
+   ```
 
+   > ['deque', 'defaultdict', 'namedtuple', 'UserDict', 'UserList', 'UserString', 'Counter', 'OrderedDict', 'ChainMap']
+
+2. 各数据结构
+
+   | 数据结构    | 名称         | 功能                        |
+   | ----------- | ------------ | --------------------------- |
+   | deque       |              |                             |
+   | defaultdict |              |                             |
+   | namedtuple  |              |                             |
+   | UserDict    |              |                             |
+   | UserList    |              |                             |
+   | UserString  |              |                             |
+   | Counter     | 统计对象频次 | element<br>most_common([n]) |
+   | OrderDict   |              |                             |
+   | ChainMap    |              |                             |
+
+   
+
+## Python 面向对象
+
+## Python 科学计算
+
+## Python 可视化
+
+1. [将多张表格绘制到一起并输入到pdf中](https://www.zhihu.com/question/68489126/answer/334893776)
+
+## Python 高级话题
+
+## Python 全栈开发
 
 
 
 ## 时间处理
+
 1. str->时间
-> from dateutil.parser import parse
-> parse(string) # parse("2019101")
+
+   ```python
+   from dateutil.parser import parse
+   parse(string) # parse("2019101")
+   ```
 
 
 2. 计算时间差
-> from datetime import datetime
-> (d1-d2).days
 
-## 1. Python 语法基础
+   ```python
+   from datetime import datetime
+   (d1-d2).days
+   ```
 
-## 2. Python 面向对象
-
-## 3. Python 科学计算
-
-## 4. Python 可视化
-
-1. [将多张表格绘制到一起并输入到pdf中](https://www.zhihu.com/question/68489126/answer/334893776)
-
-## 5. Python 高级话题
-
-## 6. Python 全栈开发
-
-
+   
 
 ## Python库
 
@@ -62,6 +87,10 @@ python 数据分析：
     <tr>
         <td>科学计算</td>
         <td>Pandas<br>PyOD<br>Numpy<br>Spacy</td>
+    </tr>   
+    <tr>
+        <td>数据结构</td>
+        <td>collections</td>
     </tr>   
     <tr>
         <td>数据可视化</td>
@@ -81,8 +110,10 @@ python 数据分析：
     </tr>
 </table>
 
+
 ## 参考资料
 
-1. [让你像写SQL一样做数据分析](https://blog.csdn.net/cdk1015/article/details/78744709)
-2. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
-3. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
+1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
+2. [让你像写SQL一样做数据分析](https://blog.csdn.net/cdk1015/article/details/78744709)
+3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
+4. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
