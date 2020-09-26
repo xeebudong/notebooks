@@ -46,9 +46,18 @@
 
    
 
-## Python 面向对象
+## 3. Python 面向对象
 
-## Python 科学计算
+## 4. Python 科学计算
+
+### Pandas
+
+1. map，对单列处理，类似于replace
+2. apply，对单列/多列处理，可传入参数
+3. applymap，针对cell
+4. group
+   - 根据多列统计结果
+   - 
 
 ## Python 可视化
 
