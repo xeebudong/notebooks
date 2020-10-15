@@ -671,7 +671,14 @@ PROC PRINT; RUN;
 
 # SAS EM
 
+1. SAS EG & SAS EM
 
+   > EG为统计分析模块 相当于 SPSS
+   > EM是数据挖掘模块 相当于Clemetine
+   >
+   > [基于SAS EM的风险评分卡开发：从入门到基（fang）础(qi)](https://zhuanlan.zhihu.com/p/48174843)
+
+2. 
 
 # 参考
 
