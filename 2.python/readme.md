@@ -92,7 +92,25 @@
    (d1-d2).days
    ```
 
-   
+3. [datetime与time库](https://blog.csdn.net/JohinieLi/article/details/83506202)
+
+   - datetime
+
+     > strptime：str -> datetime
+     >
+     > strftime：datetime -> str
+
+     > datetime的元素
+     >
+     > date, 获得日期
+     >
+     > year \ month \ day
+     >
+     > hour \ minute \ second \ microsecond
+
+   - time
+
+     > 时间戳
 
 ## Python库
 

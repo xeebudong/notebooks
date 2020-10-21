@@ -1,0 +1,14 @@
+## 1. groupby.apply， 引入第三方函数
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({'name':['Jack','Alex','Bob','Nancy','Mary','Alice','Jerry','Wolf'],
+              'course':['Chinese','Math','Math','Chinese','Math','English','Chinese','English'],
+              'grade':[1,1,2,2,2,2,3,3],
+              'score':[85,95,91,78,89,60,87,79]})
+
+# 仅用groupby("name")统计各学生 语文、数据、英语的成绩
+
+```
+
