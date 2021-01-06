@@ -1,0 +1,195 @@
+# 时间表示
+
+> 在Python中，有3表示时间的方式
+>
+> 1. 时间戳，是指某个时间与1970年1月1日00:00:00的差值，单位为秒，是一个浮点型数值
+> 2. 格式化时间，格式化时间由字母和数字表示的时间，比如：’Mon Oct 29 16:04:27 2018’，或者'2020-01-01'，格式化日期的字母含义见附录
+> 3. 元祖，将时间放到一个元祖里面，如date(2021, 1, 1)
+>
+> 3种时间格式，转换如下：
+>
+> <img src="E:\notebooks\2.python\0. 资料\时间格式转换.png" alt="时间格式转换" style="zoom:50%;" />
+>
+> 但实际上，我们阅读时间时，尤其是日期是，大多是int型或者string
+
+# 1. time
+
+> time.strftime
+>
+> time.strptime
+
+```python
+# 引入time类
+import time
+
+# 基本函数
+time.time()			# 返回当前时间的时间戳
+time.localtime(ts)	# 将时间错转化为元组的形式，如果没有指定时间戳，默认使用当前的时间戳，返回的是当地时间
+time.gmtime()		# 功能与localtime一样，返回的是格林威治天文时间（UTC），也就是世界标准时间。中国时间为UTC+8
+time.mktime(time.gmtime())	# 将元组转化为时间戳
+time.sleep(3)		# 该函数让程序线程暂停休息，传入整数，表示休息秒数
+time.asctime()		# 将元组转化为格式化时间，如果没有传入参数，默认传入time.localtime()
+time.ctime()		# 将时间戳转换成格式化时间，如果没有传入参数，默认传入time.time()
+time.strftime("%Y-%m-%d")	# 将元组转换成格式化时间字符串，如果没有时间参数，则默认传入time.localtime()
+time.strptime('2021-1-9 8:6:9', '%Y-%m-%d %X') # 格式化字符，把一个格式化时间字符串转成元组
+```
+
+# 2. datetime
+
+> 和time一样，datetime也有3种形态
+>
+> 组成(包括以下类)：
+>
+> - date：日期对象，常用的属性有year、month、day
+>
+>   - 创建
+>
+>     - datetime.date(2021, 1, 1) #元组
+>     - datetime.date.today() 
+>
+>   - 属性
+>
+>     t = datetime.date.today
+>
+>     t.year
+>
+>     t.month
+>
+>     t.day
+>
+>   - 方法
+>
+>     - \__eq__
+>     - \__ge__
+>     - \__gt__
+>     - \__le__
+>     - \__lt__
+>     - \__ne__
+>     - \__sub__：获得2个日期相差天数，x-y
+>     - \__rsub__：获得2个日期相差天数，y-x
+>
+>   - ISO标准化日期
+>
+>     - isocalendar()， 返回一个包含三个值的元组，依次为year、weeknum、weekday
+>     - isoformat(), 返回符合ISO 8601标准(YYYY-MM-DD)的日期字符串
+>     - isoweekday()， 返回符合ISO标准的指定日期所在的星期数(周一为1...周日为7)；类似的weekday，返回的周一为0，周日为6
+>
+>   - timetuple()
+>
+>   - toordinal()：返回公元公历开始到现在的天数，公元1年1月1日为1
+>
+>   - replace()
+>
+>   - resolution()：date对象表示日期的最小单位。这里是天
+>
+>   - formordinal()：将格林威治时间转换为date对象
+>
+>   - fromtimestamp()：将时间戳转换为date对象
+>
+>   - 日期格式化输出
+>
+>     - \__format__：格式化日期输出，与之等价的方法是strftime()
+>     - \__str__：最简单的获得日期字符串的方法
+>     - ctime：获得ctime样式的格式
+>
+> - time：时间对象
+>
+>   > 与date类似
+>
+> - datetime：日期时间对象，常用的属性有hour、minute、second、microsecond
+>
+> - timedelta
+>
+>   > 包含属性：
+>   >
+>   > - days
+>   > - microseconds
+>   > - seconds
+>
+> - tzinfo
+>
+> - datetime_CAPI
+>
+> 转换：
+>
+> - 转化成元组
+> - 转化成时间戳
+
+```python
+import datetime
+
+datetime.datetime.now()	# 获取当前时间
+datetime.datetime.now().timetuple	# 转化成元组
+datetime.datetime.timestamp			# 转化成时间戳
+datetime.datetime.fromtimestamp(1540885020.0) # 时间戳转化为datetime
+datetime.datetime.utcfromtimestamp(1540885020.0) # 时间戳转化为datetime，区别在于返回UTC时间
+datetime.datetime.now().strftime("%Y-%m-%d")	# 转换成格式化时间字符串
+datetime.datetime.now().strptime("2021-01-06 15:10:08", "%Y-%m-%d %H:%M:%S")
+
+# 计算时间差
+a = datetime.datetime.now()
+time.sleep(100)
+b = datetime.datetime.now()
+c = b - a
+print(c)
+
+c.total_seconds()
+c.days
+c.seconds
+
+# 时间偏移，计算往前推、往后推多久时间
+datetime.datetime.now() + datetime.timedelta(days=1)
+
+# In[1] date类
+
+```
+
+# 3. calendar
+
+> 与日历有关
+
+```python
+import calendar
+
+print(calendar.calendar(2021))	# 返回某年的日历
+print(calendar.month(2021,1))	# 返回某月的日历
+calendar.isleap(2021)			# 判断是否是闰年
+calendar.leapdays(2000, 2021)	# 返回两年之间的闰年总数
+calendar.monthcalendar(2021,1)	# 以嵌套列表的形式返回某年某月的日历
+calendar.monthrange(2021, 1)		# 返回2个整数，第一个为该月第一天为周几，第二个为该月有多少天
+calendar.timegm(time.localtime())	# 将元组时间变成时间戳
+```
+
+
+
+# 参考
+
+1. [Python时间模块——time模块](https://finthon.com/python-time/)
+2. [Python日期时间模块datetime详解与Python 日期时间的比较](https://www.jb51.net/article/147429.htm)
+
+# 附录
+
+| 符号 | 描述                                                         |
+| :--- | :----------------------------------------------------------- |
+| %a   | 简化星期名称                                                 |
+| %A   | 完整星期名称                                                 |
+| %b   | 简化月份名称                                                 |
+| %B   | 完整月份名称                                                 |
+| %c   | 相应的日期和时间表示                                         |
+| %d   | 一个月中的第几天（01 – 31）                                  |
+| %H   | 一天中的第几个小时（24小时制，00 – 23）                      |
+| %I   | 第几个小时（12小时制，01 – 12）                              |
+| %j   | 一年中的第几天（001 – 366）                                  |
+| %m   | 月份（01 – 12）                                              |
+| %M   | 分钟数（00 – 59）                                            |
+| %p   | 本地am或者pm的相应符                                         |
+| %S   | 秒（01 – 61）                                                |
+| %U   | 一年中的星期数。（00 – 53星期天是一个星期的开始。）第一个星期天之前的所有天数都放在第0周 |
+| %w   | 一个星期中的第几天（0 – 6，0是星期天）                       |
+| %W   | 和%U基本相同，不同的是%W以星期一为一个星期的开始             |
+| %x   | 相应日期                                                     |
+| %X   | 相应时间                                                     |
+| %y   | 去掉世纪的年份（00 – 99）                                    |
+| %Y   | 完整的年份                                                   |
+| %Z   | 时区的名字（如果不存在为空字符）                             |
+| %%   | ‘%’字符                                                      |
