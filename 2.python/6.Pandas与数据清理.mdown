@@ -5,6 +5,14 @@
 
 > import pandas as pd
 
+## 重复值及处理
+
+## 空值及处理
+
+## 异常值及处理
+
+
+
 ## Series
 
 ### 新建
@@ -67,8 +75,9 @@ print('a' in s)
 	+ ix
 	
 - 运算
-	+ df.add(df2) sub div mul 可以在行列进行广播运算 axis=0 列上广播，默认是axis=1 
-
+	
++ df.add(df2) sub div mul 可以在行列进行广播运算 axis=0 列上广播，默认是axis=1 
+	
 - sort_values	排序
 	- sort_index()
 	> data=pd.DataFrame(np.arange(10).reshape((2,5)),index=['c','a'], columns=['one','four','two','three','five'])

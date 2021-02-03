@@ -1,0 +1,62 @@
+# API
+
+DataFrame.rolling**(***window***,** *min_periods=None***,** *center=False***,** *win_type=None***,** *on=None***,** *axis=0***,** *closed=None***)**[_](https://github.com/pandas-dev/pandas/blob/v1.2.1/pandas/core/generic.py#L11214-L11249)
+
+- `window`: 移动窗口的大小。值可以是int（整数值）或offset（偏移）。如果是整数值的话，每个窗口是固定的大小，即包含相同数量的观测值。值为offset（偏移时长,eg:`'2s'`）则指定了每个窗口包含的时间段，每个窗口包含的观测值的数量是不一定的。offset必须在index是时间类型数据时才可以使用，***offset不包含边界值***
+- `min_periods`: 每个窗口最少包含的观测值数量，小于这个值的窗口结果为NA。值可以是int，默认None。offset情况下，默认为1
+- `center`: 把窗口的标签设置为居中。布尔型，默认False，居右
+- `win_type`: 窗口的类型。上面介绍的，截取窗的各种函数。字符串类型，默认为None。可用的窗口类型有：
+  - boxcar
+  - triang
+  - blackman
+  - hamming
+  - bartlett
+  - parzen
+  - bohman
+  - blackmanharris
+  - nuttall
+  - barthann
+  - kaiser (needs beta)
+  - gaussian (needs std)
+  - general_gaussian (needs power, width)
+  - slepian (needs width)
+- `on`: 可选参数。对于dataframe而言，指定要计算滚动窗口的列。值为列名
+- `axis`: int、字符串，默认为0，即对列进行计算
+
+# Demo
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'A': [3, 8, 9, 12, np.nan], 'B': [0, 1, 2, np.nan, 4]})
+
+r = df.rolling(window=2)
+print(r)
+print(r.sum())
+
+r2 = df.rolling(window=2, on="B")
+print(r2)
+print(r2.sum())
+
+
+
+df2 = pd.DataFrame({'B': [-0.5, 1, 2, np.nan, 4]},
+                  index = [pd.Timestamp('20130101 09:00:00'),
+                           pd.Timestamp('20130101 09:00:02'),
+                           pd.Timestamp('20130101 09:00:03'),
+                           pd.Timestamp('20130101 09:00:05'),
+                           pd.Timestamp('20130101 09:00:06')])
+df2.rolling('2s').sum()
+df2.rolling('3s').sum()
+```
+
+# Note
+
+> 诸如[rolling_mean()](https://blog.csdn.net/xxzhangx/article/details/76938053)这类写法已经被淘汰了
+
+# 参考
+
+1. [pandas.DataFrame.rolling¶](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rolling.html)
+2. [window](https://pandas.pydata.org/pandas-docs/stable/reference/window.html)
+3. [[Python数据分析_Pandas_窗函数](https://www.cnblogs.com/jingsupo/p/python-pandas-rolling.html)

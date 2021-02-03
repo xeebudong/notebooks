@@ -160,7 +160,19 @@ calendar.monthrange(2021, 1)		# 返回2个整数，第一个为该月第一天�
 calendar.timegm(time.localtime())	# 将元组时间变成时间戳
 ```
 
+# 循环遍历日期
 
+```python
+import datetime
+def main():
+    begin = datetime.date(2014,6,1)
+    end = datetime.date(2014,6,7)
+for i in range((end - begin).days+1):
+    day = begin + datetime.timedelta(days=i)
+    print str(day)
+if __name__ == '__main__':
+    main()
+```
 
 # 参考
 

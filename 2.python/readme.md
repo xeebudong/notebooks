@@ -110,15 +110,6 @@ def get_encoding(pth):
 
 ## 4. Python 科学计算
 
-### Pandas
-
-1. map，对单列处理，类似于replace
-2. apply，对单列/多列处理，可传入参数
-3. applymap，针对cell
-4. group
-   - 根据多列统计结果
-   - 
-
 ## Python 可视化
 
 1. [将多张表格绘制到一起并输入到pdf中](https://www.zhihu.com/question/68489126/answer/334893776)
@@ -203,11 +194,9 @@ def get_encoding(pth):
         <td>Psycopg<br>SQLAlchemy</td>
     </tr>
 </table>
-
-
 ## 参考资料
 
 1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
-2. [让你像写SQL一样做数据分析](https://blog.csdn.net/cdk1015/article/details/78744709)
 3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
 4. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
+
