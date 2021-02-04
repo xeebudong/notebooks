@@ -24,13 +24,13 @@ import time
 
 # 基本函数
 time.time()			# 返回当前时间的时间戳
-time.localtime(ts)	# 将时间错转化为元组的形式，如果没有指定时间戳，默认使用当前的时间戳，返回的是当地时间
-time.gmtime()		# 功能与localtime一样，返回的是格林威治天文时间（UTC），也就是世界标准时间。中国时间为UTC+8
+time.localtime(ts)	# 将时间戳转化为元组，如果没有指定时间戳，默认使用当前的时间戳，返回的是当地时间
+time.gmtime()		# 功能与localtime一样，返回格林威治天文时间UTC，即世界标准时间，中国时间为UTC+8
 time.mktime(time.gmtime())	# 将元组转化为时间戳
-time.sleep(3)		# 该函数让程序线程暂停休息，传入整数，表示休息秒数
-time.asctime()		# 将元组转化为格式化时间，如果没有传入参数，默认传入time.localtime()
-time.ctime()		# 将时间戳转换成格式化时间，如果没有传入参数，默认传入time.time()
-time.strftime("%Y-%m-%d")	# 将元组转换成格式化时间字符串，如果没有时间参数，则默认传入time.localtime()
+time.sleep(3)				# 该函数让程序线程暂停休息，传入整数，表示休息秒数
+time.asctime()				# 将元组转化为格式化时间，如果没有传入参数，默认传入time.localtime()
+time.ctime()				# 将时间戳转换成格式化时间，如果没有传入参数，默认传入time.time()
+time.strftime("%Y-%m-%d")	# 将元组转换成格式化时间，如果没有时间参数，默认传入time.localtime()
 time.strptime('2021-1-9 8:6:9', '%Y-%m-%d %X') # 格式化字符，把一个格式化时间字符串转成元组
 ```
 
@@ -114,16 +114,18 @@ time.strptime('2021-1-9 8:6:9', '%Y-%m-%d %X') # 格式化字符，把一个格�
 >
 > - 转化成元组
 > - 转化成时间戳
+> - datetime转化为string， datetime.strftime
+> - string转化为datetime， datetime.strptime
 
 ```python
 import datetime
 
-datetime.datetime.now()	# 获取当前时间
+datetime.datetime.now()				# 获取当前时间
 datetime.datetime.now().timetuple	# 转化成元组
 datetime.datetime.timestamp			# 转化成时间戳
-datetime.datetime.fromtimestamp(1540885020.0) # 时间戳转化为datetime
+datetime.datetime.fromtimestamp(1540885020.0) 	 # 时间戳转化为datetime
 datetime.datetime.utcfromtimestamp(1540885020.0) # 时间戳转化为datetime，区别在于返回UTC时间
-datetime.datetime.now().strftime("%Y-%m-%d")	# 转换成格式化时间字符串
+datetime.datetime.now().strftime("%Y-%m-%d")	 # 转换成格式化时间字符串
 datetime.datetime.now().strptime("2021-01-06 15:10:08", "%Y-%m-%d %H:%M:%S")
 
 # 计算时间差
@@ -151,14 +153,40 @@ datetime.datetime.now() + datetime.timedelta(days=1)
 ```python
 import calendar
 
-print(calendar.calendar(2021))	# 返回某年的日历
-print(calendar.month(2021,1))	# 返回某月的日历
-calendar.isleap(2021)			# 判断是否是闰年
-calendar.leapdays(2000, 2021)	# 返回两年之间的闰年总数
-calendar.monthcalendar(2021,1)	# 以嵌套列表的形式返回某年某月的日历
+print(calendar.calendar(2021))		# 返回某年的日历
+print(calendar.month(2021,1))		# 返回某月的日历
+calendar.isleap(2021)				# 判断是否是闰年
+calendar.leapdays(2000, 2021)		# 返回两年之间的闰年总数
+calendar.monthcalendar(2021,1)		# 以嵌套列表的形式返回某年某月的日历
 calendar.monthrange(2021, 1)		# 返回2个整数，第一个为该月第一天为周几，第二个为该月有多少天
 calendar.timegm(time.localtime())	# 将元组时间变成时间戳
 ```
+
+# pandas中时间类函数
+
+```python
+dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m')
+data = pd.read_csv('AirPassengers.csv', parse_dates='Month', index_col='Month',date_parser=dateparse)
+print data.head()
+```
+
+
+
+> [时间序列预测（数据使用passengers.csv，算法用ARIMA）](https://blog.csdn.net/qingqingdianshui/article/details/79662616)
+
+# datetime vs time
+
+1. time归类到Generic Operating System Services中，围绕Unix Timestamp，由于是基于Unix Timestamp，所以其所能表述的日期范围被限定在 1970 - 2038 之间，如果你写的代码需要处理在前面所述范围之外的日期，那可能需要考虑使用datetime模块更好
+
+2. datetime 比 time 高级了不少，可以理解为 datetime 基于 time 进行了封装，提供了更多实用的函数。在datetime 模块中包含了几个类，具体关系如下:
+
+   > 实际中，datetime和timedelta使用比较多，time和date的使用与datetime类似
+
+   - **timedelta**  # 主要用于计算时间跨度
+   - tzinfo         # 时区相关
+   - time          # 只关注时间
+   - date          # 只关注日期
+   - **datetime**  # 同时有时间和日期
 
 # 循环遍历日期
 
@@ -178,6 +206,7 @@ if __name__ == '__main__':
 
 1. [Python时间模块——time模块](https://finthon.com/python-time/)
 2. [Python日期时间模块datetime详解与Python 日期时间的比较](https://www.jb51.net/article/147429.htm)
+3. [python3中datetime库，time库以及pandas中的时间函数区别与详解](https://www.jb51.net/article/184867.htm)
 
 # 附录
 
@@ -205,3 +234,4 @@ if __name__ == '__main__':
 | %Y   | 完整的年份                                                   |
 | %Z   | 时区的名字（如果不存在为空字符）                             |
 | %%   | ‘%’字符                                                      |
+
