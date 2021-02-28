@@ -1,3 +1,10 @@
+# Pre-Reading 
+
+1. sas 组成
+   - sas Base
+   - sas EG（Enterprise Guide）
+   - sas EM（Enterprise Miner）
+
 # Week1 SAS数据获取及数据探索
 
 > Guideline：快速入手SAS
@@ -43,7 +50,7 @@
    - 读入文本
 
      ```SAS
-     LIBNAME temp "C\temp";
+     LIBNAME temp "C\temp"; *声明库名, 建议在定义逻辑库时，加上ACCESS=READONLY，防止修改逻辑库中的数据
      %LET f1 = "c:\temp\abc.txt"; 
      FILENAME fil "(&f1)";
      
@@ -317,9 +324,68 @@ df2 = pd.read_csv(r"D:\ch.csv")
    /*ODS LISTING;*/
    ```
 
-   
+3. 自定义输出格式 - FORMAT
 
-3. 关键字
+   [SAS： Format语句与Format过程](https://blog.csdn.net/qingsong3333/article/details/107751595)
+   
+   ```SAS
+   PROC FORMAT;
+   	VALUE 格式名<MULTILABEL>
+   	    '值域1'='格式1'
+   	    '值域2'='格式2'
+   	    '值域3'='格式3'
+   	    ...;
+   RUN;
+   
+   /*
+   	数值型变量定义为字符格式
+   	-  ：包含两端值
+       <- ：只含右端值
+       -< ：只含左端值
+       <-<：不包含两端值
+   
+   */
+   PROC FORMAT;
+   	VALUE AGEGROUP
+   	    18-<40  = '[18, 40)'
+   	    40-<60  = '[40, 60)'
+   	    60-HIGH = '[60, +)'
+   	    ;
+   RUN;
+   
+   /*
+   	字符型变量定义为字符格式
+   */
+   PROC FORMAT;
+   	VALUE $GENDER
+   	    'M' = '男'
+   	    'F' = '女'
+   	    ;
+   RUN;
+   
+   
+   /*
+   	选择MULTILABEL标示变量值阈有重叠值
+   */
+   PROC FORMAT;
+        VALUE  $STATUS(MULTILABEL)
+        	'M1','M2','M3','M4','M5','M6'='M1+'
+           'M2','M3','M4','M5','M6'='M2+'
+           ;
+   RUN;
+   
+   
+   /*
+   	使用
+   */
+   DATA;
+   	FORMAT sex GENDER.;
+   RUN;
+   ```
+   
+   
+   
+4. 关键字
 
    - OBS 
    - FIRSTOBS 
@@ -373,8 +439,6 @@ PROC DATASETS LIB=SASHELP NOLIST;
 		ATTRIB _ALL_ LABEL=””;
 RUN;
 ```
-
-
 
 # Week3 基本语法
 
@@ -580,6 +644,12 @@ PROC PRINT; RUN;
 
 # Week6 时间运算
 
+包括日期、时间、日期时间常亮，后接D、T、DT，在数据集中以数值存储
+
+- '1JAN2000'D
+- '9:25:19'T
+- '1Jan2000:10:30:05'DT
+
 > 坦白讲，时间运算也是我头疼的地方，尤其是涉及到SAS和其他产品的数据对接，如MySQL、Python。下面，就重要对时间以及基于时间的运算进行讲解
 
 1. 根据月份，获得当月最早一天(最晚一天)
@@ -610,7 +680,7 @@ PROC PRINT; RUN;
 
    - 直接用BEGIN\END或者B\E关键字
 
-     `dt_fst = INPUT(PUT(INTNX(“MONTH”, INPUT(PUT(&mth., Z6.), YYMMN6.), 0, “BEGIN”), YYMMDDN8.), 8.)`
+     `dt_fst = INPUT(PUT(INTNX("MONTH", INPUT(PUT(&mth., Z6.), YYMMN6.), 0, "BEGIN"), YYMMDDN8.), 8.)`
 
 2. 获取当日所在月份的最早一天
    dt_fst = INPUT(PUT(INTNX(“MONTH”, TODAY(), 0, “BEGIN”), YYMMDDN8.), 8.)
