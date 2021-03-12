@@ -683,10 +683,10 @@ PROC PRINT; RUN;
      `dt_fst = INPUT(PUT(INTNX("MONTH", INPUT(PUT(&mth., Z6.), YYMMN6.), 0, "BEGIN"), YYMMDDN8.), 8.)`
 
 2. 获取当日所在月份的最早一天
-   dt_fst = INPUT(PUT(INTNX(“MONTH”, TODAY(), 0, “BEGIN”), YYMMDDN8.), 8.)
+   dt_fst = INPUT(PUT(INTNX("MONTH", TODAY(), 0, "BEGIN"), YYMMDDN8.), 8.)
 
 3. 根据当前月份，获得下一个月
-   Call symput(“mth”, PUT(INTNX(“MONTH”, INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
+   Call symput("mth", PUT(INTNX("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
 
 
 
