@@ -497,12 +497,28 @@ RUN;
 
      - DO UNTIL
 
-3. 数值计算
+3. 跳出循环
+   
+LEAVE , 相当于BREAK
+   
+   CONTINUE
+   
+4. 数值计算
    将小数点显示为百分数，PUT(val, PERCENT8.2); /* 使用PUT */
 
-4. 数组
+5. 数组
 
    > SAS和数据打交道，对于数据，我们就要知道数据类型，在数据上面怎么进行计算以及逻辑判断。此外，数据集合涉及到数组的操作。以上，是构成SAS数据分析的主要语法。
+
+6. 字符串处理
+
+   - 截取最后几位子串
+
+     ```SAS
+     substrn(indikation,max(1,length(indikation)-3),4); *取最后4位
+     ```
+
+   - 
 
 ## OUTPUT之后，再STOP
 
