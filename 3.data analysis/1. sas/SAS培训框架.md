@@ -499,10 +499,11 @@ RUN;
 
 3. 跳出循环
    
+
 LEAVE , 相当于BREAK
-   
+
    CONTINUE
-   
+
 4. 数值计算
    将小数点显示为百分数，PUT(val, PERCENT8.2); /* 使用PUT */
 
@@ -769,5 +770,24 @@ PROC PRINT; RUN;
 # 参考
 
 1. [SAS Studio](https://odamid.oda.sas.com/SASStudio/)
+
 2. [New to SAS? Ready to learn more? Check out these tips and tricks from the authors of Exercises and Projects for The Little SAS Book, 5th Edition](https://blogs.sas.com/content/sgf/2018/10/15/new-to-sas-ready-to-learn-more-check-out-these-tips-and-tricks-from-the-authors-of-exercises-and-projects-for-the-little-sas-book-5th-edition/)
+
 3. 炼数成金SAS课程
+
+4. SAS Base Programming Course(Edition:June 2017)
+
+   Dorothy Kam Hin Chung, Department of Applied Mathematics, The Hong Kong Polytechnic University 
+
+   - Introduction, Getting Started to SAS
+   - Creating SAS data sets
+   - Reading data into SAS and introduction to Program Data Vector
+   - Validating, Cleaning and Manipulating Data
+   - Manipulating SAS Data Sets
+   - Combining SAS Data Sets
+   - Enhancing Reports and Producing Summary Reports
+   - Summarising Data
+   - Processing Data Iteratively and Debugging
+   - Restructing a Data Set
+
+5. 
