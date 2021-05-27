@@ -704,8 +704,10 @@ PROC PRINT; RUN;
 
 3. 根据当前月份，获得下一个月
    Call symput("mth", PUT(INTNX("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
+   
+4. 相差的月份数
 
-
+   mob = INTCK("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), INPUT(PUT(201512, Z6.), YYMMN6.))
 
 # Week7 SAS开发闭环
 
