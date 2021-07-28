@@ -73,6 +73,149 @@ def get_encoding(pth):
 
 ## 1.Python 语法基础
 
+### 1. 赋值(魔法赋值)
+
+> 注意copy与deepcopy
+>
+> 切片，可以达到深拷贝的效果
+
+- 序列解包 多个赋值操作可以同步进行，这种操作叫序列解包
+
+  > 当函数或者方法返回元组时(或者其他序列或可迭代对象)时，这个特性非常有用
+  >
+  > x, y, z = 1, 2, 3
+  >
+  > key, value = dic.popitem()
+
+- 链式赋值 x = y = 1
+
+- 增量赋值 x += 1
+
+### 2. 条件判断
+
+- if elif else
+
+- == 
+
+- is
+
+- not 
+
+- in
+
+- 断言 
+
+  > if语句非常有用的“近亲”，究竟为什么需要这样的代码呢？在需要确保程序中的某个条件一定为真才能让程序正常工作的话，assert语句就有用了，它可以在程序中置入检查点。
+
+  ```
+  age = -1
+  assert 0 < age < 100
+  ```
+
+  
+
+### 3. 循环
+
+- while
+- for
+- **列表推导式** 轻量级循环
+- 迭代工具
+  - 并行迭代 for in
+- 跳出循环
+  - break
+  - continue
+  - while true break
+
+### 4. 函数
+
+- 参数 
+
+  - 存储在局部作用域，入参一般情况下，不会被修改
+
+  > 在python中，我们无法改变参数，哪怕参数是引用参数【如果不是完全重新赋值，而是修改引用参数的其中的值，形参是会被改变的】
+  >
+  > ```python
+  > lst = [1, 2, 3]
+  > 
+  > def ch(lst): # 不改变入参
+  >     lst = [2]
+  >     return lst
+  > 
+  > def ch2(lst): # 改变入参， Tips，将值放在列表中，是可以改变入参的
+  >     lst[0] += 1
+  >     return lst
+  > 
+  > lst
+  > ch(lst)
+  > lst
+  > ch2(lst)
+  > lst
+  > ```
+
+  - 关键字参数 参数顺序不好记
+
+  - 默认参数 从最右边开始放起
+
+  - 收集参数 *
+
+    > 有时候，我们想让用户提供任意数量的参数都是有用的, *号的意思就是收集其余位置的参数
+    >
+    > def print_params(*params):
+    >
+    > ​     print(params)
+    >
+    > print_params(1, 2, 3, 4, 5)
+
+  - 收集关键字参数 ** 
+
+    > 作用和*类似，但是可用于搜集关键字参数
+
+    ```python
+    def print_params(x, y, z, *pospar, **keypar):
+        print(x, y, z)
+        print(pospar)
+        print(keypar)
+        
+    print_params(1, 2, 3, 4, 5, 6, foo=1, bar=2)
+    ```
+
+  - \* 和 \*\* 在调用时也可以使用
+
+    ```python
+    # 上文，讲了如何将参数收集为元祖和字典，即在参数中如何收集元组和字典；实际上，在调用时也可以用* 和 ** 来获得入参
+    
+    def add(x, y):
+        return x+y
+        
+    params = (1, 2)
+    add(*params)
+    ```
+
+### 5. 作用域
+
+> 到底什么是变量？
+>
+> - 值的名字
+> - 在执行赋值语句后，名称x引用到值，这就像用字典一样，键引用了值
+> - 变量和所对应的值用的是个”不可见“的字典，这个不可见的字典叫做命名空间或者作用域
+> - 有多少作用域呢？除了全局作用域，每个函数都会创建一个新的**作用域**
+
+```
+x = 1
+scope = vars()
+scope["x"] += 1
+x
+```
+
+
+
+### 几个关键字
+
+- pass
+- del 删除的只是名称，而不是对象本身【实际上，python是没办法删除对象的，因此引用赋值，原名称的引用对象是不会删除的】
+- exec 执行动态代码，不返回结果，因为本身就是语句 exec("print(1+2)")
+- eval 会计算输入的表达式，并返回结果  eval("1+2+3")
+
 ## 2. Python数据结构
 
 > collections是Python内建的一个集合模块，提供了许多有用的集合类
@@ -104,11 +247,85 @@ def get_encoding(pth):
    | OrderDict   |              |                             |
    | ChainMap    |              |                             |
 
-   
+
+### 1. 列表
+
+> 切片，是一种很有效率的复制整个列表的方法
+
+- 方法
+  - append 末尾追加新对象
+  - count 统计元素在列表中出现的次数
+  - extend 在末尾一次性追加多个元素
+  - index 找出第一个匹配值的位置
+  - insert(idx, value) 在特定位置idx插入元素value
+  - pop 删除最后一个元素
+  - remove 删除匹配的第一个元素
+  - reverse 列表逆序
+  - sort 原位置排序
+
+### 2. 元组
+
+- tuple 列表转元组
+- list 元组转列表
+
+### 3. 字符串
+
+- 正则表达式，另附
+
+- 方法
+
+  - find 返回最左端索引，如果没有则为-1
+
+  - join 
+
+  - lower\upper 
+
+  - endswith / startswith
+
+  - split
+
+  - strip/lstrip/rstrip
+
+  - replace 
+
+  - translate 与replace类似，不同的是translate只替换单个字符，但是可以多个一起，translate的入参为maketrans
+  
+    ```
+    # from string import maketrans
+    tbl = str.maketrans("cs", "kz")
+    
+    str = "I am a chinese"
+    str.translate(tbl)
+    ```
+  
+    ![image-20210727174117220](E:\notebooks\2.python\0. 资料\maketrans.txt)
+
+### 4. 字典
+
+- 创建字典 dict
+- 基本操作
+  - len
+  - d[k]
+  - d[k] = v
+  - del d[k]
+  - k in d / k in d.keys() / k in d.values() 检查d中是否含有健为k的项 / 检查d中是否有值为k
+- 方法
+  - clear 清除字典所有的项
+  - copy
+  - fromkeys
+  - get 键值不存在时，不会有异常情况
+  - setdefault 与get类似，但可设定在键值不存在时，返回的值
+  - has_key
+  - items / iteritems
+  - keys / iterkeys
+  - values / itervalues
+  - pop 移除指定键值的项，如果没有返回错误
+  - popitem 不加参数，随机移除项
+  - updte 用一个字典更新另一个字典
 
 ## 3. Python 面向对象
 
-## 4. Python 科学计算
+## 4. Python 科学计算 
 
 ## Python 可视化
 
@@ -199,4 +416,5 @@ def get_encoding(pth):
 1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
 3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
 4. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
+4. Python基础教程(第二版)， Magnus Lie Hetland，人民邮电出版社
 
