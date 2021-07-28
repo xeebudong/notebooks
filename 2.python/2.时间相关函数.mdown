@@ -202,6 +202,43 @@ if __name__ == '__main__':
     main()
 ```
 
+# 类型转换
+
+1. str->时间
+
+   ```python
+   from dateutil.parser import parse
+   parse(string) # parse("2019101")
+   ```
+
+
+2. 计算时间差
+
+   ```python
+   from datetime import datetime
+   (d1-d2).days
+   ```
+
+3. [datetime与time库](https://blog.csdn.net/JohinieLi/article/details/83506202)
+
+   - datetime
+
+     > strptime：str -> datetime
+     >
+     > strftime：datetime -> str
+
+     > datetime的元素
+     >
+     > date, 获得日期
+     >
+     > year \ month \ day
+     >
+     > hour \ minute \ second \ microsecond
+
+   - time
+
+     > 时间戳
+
 # 参考
 
 1. [Python时间模块——time模块](https://finthon.com/python-time/)

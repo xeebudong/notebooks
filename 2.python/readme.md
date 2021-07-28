@@ -42,7 +42,7 @@
 
      > 并行计算
 
-## 1. 数据I\O
+## 0. 数据I\O
 
 > pandas在读取csv时，如果csv太大，可能会造成读取错误，有以下几种方式能解决
 
@@ -191,7 +191,11 @@ def get_encoding(pth):
     add(*params)
     ```
 
-### 5. 作用域
+### 5. 递归
+
+> 汉诺塔
+
+### 6. 作用域
 
 > 到底什么是变量？
 >
@@ -199,6 +203,7 @@ def get_encoding(pth):
 > - 在执行赋值语句后，名称x引用到值，这就像用字典一样，键引用了值
 > - 变量和所对应的值用的是个”不可见“的字典，这个不可见的字典叫做命名空间或者作用域
 > - 有多少作用域呢？除了全局作用域，每个函数都会创建一个新的**作用域**
+> - 局部变量 vs 全局变量
 
 ```
 x = 1
@@ -207,7 +212,45 @@ scope["x"] += 1
 x
 ```
 
+- 重绑定global， 告诉局部作用于变量为全局变量
 
+  > 在函数内部访问全局变量 global
+
+  ```python
+  x = 1
+  
+  def test(parameter):
+      # global x
+      x += 1
+      return x
+  
+  print(test(2))
+  ```
+
+- globals()
+
+  > 如果在函数内容，想要访问的全局变量和局部变量或者形参重名，全局变量是会被覆盖的，如果确实需要的话，可以使用globals函数获取全局变量值，该函数的近亲是vars()， 可以返回全局变量字典
+
+### 函数式编程
+
+- lambda
+
+- map(func, seq) 对序列中的每个元素引用函数
+
+- filter(func, seq) 返回其函数为镇的元素的列表
+
+- reduce(func, seq) 依次对相邻元素执行操作，操作的结果作为第一个元素
+
+  > *Python3.x reduce() 已经被移到 functools 模块里，如果我们要使用，需要引入 functools 模块来调用 reduce()* 
+
+```python
+from functools import reduce
+lst = [1, 2, 3, 4]
+
+print(list(map(lambda x:x+1, lst)))
+print(list(filter(lambda x:True if x>2 else False, lst)))
+print(reduce(lambda x, y:x+y, lst))
+```
 
 ### 几个关键字
 
@@ -215,6 +258,7 @@ x
 - del 删除的只是名称，而不是对象本身【实际上，python是没办法删除对象的，因此引用赋值，原名称的引用对象是不会删除的】
 - exec 执行动态代码，不返回结果，因为本身就是语句 exec("print(1+2)")
 - eval 会计算输入的表达式，并返回结果  eval("1+2+3")
+- globals() 、 vars()
 
 ## 2. Python数据结构
 
@@ -325,7 +369,86 @@ x
 
 ## 3. Python 面向对象
 
-## 4. Python 科学计算 
+### 1. 多态 封装 继承
+
+- 多态 可以对不同类的对象使用同样的操作，他们会执行各自的对应的操作，例如叫声，所有动物都有叫声，但叫法各有不同
+- 封装 对外部世界隐藏对象的工作细节
+- 继承 以普通的类为基础建立专门的类对象
+
+### 2. 类和类型
+
+```python
+class Person:
+    def __init__(self, name, age): # 构造函数
+        self.name  = name
+        self.__age = age    ## 带双下划线，意思为private，相当于年龄是私有的，不能直接获得
+        
+pr = Person("Lulu", 21)
+pr.name
+pr.__age # 会报错
+```
+
+### 3. 特性、函数、方法
+
+> 双下划线，类似于其他语言标准的私有方法
+
+### 4. 类的命名空间
+
+> 类定义，其实就是执行代码块，在类的定义区并不只限定使用def语句
+>
+> 类作用域内的变量也可以被所有实例访问
+
+### 5. 超类、接口、内省
+
+- 接口，用于实现多态
+
+### 总结
+
+- issubclass 查询是否是子类
+
+- > 名字，可能抽象为类
+  >
+  > 动词，可能抽象为方法
+  >
+  > 形容词，可能抽象为特性
+
+## 4. 异常
+
+### 1. 什么是异常
+
+> Exception，表示异常情况，遇到程序错误时，会引发异常
+>
+> 如果异常对象未被处理或捕捉，程序就会用所谓的回溯Traceback终止执行
+
+- raise Exception
+- 常见异常
+  - ZeroDivisionError 除数为0
+  - ValueError
+  - IndexError
+  - KeyError
+
+### 2. 自定义异常类
+
+> class selfException(Exception):
+>
+> ​    pass
+
+### 3. 捕获异常(异常的使用)
+
+> try / except / else
+
+```python
+try:
+    x = 1/0
+except ZeroDivisionError:
+    print("The second number is zero")
+else:
+    print("error is not raised")
+```
+
+
+
+## Python 科学计算 
 
 ## Python 可视化
 
@@ -341,45 +464,6 @@ x
 2. Project > flask
 
    
-
-
-
-## 时间处理
-
-1. str->时间
-
-   ```python
-   from dateutil.parser import parse
-   parse(string) # parse("2019101")
-   ```
-
-
-2. 计算时间差
-
-   ```python
-   from datetime import datetime
-   (d1-d2).days
-   ```
-
-3. [datetime与time库](https://blog.csdn.net/JohinieLi/article/details/83506202)
-
-   - datetime
-
-     > strptime：str -> datetime
-     >
-     > strftime：datetime -> str
-
-     > datetime的元素
-     >
-     > date, 获得日期
-     >
-     > year \ month \ day
-     >
-     > hour \ minute \ second \ microsecond
-
-   - time
-
-     > 时间戳
 
 ## Python库
 
