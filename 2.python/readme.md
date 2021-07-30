@@ -367,6 +367,10 @@ print(reduce(lambda x, y:x+y, lst))
   - popitem 不加参数，随机移除项
   - updte 用一个字典更新另一个字典
 
+### 5. 集合、堆、双端队列
+
+> 参考面向对象 > 标准包
+
 ## 3. Python 面向对象
 
 ### 1. 多态 封装 继承
@@ -376,6 +380,27 @@ print(reduce(lambda x, y:x+y, lst))
 - 继承 以普通的类为基础建立专门的类对象
 
 ### 2. 类和类型
+
+- 构造函数
+
+- super函数
+
+- property函数
+
+  > property函数，使对象看起来像普通的属性
+
+- 基本的序列映射规则
+
+  - \__len__
+  - \__getitem__
+  - \__setitem__
+  - \__delitem__
+
+- \__getattr__, 属性attr被访问时，自动调用
+
+- \__setattr__
+
+- \__delattr__
 
 ```python
 class Person:
@@ -401,6 +426,82 @@ pr.__age # 会报错
 ### 5. 超类、接口、内省
 
 - 接口，用于实现多态
+
+### 6. 迭代器 生成器(yield)
+
+> def \__iter__()， 使类可迭代
+
+### 7. 模块与包
+
+> 模块是程序，任何程序都可以作为模块
+>
+> 包就是模块的目录
+
+- 引入模块
+
+  import sys
+
+  sys.path.append("dir") # 引入模块所在地址
+
+- 探究模块
+
+  - dir 查看模块包含的内容，会将对象(函数、类、变量)均列出来
+  - \_\_all\_\_ 在使用 from pandas import * 时，   \__all__ 限定了能import进来的对象，不然都会被引入进来
+  - help
+
+  ```
+  import pandas as pd
+  
+  dir(pd)
+  pd.__all__
+  
+  ```
+
+### 8. 标准包(随机数等)
+
+- 集合 set
+  - 交集 \ 差集 \ 异集
+
+- 堆 heap
+
+- 双端队列 deque
+
+- **随机数生成器 random**
+
+  - randrange([start, ] stop [, step]), 返回range(start, stop, step)中的随机数
+  - choice(seq) 从序列seq中返回随机元素
+  - shuffle(seq) 原地指定seq顺序
+  - sample(seq, n) 随机抽样
+
+  ```
+  import random
+  lst = range(1, 100)
+  lst2 = [1, 2, 3, 4, 5, 6, 7]
+  
+  random.choice(lst)
+  random.shuffle(lst2)
+  lst2
+  
+  random.sample(lst, 2)
+  ```
+
+- shelve 存储包
+
+  ```python
+  import shelve
+  
+  s = shelve.open(r"C:\Users\alywi\Desktop\hello.dat") # 存储
+  s["x"] = [1, 2, 3]
+  s["y"] = [3, 2]
+  
+  
+  d = shelve.open(r"C:\Users\alywi\Desktop\hello.dat") # 使用
+  d["x"]
+  ```
+
+  
+
+- 
 
 ### 总结
 
@@ -447,6 +548,10 @@ else:
 ```
 
 
+
+## 5. 正则表达式 re
+
+> 另附文件
 
 ## Python 科学计算 
 
@@ -500,5 +605,4 @@ else:
 1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
 3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
 4. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
-4. Python基础教程(第二版)， Magnus Lie Hetland，人民邮电出版社
-
+4. Python基础教程(第二版)， Magnus Lie Hetland，人民邮电出版社 【对初学者不友好，艰涩】
