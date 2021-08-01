@@ -71,9 +71,23 @@ def get_encoding(pth):
 
 - 设置chuncksize
 
-## 1.Python 语法基础
+## 1.Python 语法基础 
 
-### 1. 赋值(魔法赋值)
+### 1. 变量、表达式、语句
+
+- 查询变量类型 type(varname)
+
+- 注释 #
+
+- 类型检查
+
+  ```python
+  if not instance(n, int)
+  ```
+
+  
+
+### 2. 赋值(魔法赋值)
 
 > 注意copy与deepcopy
 >
@@ -91,7 +105,7 @@ def get_encoding(pth):
 
 - 增量赋值 x += 1
 
-### 2. 条件判断
+### 3. 条件判断
 
 - if elif else
 
@@ -114,7 +128,7 @@ def get_encoding(pth):
 
   
 
-### 3. 循环
+### 4. 循环
 
 - while
 - for
@@ -126,12 +140,18 @@ def get_encoding(pth):
   - continue
   - while true break
 
-### 4. 函数
+### 5. 递归
+
+> 汉诺塔 
+
+### 6. 函数
 
 - 参数 
 
   - 存储在局部作用域，入参一般情况下，不会被修改
 
+  > 变量和形参都是局部变量
+  
   > 在python中，我们无法改变参数，哪怕参数是引用参数【如果不是完全重新赋值，而是修改引用参数的其中的值，形参是会被改变的】
   >
   > ```python
@@ -157,7 +177,7 @@ def get_encoding(pth):
   - 默认参数 从最右边开始放起
 
   - 收集参数 *
-
+  
     > 有时候，我们想让用户提供任意数量的参数都是有用的, *号的意思就是收集其余位置的参数
     >
     > def print_params(*params):
@@ -169,7 +189,7 @@ def get_encoding(pth):
   - 收集关键字参数 ** 
 
     > 作用和*类似，但是可用于搜集关键字参数
-
+  
     ```python
     def print_params(x, y, z, *pospar, **keypar):
         print(x, y, z)
@@ -180,7 +200,7 @@ def get_encoding(pth):
     ```
 
   - \* 和 \*\* 在调用时也可以使用
-
+  
     ```python
     # 上文，讲了如何将参数收集为元祖和字典，即在参数中如何收集元组和字典；实际上，在调用时也可以用* 和 ** 来获得入参
     
@@ -191,11 +211,13 @@ def get_encoding(pth):
     add(*params)
     ```
 
-### 5. 递归
+> 
 
-> 汉诺塔
+### 7. 栈图 Stack Diagrams
 
-### 6. 作用域
+> 为了跟踪哪个变量能去哪儿用，有时画一个栈图(Stack Diagrams)比较有用，像状态图一样，栈图显示每个变量的值，但是他们也展示了每个变量属于的函数
+
+### 8. 作用域
 
 > 到底什么是变量？
 >
@@ -231,7 +253,7 @@ x
 
   > 如果在函数内容，想要访问的全局变量和局部变量或者形参重名，全局变量是会被覆盖的，如果确实需要的话，可以使用globals函数获取全局变量值，该函数的近亲是vars()， 可以返回全局变量字典
 
-### 函数式编程
+### 9. 函数式编程
 
 - lambda
 
@@ -252,7 +274,7 @@ print(list(filter(lambda x:True if x>2 else False, lst)))
 print(reduce(lambda x, y:x+y, lst))
 ```
 
-### 几个关键字
+### 10. 几个关键字
 
 - pass
 - del 删除的只是名称，而不是对象本身【实际上，python是没办法删除对象的，因此引用赋值，原名称的引用对象是不会删除的】
