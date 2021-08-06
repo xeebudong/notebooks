@@ -82,10 +82,25 @@ def get_encoding(pth):
 - 类型检查
 
   ```python
+  # 方法一 instance
   if not instance(n, int)
+  
+  # 方法二 issubdtype
+  df = pd.DataFrame({'A': [1, 2, 3], 'B': [1.0, 2.0, 3.0], 
+                     'C': [1j, 2j, 3j], 'D': ['a', 'b', 'c']})
+  
+  np.issubdtype(df['A'].dtype, np.number)
   ```
 
-  
+- 动态变量
+
+  > 利用作用域来解决
+
+  ```python
+  names = locals() # 或者 names = vars()
+  names["x_%d" %(1)] = 1
+  print(x_1)
+  ```
 
 ### 2. 赋值(魔法赋值)
 
@@ -257,22 +272,35 @@ x
 
 - lambda
 
-- map(func, seq) 对序列中的每个元素引用函数
+- apply \ applymap
 
-- filter(func, seq) 返回其函数为镇的元素的列表
+  - apply, 		对单列/多列处理，可传入参数
+  - applymap 针对cell
 
-- reduce(func, seq) 依次对相邻元素执行操作，操作的结果作为第一个元素
+- map\reduce\filter
+
+  - map(func, seq) 对单列处理，对序列中的每个元素引用函数
+
+  ```
+  # map(function, squence)	返回sequence执行function后的值
+  s = [1,2,3,4,5,6]
+  print(list(map(lambda x: x%2 == 1, s)))
+  ```
+
+  - reduce(func, seq) 返回一个单值，它是这样构造的：首先以序列的前两个元素调用函数function，再以返回值和第三个参数调用，依次执行下去。例如，以下程序计算 1 到 10 的整数之和
 
   > *Python3.x reduce() 已经被移到 functools 模块里，如果我们要使用，需要引入 functools 模块来调用 reduce()* 
 
-```python
-from functools import reduce
-lst = [1, 2, 3, 4]
+  - filter(func, seq) 返回其函数为镇的元素的列表
 
-print(list(map(lambda x:x+1, lst)))
-print(list(filter(lambda x:True if x>2 else False, lst)))
-print(reduce(lambda x, y:x+y, lst))
-```
+  ```python
+  from functools import reduce
+  lst = [1, 2, 3, 4]
+  
+  print(list(map(lambda x:x+1, lst)))
+  print(list(filter(lambda x:True if x>2 else False, lst)))
+  print(reduce(lambda x, y:x+y, lst))
+  ```
 
 ### 10. 几个关键字
 
@@ -482,8 +510,9 @@ pr.__age # 会报错
 ### 8. 标准包(随机数等)
 
 - 集合 set
-  - 交集 \ 差集 \ 异集
-
+  
+- 交集 \ 差集 \ 异集
+  
 - 堆 heap
 
 - 双端队列 deque
@@ -576,6 +605,31 @@ else:
 > 另附文件
 
 ## Python 科学计算 
+
+### 1. Numpy
+
+- **np.where 三元表达式**
+
+  > x if condition else y
+  > '''
+  > arr1 = np.arange(5)
+  > arr2 = np.arange(20, 25)
+  > condition = np.array([0, 1, 0, 0, 1])
+  > result = np.where(condition, arr1, arr2)
+  > print(arr1)
+  > print(arr2)
+  > print(result)
+  > '''
+
+- 集合运算
+  - unique
+  - intersect1d
+  - union1d
+  - in1d
+  - setdiff1d
+  - setxor1d
+
+- 
 
 ## Python 可视化
 
