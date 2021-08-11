@@ -604,7 +604,7 @@ else:
 
 > 另附文件
 
-## Python 科学计算 
+## 6. Python 科学计算 
 
 ### 1. Numpy
 
@@ -681,4 +681,7 @@ else:
 1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
 3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
 4. [如何发布自己的Python库](https://zhuanlan.zhihu.com/p/66603015)
-4. Python基础教程(第二版)， Magnus Lie Hetland，人民邮电出版社 【对初学者不友好，艰涩】
+4. [提高数据的颜值！一起看看Pandas中的那些Style](https://zhuanlan.zhihu.com/p/126223075)
+5. [用Python快速自动生成图文并茂的PDF文件](https://zhuanlan.zhihu.com/p/318390273)
+6. Python基础教程(第二版)， Magnus Lie Hetland，人民邮电出版社 【对初学者不友好，艰涩】
+
