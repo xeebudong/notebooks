@@ -1,9 +1,0 @@
-DATA test;
-    x = "£±£²£³£´£µ£¶"
-    y = KTRANSLATE(x, "123456", "£±£²£³£´£µ£¶");
-RUN;
-
-/*
-
-   ktranslate(string, to, from)
-*/
