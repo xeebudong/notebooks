@@ -629,7 +629,76 @@ else:
   - setdiff1d
   - setxor1d
 
-- 
+
+### 2. Pandas
+
+> Pandas 表格格式设置
+>
+> Pandas可以美化表格的输出，使用display代替 print输出
+
+1. 在Jupyter里面，设置可显示的行数
+
+   pd.options.display.max_columns = None
+
+   pd.options.display.max_rows = None 
+
+   以上为不做限制，如果要设置为具体的行数、列数，加上相应的值即可，也可以使用如下格式设置：
+
+   pd.set_options("max_columns", None)
+   pd.set_options("max_rows", None)
+
+2. 在jupyter中，给pandas表格设置样式，参见[pandas style](https://zhuanlan.zhihu.com/p/126223075)
+
+   > 要求：
+   >
+   > 1. 按条件设置颜色，比如单元格＞一定值，就设置为红色或者加背景，但能否将颜色加到同一行任意指定的列呢？ Yes
+   >
+   > 2. 按条件设置整行的颜色，如某个单元格＞一定值，就设置其所在的行全部为红色 Yes
+   >
+   > 3. 在groupby中设置颜色，如每组最大值，或者每组排序第一的值显示特殊颜色
+   >
+   >    > 可以先groupby，标识好这个最大的值，再按1、2的办法进行设置
+
+   ```python
+   import pandas as pd
+   
+   
+   df = pd.DataFrame({"A":[1, 22, 3, 4, 5], "B":[2, 3, 4, 5, 6], "C":["A", "C", "A", "B", "C"]})
+   
+   def set_color(x, threshold):
+       color = "red" if x>threshold else "grey"
+       return f"color:{color}"
+       
+   def set_bkgrd(x, threshold):
+       bkg = "lime" if x>threshold else "white"
+       return f"background-color:{bkg}"
+       
+   # 标识出每列最大
+   def col_max(col):   
+       return ["background-color:lime" if s==col.max() else "background-color:white" for s in col]
+   
+   # 标识出每行最大
+   def row_max(row):
+       return ["background-color:lime" if s==row.max() else "background-color:white" for s in row]
+   
+   # 根据一列数值，对另一列设置格式
+   def set_specify(row, threshold):
+       """
+           关键是，传入几列，就要传出几列的参数
+       """
+       #return ["background-color:white", "background-color:lime" if row[0]>threshold else "background-color:white"]
+       return ["background-color:white", "background-color:lime" if row["A"]>threshold else "background-color:white"] # both ok
+           
+   df.style.applymap(set_color, threshold=3, subset=["A", "B"])\
+           .applymap(set_bkgrd, threshold=4, subset=["A"])\
+           .apply(col_max, subset=["A", "B"])\
+           .apply(row_max, subset=["A", "B"], axis=1)\
+           .apply(set_specify, subset=["A", "C"], threshold=4, axis=1)
+   ```
+
+   
+
+3. 
 
 ## 7. Python 可视化
 
