@@ -595,7 +595,23 @@ try:
 except ZeroDivisionError:
     print("The second number is zero")
 else:
-    print("error is not raised")
+    print("I will be exec when Exception is not raise")
+finally:
+    print("I will exec always")
+```
+
+### 4. 异常信息输出
+
+> 异常信息，不仅可以输出错误信息，还可以输出异常抛出所在行
+
+```python
+import traceback
+
+try:
+    a = 1/0
+except Exception as ex:
+    print(ex)
+    print(traceback.print_exc())
 ```
 
 
