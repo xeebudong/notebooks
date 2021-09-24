@@ -729,7 +729,25 @@ except Exception as ex:
 
    
 
-## 9. Python库
+## 9. 性能优化
+
+1. 杀死当前进程
+
+   > Jupyter执行完之后，杀死当前进程
+
+   <code>
+
+   import os
+
+   pid = os.getpid()
+
+   !kill -9 $pid
+
+   </code>
+
+2. 
+
+## 10. Python库
 
 > [一文总结数据科学家常用的Python库](https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247485540&idx=1&sn=9703edaa804a1bfe3e230dfc54f40fca&chksm=e870d929df07503fc4a1bf14179da438159ea5d6d0a523823f47b49d6d7e11ff9f421aabc611&mpshare=1&scene=2&srcid=08298gs54sZ0f7LHVLktk9Yy&sharer_sharetime=1567091241514&sharer_shareid=ea22174a42a784e476cef382274c0236&from=timeline&clicktime=1567093641&key=d9f1c9604021247bc39b6f22e2a360cd525da9cc2cba4679a06f69f1380306a546f575d5cc0958c3339bf04bad06740fe71712c13eba64451bf45c1b944a90200235453e19a00e17f458a5170c6e0232&ascene=14&uin=MjAxNzI2NDMwMA%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AeyZCHB22Lbtkzrk7qv3hH0%3D&pass_ticket=PiIpvy%2Fe%2BYAbbsabsxPBQg5g1N49emRI2yq6eBiN7DOZCXYgvnaKbjXuwrFZ1ovV)
 
@@ -759,7 +777,7 @@ except Exception as ex:
         <td>Psycopg<br>SQLAlchemy</td>
     </tr>
 </table>
-## 10. 参考资料
+## 参考资料
 
 1. [Python API 文档](https://docs.python.org/zh-cn/3.7/library/index.html)
 3. [想用Django+ Bootstrap写一个网站， 有哪些比较系统完整的书或者视频可以参考？](https://www.zhihu.com/question/29804463#answer-13798033)
