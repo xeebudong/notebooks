@@ -630,14 +630,18 @@ PROC PRINT; RUN;
 > 在写宏或者函数时，为了实现函数/宏的复用，我们往往将函数/宏写的通用。在做评分卡模型评估时，我们需要做的是对模型稳定性和变量进行评估，所以评分卡打完分之后，我们只需要输出样本id、score、时间戳以及入模变量即可。每一张评分卡的入模变量都不尽相同，我们可以在评分卡代码中，使用KEEP语句输出，如下，宏里面定义了4个入参。这存在以下几个问题:
 
   - 不同的评分卡要去手动修改KEEP中的内容
+
   - 另一种解决方案是，在入参中加入待Keep的变量，但变量的数量不一定；这时候，就需要不定参数。SAS的解决方案是使用PARMBUFF
+
   - 参考：[sas 参数个数不定的宏](https://bbs.pinggu.org/thread-1307350-1-1.html)
+
+    ​	       [SAS学习笔记37 宏程序中parmbuff选项](https://www.cnblogs.com/abble/p/11245433.html)
 
 ```SAS
   %MACRO SCORECARD(lib_in, ds_in, lib_out, ds_out);
       DATA &lib_out..&ds_out.;
           SET &lib_in..&ds_in.;
-          ...
+          
           KEEP
             idnumber
             score
@@ -649,6 +653,22 @@ PROC PRINT; RUN;
           ;
       RUN;
   %MEND;
+```
+
+```SAS
+%macro printz/parmbuff;
+
+        %put Syspbuff contains: &syspbuff;
+        %let num=1;
+        %let dsname=%scan(&syspbuff,&num);
+        %do %while(&dsname ne);
+           proc print data=sasuser.&dsname;
+           run;
+           %let num=%eval(&num+1);
+           %let dsname=%scan(&syspbuff,&num);
+        %end;
+%mend printz;
+%printz(Feeddet, Sasmbc);
 ```
 
 
@@ -708,6 +728,61 @@ PROC PRINT; RUN;
 4. 相差的月份数
 
    mob = INTCK("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), INPUT(PUT(201512, Z6.), YYMMN6.))
+
+## 数据格式
+
+[SAS常用日期时间格式速查手册](https://cloud.tencent.com/developer/news/241563)
+
+> 20种常见日期数据格式
+
+<img src="E:\notebooks\3.data analysis\1. sas\material\日期数据格式.png" alt="image-20211208142806369" style="zoom:67%;" />
+
+1. 常见映射关系
+
+| 输入日期          | 日期宽度 | INFORMAT     |
+| ----------------- | -------- | ------------ |
+| 03/11/2014        | 10       | mmddyy10。   |
+| 03/11/14          | 8        | mmddyy8。    |
+| December 11, 2012 | 20       | worddate20。 |
+| 14mar2011         | 9        | date9。      |
+| 14-mar-2011       | 11       | date11。     |
+| 14-mar-2011       | 15       | anydtdte15。 |
+
+**注：部分SAS日期时间格式解读：**
+
+YY: 代表年份
+
+MM:代表月份
+
+DD: 代表日
+
+Q：代表季度
+
+MON：以三位英文筒写字符显示月份（例如：YYMON. >>> 2017JAN）
+
+DOWNAME：Day of Week，工作日名称
+
+MONNAME：月份名称
+
+**部分SAS日期时间格式末尾字符含义：**
+
+C：代表Colon，连接符为 ：（例如：YYMMC6. >>> 2017:01）
+
+D：代表Dash，连接符为 -（例如：YYMMD6. >>> 2017-01）
+
+P：代表Period，连接符为 .（例如：YYMMP6. >>> 2017.01）
+
+R：代表Roman，连接符为罗马字符（例如：YYQR6. >>> 2017Q1）
+
+S：代表Slash，连接符为 /（例如：YYMMS6. >>> 2017/01）
+
+B：代表Blank，连接符为空格（例如：YYMMB6. >>> 2017 01）
+
+N：代表Null，无连接符（例如：YYMMN6. >>> 201701）
+
+## 日期函数
+
+
 
 # Week7 SAS开发闭环
 
