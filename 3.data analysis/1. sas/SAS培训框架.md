@@ -689,7 +689,20 @@ PROC PRINT; RUN;
 
 > 坦白讲，时间运算也是我头疼的地方，尤其是涉及到SAS和其他产品的数据对接，如MySQL、Python。下面，就重要对时间以及基于时间的运算进行讲解
 
-1. 根据月份，获得当月最早一天(最晚一天)
+1. 整形 -> 日期
+
+   ```SAS
+   PROC SQL;
+   	SELECT 
+   		PUT(INPUT(PUT(20151112, Z8.), YYMMDD8.), YYMMDDN8.) AS dt
+   		, PUT(INPUT(PUT(20151112, Z8.), YYMMDD8.), YYMMN6.) AS mth
+       FROM sashelp.Aacomp(OBS=10);
+   QUIT;
+   ```
+   
+    
+   
+2. 根据月份，获得当月最早一天(最晚一天)
 
    - 最晚一天：下一个月的前一天
 
@@ -719,13 +732,13 @@ PROC PRINT; RUN;
 
      `dt_fst = INPUT(PUT(INTNX("MONTH", INPUT(PUT(&mth., Z6.), YYMMN6.), 0, "BEGIN"), YYMMDDN8.), 8.)`
 
-2. 获取当日所在月份的最早一天
+3. 获取当日所在月份的最早一天
    dt_fst = INPUT(PUT(INTNX("MONTH", TODAY(), 0, "BEGIN"), YYMMDDN8.), 8.)
 
-3. 根据当前月份，获得下一个月
+4. 根据当前月份，获得下一个月
    Call symput("mth", PUT(INTNX("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), 1), YYMMN6.));
-   
-4. 相差的月份数
+
+5. 相差的月份数
 
    mob = INTCK("MONTH", INPUT(PUT(201511, Z6.), YYMMN6.), INPUT(PUT(201512, Z6.), YYMMN6.))
 
