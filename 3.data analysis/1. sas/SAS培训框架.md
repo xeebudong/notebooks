@@ -731,6 +731,12 @@ PROC PRINT; RUN;
    - 直接用BEGIN\END或者B\E关键字
 
      `dt_fst = INPUT(PUT(INTNX("MONTH", INPUT(PUT(&mth., Z6.), YYMMN6.), 0, "BEGIN"), YYMMDDN8.), 8.)`
+     
+   - 根据Num，获得上个月最后一天
+
+     ```SAS
+     dt_scene = INTNX("MONTH", INPUT(PUT(dt_lc_num, 8.), YYMMDD8.), -1, "E");
+     ```
 
 3. 获取当日所在月份的最早一天
    dt_fst = INPUT(PUT(INTNX("MONTH", TODAY(), 0, "BEGIN"), YYMMDDN8.), 8.)
@@ -797,6 +803,26 @@ N：代表Null，无连接符（例如：YYMMN6. >>> 201701）
 
 
 
+# WEEK7 SAS抽样
+
+```SAS
+PROC SURVEYSELECT DATA     = ds_input
+                  OUT      = ds_output
+                  METHOD   =SRS
+                  SAMPSIZE =smpsize
+                  SAMPRATE =0.1
+                  REP      =
+                  SEED     =
+                  NOPRINT;    
+         		  ID variable;       *指定抽取的样本所保留的源数据集变量;
+                  STRATA variables;  *指定分层变量;
+                  CONTROL variables; *控制变量;
+                  SIZE variables;    *不等概抽样指标变量;
+RUN;
+```
+
+
+
 # Week7 SAS开发闭环
 
 > SAS是一个处理数据的工具。从不同的数据文件抽取数据，处理数据，再输出数据、甚至形成报表。我们在第一章就讲了输入输出，将处理结果存储为文件，是一种方式，但不便于数据的共享和流动。
@@ -840,6 +866,38 @@ N：代表Null，无连接符（例如：YYMMN6. >>> 201701）
 > 可以帮助你快速定位一条或多条想要读取的符合特定条件的观测
 >
 > 在没有索引的情况下，SAS是一条接一条的扫描观测；有索引时，直接跳到该索引对应的观测所在位置，总结一句话：节省时间、节省内存、提高效率
+
+# Week 关键字
+
+## SYSFUNC
+
+1. 遍历月份
+
+   ```SAS
+   %MACRO AUTO_GETRPT(mth_start, mth_end);
+     %DO i = &mth_start. %TO &mth_end.;
+     	%IF %SYSFUNC(MOD(&i., 100)) <= 12 AND %SYSFUNC(MOD(&i., 100)) >= 1 %THEN %DO;
+     		%PUT &i.;
+     	%END;
+     %END;
+   %MEND;
+   ```
+
+2. 查询是否存在数据集
+
+   ```SAS
+   %macro checkds(data_set);
+     %if %sysfunc(exist(&data_set)) %then %do;
+       %put "Data set &data_set. is already exists !";
+     %end;
+     %else %do;
+       %put "Data set &data_set. does not exist !";
+       run;
+     %end;
+   %mend checkds;
+   ```
+
+3. 
 
 # Week 其他
 
