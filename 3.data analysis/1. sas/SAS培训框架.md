@@ -846,6 +846,20 @@ RUN;
 4. 和一类似
    EXECUTE(DBMS SQL) BY db_name
 5. SAS连接数据库
+6. 判断数据类型
+
+/*打开数据集，并给一个唯一的序号来标识数据集*/
+%LET DATAID=%SYSFUNC(OPEN(test,I)); 
+
+/*输出给定变量在数据集中的次序*/
+%LET VARNUM=%SYSFUNC(VARNUM(&DATAID.,group));  
+
+/*判断数据集中给定变量的类型*/
+%LET VARTYPE=%SYSFUNC(VARTYPE(&DATAID.,&VARNUM.)); 
+
+/*关闭数据集*/
+%LET RC=%SYSFUNC(CLOSE(&DATAID.));
+
 
 # Week8 SAS报表
 
