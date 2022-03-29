@@ -71,6 +71,16 @@ def get_encoding(pth):
 
 - 设置chuncksize
 
+4. 读取SAS
+
+   ```python
+   from sas7bdat import SAS7BDAT
+   
+   df = SAS7BDAT("demo.sas7bdat", encoding="gb2312").to_data_frame()
+   ```
+
+5. 
+
 ## 1.Python 语法基础 
 
 ### 1. 变量、表达式、语句
