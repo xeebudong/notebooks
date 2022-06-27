@@ -79,9 +79,83 @@ def get_encoding(pth):
    df = SAS7BDAT("demo.sas7bdat", encoding="gb2312").to_data_frame()
    ```
 
-5. 
+### 1. 连接数据库
 
-## 1.Python 语法基础 
+> pyodbc
+
+```python
+import pyodbc
+import pandas as pd
+
+dbcfg = {"username":"irpf_user", "passwd":"nbcb,111", "database":"default", "dsn":"impala"}
+connString = "DSB=%s; UID=%s; PWD=%s; DATABASE=%s" %(dbcfg["dsn"], dbcfg["username"], dbcfg["passwd"], dbcfg["database"])
+
+conn = pyodbc.connect(connstring, autocommit=True)
+cursor = conn.cursor()
+
+cursor.execute(sql)
+data = cursor.fetchall()
+df_columns = cursor.description
+
+def func_fetch_datas(sql, conn=conn):
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    
+    data = cursor.fetchall()
+    colNames = [x[0] for x in cursor.description]
+    df = pd.DataFrame([list(i) for i in data], columns = colNames)
+    
+    return df
+```
+
+### 2. 读取CSV
+
+> 读取csv的方法有多种，可以直接使用pandas.read_csv， 但在一定情况下，pandas对中文的解码不一定可行，经常在sas中将数据批量输出到csv，再用python来读取csv，就会报encoding相关的错误；所以，可以返回比较原始的open方法，然后再将open read上来的数据组装成pandas
+
+```python
+def read_csv(filepath, enc = "utf-16"):
+    import csv
+    with open(filepath, encoding=enc) as csvfile:
+        csvreader = csv.reader(csvfile)
+        lines     = list(csvreader)
+        
+        header, values = lines[0], lines[1:]
+        data_dict = {h:v for h, v in zip(header, zip(*values))}
+        df = pd.DataFrame(data_dict)
+    return df
+```
+
+### 3. 读写Excel
+
+#### 3.1 写入Excel的不同sheet
+
+```python
+import pandas as pd
+
+excel_writer = pd.ExcelWriter(fileroot)
+
+df1.to_excel(excel_writer, sheet_name = "sheet1")
+df2.to_excel(excel_writer, sheet_name = "sheet2")
+
+excel_writer.save()
+```
+
+```python
+def pd2excel(df, dir_root, sheetname):
+    import pandas as pd
+    try:
+        with pd.ExcelWriter(dir_root, mode="a", engine="openpyxl") as writer:
+            df.to_excel(writer, sheet_name=sheetname)
+    except FileNotFoundError:
+        with pd.ExcelWriter(dir_root, mode="w", engine="openpyxl") as writer:
+            df.to_excel(writer, sheet_name=sheetname)
+    except ValueError:
+        pass
+```
+
+
+
+## 1. Python 语法基础
 
 ### 1. 变量、表达式、语句
 
@@ -724,7 +798,53 @@ except Exception as ex:
 
    
 
-3. 
+3. [loc、iloc、ix和at/iat浅析](https://www.jianshu.com/p/199a653e9668)
+
+   ```python
+   df=pd.DataFrame(np.arange(12).reshape(4,3),columns=list('abc'),index=list('defg'))
+   
+   # loc，使用索引值或列名来进行索引
+   
+   df.loc["d"]        # 索引一行
+   df.loc[["d", "e"]] # 索引多行
+   
+   df.loc[:, :"b"]    # 索引多列
+   
+   # iloc
+   df.iloc[0] 
+   df.iloc[0:2]
+   df.iloc[:, 2:3]
+   
+   # ix
+   df.ix[[0, "e"]]   # 混合索引，选取第一行和第e行
+   df.ix["e":, :2]   # e行的前2列
+   
+   # at / iat  (at)通过标签或(iat)行号获取某个数值的具体位置
+   df.at["f", "a"]   # f行，a列
+   df.iat[2-1, 3-1]  # 第2行，第3列
+   
+   # 直接索引
+   df[0:3]
+   df['a']
+   df[['a','c']]
+   df['c':]
+   
+   
+   
+   """
+   1）.loc,.iloc,.ix,只加第一个参数如.loc([1,2]),.iloc([2:3]),.ix[2]…则进行的是行选择
+   2）.loc,.at，选列是只能是列名，不能是position
+   3）.iloc,.iat，选列是只能是position，不能是列名
+   4）df[]只能进行行选择，或列选择，不能同时进行列选择，列选择只能是列名。行号和区间选择只能进行行选择。当index和columns标签值存在重复时，通过标签选择会优先返回行数据。df.只能进行列选择，不能进行行选择。
+   
+   作者：3230
+   链接：https://www.jianshu.com/p/199a653e9668
+   来源：简书
+   著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+   """
+   ```
+
+3.  
 
 ## 7. Python 可视化
 
@@ -745,15 +865,16 @@ except Exception as ex:
 
    > Jupyter执行完之后，杀死当前进程
 
-   <code>
-
+   ```python
    import os
+   
 
-   pid = os.getpid()
+pid = os.getpid()
 
-   !kill -9 $pid
+!kill -9 $pid
+   ```
 
-   </code>
+   
 
 2. 
 

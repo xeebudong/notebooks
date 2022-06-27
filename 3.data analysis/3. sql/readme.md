@@ -2,6 +2,12 @@
 
 1. 查询库中所有表名，及表的大小
 
+   - impala实现
+
+   show table stats pdata_sit.loan_ov_record05; // 查询某表的行数及大小
+
+   show column stats pdata_sit.loan_ov_record05; // 列字典
+
 2. 查询表数据字典
 
 `SHOW COLUMNS FROM dw_datas_connection`
@@ -40,11 +46,49 @@ flush privileges ;
 
 ### 增
 
+```sql
+INSERT INTO TABLE nbacard.xb_tmp
+SELECT * FROM src_tbl
+```
+
+
+
 ### 删
 
 ### 改
 
+1. 添加行号
+
+   ```sql
+   SELECT 
+   	SalesOrderID
+   	, ROW_NUMBER() OVER (ORDER BY SalesOrderID) AS RowNumber 
+   FROM booklist
+   ```
+
+2. 组内(Group)排序
+
+   > 必须要有Group字段及Order字段
+
+   ```sql
+   SELECT credno, startdate, rn, RANK() Over(PARTITION BY credno ORDER BY rn DESC) as grn
+   FROM
+   (	
+       SELECT cerdno, startdate, ROW_NUMBER() OVER(ORDER BY credno) AS rn
+       FROM
+       	shdata_sit.limit_info
+   ) AS a
+   ```
+
+   
+
 ### 查
+
+1. 去重查询
+
+   SELECT DISTINCT id, name, dt FROM tablename
+
+   -- 在所有字段前面加上distinct可以对行去重
 
 1. 查找表中idx以100结尾
 
@@ -52,6 +96,23 @@ flush privileges ;
 
 2. 查找表中idx不以100结尾
    `select * from tabelname where idx not regexp '100$';`
+   
+3. 获取所有数据库名
+
+   SHOW DATABASES;
+
+4. 查找\列举数据库中，所有数据表
+
+   USE SHDATA_SIT;
+
+   SHOW TABLES;
+
+### 集合操作
+
+1. 交集 inner join
+2. 差集
+   - 左集 - 右集
+   - 右集 - 左集
 
 ### 字符串操作
 
@@ -77,6 +138,14 @@ flush privileges ;
 
    `select dt, fining_id, fpname, GROUP_CONCAT(district, earn_coins) as gameparty_detail from km_gameparty_d1
    GROUP BY dt, fining_id, fpname;`
+
+### [正则表达式](https://blog.csdn.net/weiwenhp/article/details/6943834)
+
+1. REGEXP_LIKE
+2. REGEXP_INSTR
+3. REGEXP_REPLACE
+
+`SELECT * FROM shdata_sit.tbl_customer WHERE REGEXP_LIKE(customerid, "^0+$")`
 
 ## MySQL语法
 

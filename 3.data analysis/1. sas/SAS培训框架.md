@@ -195,9 +195,29 @@
 
 2. SAS的中文字符编解码
    - 默认的编码、解码方式
+   
    - 是否可以更改编码解码方式
-
+   
+     ```SAS
+     * 1.对整个lib内数据集直接转换如下;
+     
+     libname inlib cvp 'c:\temp'; 
+     libname outlib 'c:\' outencoding='UTF-8'; 
+     proc copy noclone in=inlib out=outlib; run;
+     
+     * 2.对单个数据集进行转换;
+     
+     libname inlib cvp 'c:\temp'; 
+     libname outlib 'c:\' outencoding='UTF-8'; 
+     proc copy noclone in=inlib out=outlib; 
+     	select dataset_name; 
+     run;
+     ```
+   
+     
+   
 3. 字符集&字符编码
+
 4. 实例
 
 ```SAS
@@ -301,6 +321,8 @@ df2 = pd.read_csv(r"D:\ch.csv")
 > 本章，先不对SAS的具体语法进行讲解，而是对SAS编程规范以及SAS中一些关键字进行说明。这将对未来的开发带来一些便利。
 >
 > [System Options Are Your Friends](E:\notebooks\3.data analysis\1. sas\e-book\SUGI 28_ SAS(r) System Options Are Your Friends.pdf)
+>
+> [SAS-走近Log，实现程序的“风险控制”](https://cloud.tencent.com/developer/article/1523962)
 
 1. 日志持久化
 
@@ -677,7 +699,12 @@ PROC PRINT; RUN;
 
 > SQL VS MERGE， 效率
 
+```SAS
+LIBNAME LBN HADOOP SERVER=newnode1 USER=irpf_user PASSWORD=nbcn,111 SCHEMA=shdata_sit SUBPROTOCOL = HIVE2
+```
 
+- SERVER 服务器名字或IP地址
+- SCHEMA 数据库名字
 
 # Week6 时间运算
 
@@ -880,6 +907,38 @@ RUN;
 > 可以帮助你快速定位一条或多条想要读取的符合特定条件的观测
 >
 > 在没有索引的情况下，SAS是一条接一条的扫描观测；有索引时，直接跳到该索引对应的观测所在位置，总结一句话：节省时间、节省内存、提高效率
+
+## 处理大数据技巧-修改Work逻辑库物理地址
+
+C:\Program Files\SAS\SASFoundation\9.2\SASV9.CFG
+记事本打开它，里面只有一行字，默认是这个：
+-CONFIG "C:\Program Files\SAS\SASFoundation\9.2\nls\zh\SASV9.CFG"
+然后打开这个nls\zh\SASV9.CFG
+修改：
+/* Setup the default SAS System user work folder          */
+-WORK "D:\" 这样临时逻辑库就在D盘了
+
+<p style="font-size:18px;color:blue;font-weight:bold"> 不同语言版本的sas base，修改路径略有不同，例如中文版的，就修改zh下的对应文件，英文版的为en下的对应文件 </p>
+
+## 快捷键\功能键（快速输入代码块）
+
+1. 工具 > 添加缩写
+
+   <img src="https://ask.qcloudimg.com/http-save/6430184/tx9sw513x2.png?imageView2/2/w/1620" alt="img" style="zoom:75%;" />
+
+2. 将写好的代码块或者宏写入，并给一个简写命名，点确认
+
+   <img src="C:\Users\hp\AppData\Roaming\Typora\typora-user-images\image-20220524104536200.png" alt="image-20220524104536200" style="zoom:75%;" />
+
+3. 在sas代码编辑框里面，输入 mysql敲回车，即可快速键入该代码块
+
+## 打开SAS，自动运行MACRO
+
+1. 1.预先写好一段代码（sas程序名字：autoexec.sas,并将程序放在你SAS安装路径下，小编此处安装路径B:\SAS\SASFoundation\9.2(32-bit)）
+
+2. 做好上述一步聚，启动SAS软件。将会自动执行程序
+
+   <img src="https://ask.qcloudimg.com/http-save/6430184/maxu9lye11.png?imageView2/2/w/1620" alt="img" style="zoom:75%;" />
 
 # Week 关键字
 
